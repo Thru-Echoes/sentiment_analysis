@@ -1,0 +1,321 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:8341:b0:7c:3f8b:73d5 with SMTP id a1csp9485162rcf;
+        Tue, 31 Dec 2024 17:16:46 -0800 (PST)
+X-Received: by 2002:a25:c504:0:b0:e53:e563:92e with SMTP id 3f1490d57ef6-e53e56309edmr11115516276.18.1735694205677;
+        Tue, 31 Dec 2024 17:16:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1735694205; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Olv0VxjKaM5RpRwb0vXtUmvlIy6gZw4ctD9jP7as0mvpqYCptim8Vw7VyUbfR9+ATF
+         i9qyghbv9j6ENVHsO1+k55+YL9xoR9XVT3ElqMpJsYD+pf/2h3px48Ek/O0/TLaUOkIu
+         camDbCC7f+86SFB6mlkz++yUQ+W6GkGB6d0N3Lz2n0LsvqjTaJCY5/3kJdatBXoFhnkF
+         GNdIquhfNOV4imMFrvMFI7ezkfFZtO37KkjD4cfAHvYZxYjOwA3wPwNSuCf8wyGex794
+         YjM4kBm0puSSS8DAbZuJuZcYF2EGafx/ec9NGGqv9c2sOVykR7zPKnUEVwhKst5sq1nB
+         nilA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=WSHAVn36jLhUPDlFqgxK11QXACXjmI3YnAzbUtve5is=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=QSLsbw+7qaTqmItt6OcvZa3JjivEnHd9Y14vfxPx8y/z1qkIdY4VIIBRxYsyauIaqg
+         Y2sUilQ9MeBnwqq1j3ST6M18RuJ8WG+NDaKJmdpWBoJ7uh5Mw6Tk8F8QyOenw6jOTju4
+         /2xiFpM//0ijicyp/TS5qGd/Yq+NxgvIm/J07Qk6vr7HAKezCXMY78Dq2FWAlCe5lgsR
+         Hdo8NptAY4ufUjE8ZM/cM5QE2mb0xd/L6XNoG7oJjXtRTMq8DJb0x9pF+U77rwPqkXX9
+         Brmx8Lc8mEQypuwX6hybkxA9NVhJlSpUA09hvE+TZ3f6A3kH+TZAQJn+xnSWQvgbBUed
+         UZNQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=yupKscLw;
+       spf=pass (google.com: domain of 3fzd0zxqkamamuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3fZd0ZxQKAMAmuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3fZd0ZxQKAMAmuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 3f1490d57ef6-e537cf4246dsor12079009276.11.2024.12.31.17.16.45
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Tue, 31 Dec 2024 17:16:45 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3fzd0zxqkamamuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=yupKscLw;
+       spf=pass (google.com: domain of 3fzd0zxqkamamuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3fZd0ZxQKAMAmuumrkgrkxzy-tuxkvr4muumrk.ius@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1735694205; x=1736299005; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WSHAVn36jLhUPDlFqgxK11QXACXjmI3YnAzbUtve5is=;
+        b=yupKscLw1QryqNgL8i3ga8680i8WVhxhm2kEz0Rf0XutPco2ZX5mEo8XjscTqyNUN+
+         udaTydp+SMP6I1OeyU+SLACS1LvJxVTNlorjiLSiHuvL3lz/2ejyKvhq4PegkmCfGz3X
+         usXxxhmEtO6pbe7T2b9KwEG0nxL2MpgKdmjqN0S1ojFCUOig3WzbVjoW1o0keRlmb3Re
+         5C3GYm7f/UUUHB0nLJmY3wMPRLCv9Ksi4C7EuNiUpX0rRwmCsXiI9LAMW/U2MZSaW9m6
+         /p9dE8/KEYzyhYpRSn7sDvL3IaCv2R7Ul0ShQ9CjBwiDCKYB4PTzDdA7jUsqaEz0aDvo
+         /TgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735694205; x=1736299005;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WSHAVn36jLhUPDlFqgxK11QXACXjmI3YnAzbUtve5is=;
+        b=GS5XC4kWqzLrjrYG8ZIpwb3ECjKNnxKLWhIuX2vytkLVXV5o9AWfqEfH4r3kWQqQRw
+         MVZiXqe9HR1Oh5aJjow7W1YLkp1KDeTbNpa0FgwBak3Ei0TlUuXYvDm0H3LFRXAsFUBq
+         VX69o356BjAv8oxdZWcTeyepvbT3mY3mIYkFWhXx/fENBjSH3iHBZ9iNAeu8kc3b/7aA
+         USWBkrC9x0zZBjZSYEhxkTleVHxXmtYt+ZOB0e9ln388jOezSRFzxRK0sttsEhausdMZ
+         zY4qG6I4KOVb/7t/KK/JGGQURyYCgoWh6hijZ0hi3FFDY0Wihx/tULLZUacd33Jf3wK8
+         4feg==
+X-Gm-Message-State: AOJu0YwW16gwNITqD0GJKHwa2k8yoGFfftN8lLOmsEviKAwEGVXBZt4A
+	rHXG9V8Kd75Pj86w/XcyKQnHCB/4Mh66qW0=
+X-Google-Smtp-Source: AGHT+IE1YlQJgbw+JP/ngbx2VtEDA4aeWowqYb1wPfeJmg/vERc7OHSxH2OD8FqA2QfE8gI5ZWU=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6902:1022:b0:e46:e18:9e94 with SMTP id
+ 3f1490d57ef6-e538c421ee2mr22534206276.52.1735694205203; Tue, 31 Dec 2024
+ 17:16:45 -0800 (PST)
+Date: Tue, 31 Dec 2024 17:16:44 -0800
+List-Id: <8788187619656504868.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs>
+Message-ID: <6774977c.050a0220.2bd031.2165googlealerts@google.com>
+Subject: =?UTF-8?Q?Google_Alert_=2D_El_Salvador_miner=C3=ADa?=
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="0000000000008a35da062a9acc61"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--0000000000008a35da062a9acc61
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IFdlYiAtIDIgbmV3IHJlc3VsdHMgZm9yIFtFbCBTYWx2YWRvciBtaW5lcsOtYV0gPT09DQoN
+ClByZXNpZGVudGUgQnVrZWxlIHJlYWN0aXbDsyBsYSBtaW5lcsOtYSBlbiBFbCBTYWx2YWRvciBw
+YXJhIGltcHVsc2FyIGVsDQpkZXNhcnJvbGxvIGVjb27Ds21pY28gLi4uDQpFbCBQcmVzaWRlbnRl
+IE5heWliIEJ1a2VsZSBoYSBkYWRvIHVuIHBhc28gZmlybWUgZW4gbGEgcmVhY3RpdmFjacOzbiBk
+ZSBsYQ0KbWluZXLDrWEgbWV0w6FsaWNhIGVuIEVsIFNhbHZhZG9yLCB1bmEgbWVkaWRhIHF1ZSBw
+cm9tZXRlIHRyYW5zZm9ybWFyIGxhIC4uLg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3Jj
+dD1qJnNhPXQmdXJsPWh0dHBzOi8vY2RuLTAuZGlhcmlvbGFodWVsbGEuY29tL3ByZXNpZGVudGUt
+YnVrZWxlLXJlYWN0aXZvLWxhLW1pbmVyaWEtZW4tZWwtc2FsdmFkb3ItcGFyYS1pbXB1bHNhci1l
+bC1kZXNhcnJvbGxvLWVjb25vbWljby1zYWx2YWRvcmVuby8mY3Q9Z2EmY2Q9Q0FFWUFDb1VNVE15
+TnpVd05EWTFOek14TXpnNU56TXlNek15SFRBek1UQTNabU0yT0dGaE9UUmxabVk2WTI5dE9tVnVP
+bE5XT2xKTSZ1c2c9QU92VmF3MXRpVFVZZmthNUtLZUhhb2FNVVdSRj4NCg0KRXRpcXVldGE6IE1J
+TkVSw41BIE1FVMOBTElDQSBFTCBTQUxWQURPUg0KQ2hpbmEgY29uZmlybWEgaGFiZXIgcmVhbGl6
+YWRvIGVsIG1heW9yIGhhbGxhemdvIGRlIHlhY2ltaWVudG8gZGUgb3JvIGVuIGVsDQptdW5kby4g
+cG9yIEFnZW5jaWFzIMK3IGRvbWluZ28sIDI5IGRpY2llbWJyZSAyMDI0IDExOjI0IEFNLg0KPGh0
+dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vbGFwYWdpbmEu
+Y29tLnN2L2V0aXF1ZXRhcy9taW5lcmlhLW1ldGFsaWNhLWVsLXNhbHZhZG9yLyZjdD1nYSZjZD1D
+QUVZQVNvVU1UTXlOelV3TkRZMU56TXhNemc1TnpNeU16TXlIVEF6TVRBM1ptTTJPR0ZoT1RSbFpt
+WTZZMjl0T21WdU9sTldPbEpNJnVzZz1BT3ZWYXcxdkx2aDZfamRTYzNNVmZQS2trLWFMPg0KDQoN
+Ci0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0g
+LSAtIC0gLSAtIC0NClVuc3Vic2NyaWJlIGZyb20gdGhpcyBHb29nbGUgQWxlcnQ6DQo8aHR0cHM6
+Ly93d3cuZ29vZ2xlLmNvbS9hbGVydHMvcmVtb3ZlP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmds
+PVNWJm1zZ2lkPU1UTXlOelV3TkRZMU56TXhNemc1TnpNeU16TSZzPUFCMlhxNGdMWUlvU3RNMGdI
+S1pDb0pSZ2dEbV9RbHJwRjU5dXNxcz4NCg0KQ3JlYXRlIGFub3RoZXIgR29vZ2xlIEFsZXJ0Og0K
+PGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmds
+PVNWJm1zZ2lkPU1UTXlOelV3TkRZMU56TXhNemc1TnpNeU16TT4NCg0KU2lnbiBpbiB0byBtYW5h
+Z2UgeW91ciBhbGVydHM6DQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hbGVydHM/c291cmNlPWFs
+ZXJ0c21haWwmaGw9ZW4mZ2w9U1YmbXNnaWQ9TVRNeU56VXdORFkxTnpNeE16ZzVOek15TXpNPg0K
+--0000000000008a35da062a9acc61
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - El Salvador miner=C3=ADa",
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Latest: January 1, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "Presidente Bukele reactiv=C3=B3 la miner=C3=ADa en El Sal=
+vador para impulsar el desarrollo econ=C3=B3mico ..."
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Etiqueta: MINER=C3=8DA MET=C3=81LICA EL SALVADOR"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs\u0026start=3D1735607894\u0026end=3D1735694204\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DSV\u0026msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM=
+#history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "Presidente Bukele reactiv=C3=B3 la miner=C3=ADa en El Salva=
+dor para impulsar el desarrollo econ=C3=B3mico ...",
+      "description": "El Presidente Nayib Bukele ha dado un paso firme en l=
+a reactivaci=C3=B3n de la miner=C3=ADa met=C3=A1lica en El Salvador, una me=
+dida que promete transformar la ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://cdn-0.diariolahuella.com/presidente-bukele-reactivo-la-mineria-en-el-s=
+alvador-para-impulsar-el-desarrollo-economico-salvadoreno/\u0026ct=3Dga\u00=
+26cd=3DCAEYACoUMTMyNzUwNDY1NzMxMzg5NzMyMzMyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVu=
+OlNWOlJM\u0026usg=3DAOvVaw1tiTUYfka5KKeHaoaMUWRF"
+    }, {
+      "type": "LINK",
+      "title": "Etiqueta: MINER=C3=8DA MET=C3=81LICA EL SALVADOR",
+      "description": "China confirma haber realizado el mayor hallazgo de y=
+acimiento de oro en el mundo. por Agencias =C2=B7 domingo, 29 diciembre 202=
+4 11:24 AM.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://lapagina.com.sv/etiquetas/mineria-metalica-el-salvador/\u0026ct=3Dga\u=
+0026cd=3DCAEYASoUMTMyNzUwNDY1NzMxMzg5NzMyMzMyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOm=
+VuOlNWOlJM\u0026usg=3DAOvVaw1vLvh6_jdSc3MVfPKkk-aL"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM" style=3D"text-de=
+coration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.p=
+ng?cd=3DKhQxMzI3NTA0NjU3MzEzODk3MzIzMw" alt=3D"Google" border=3D"0" height=
+=3D"25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px=
+;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr> =
+ <tr> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0=
+px 0px;vertical-align:middle;line-height:20px;font-family:Arial"> <span sty=
+le=3D"color:#262626;font-size:22px">El Salvador miner=C3=ADa</span> <div st=
+yle=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-he=
+ight:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4p=
+x">&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">January 1, 20=
+25</a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td s=
+tyle=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;bor=
+der-bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373"=
+> WEB </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr> <td=
+ style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;v=
+ertical-align:top;font-family:Arial">  <div>  <span style=3D"padding:0px 6p=
+x 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;ur=
+l=3Dhttps://cdn-0.diariolahuella.com/presidente-bukele-reactivo-la-mineria-=
+en-el-salvador-para-impulsar-el-desarrollo-economico-salvadoreno/&amp;ct=3D=
+ga&amp;cd=3DCAEYACoUMTMyNzUwNDY1NzMxMzg5NzMyMzMyHTAzMTA3ZmM2OGFhOTRlZmY6Y29=
+tOmVuOlNWOlJM&amp;usg=3DAOvVaw1tiTUYfka5KKeHaoaMUWRF" style=3D"color:#427fe=
+d;display:inline;text-decoration:none;font-size:16px;line-height:20px"> <sp=
+an>Presidente Bukele reactiv=C3=B3 la <b>miner=C3=ADa</b> en <b>El Salvador=
+</b> para impulsar el desarrollo econ=C3=B3mico ...</span> </a> </span>  <d=
+iv> <div style=3D"padding:2px 0px 8px 0px"> <div style=3D"color:#737373;fon=
+t-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <span>Diario=
+ La Huella</span> </a> </div> <div style=3D"color:#252525;padding:2px 0px 0=
+px 0px;font-size:12px;line-height:18px">El Presidente Nayib Bukele ha dado =
+un paso firme en la reactivaci=C3=B3n de la <b>miner=C3=ADa</b> met=C3=A1li=
+ca en <b>El Salvador</b>, una medida que promete transformar la&nbsp;...</d=
+iv> </div>   <table> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a =
+href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dht=
+tps://cdn-0.diariolahuella.com/presidente-bukele-reactivo-la-mineria-en-el-=
+salvador-para-impulsar-el-desarrollo-economico-salvadoreno/&amp;ss=3Dfb&amp=
+;rt=3DPresidente+Bukele+reactiv%C3%B3+la+miner%C3%ADa+en+El+Salvador+para+i=
+mpulsar+el+desarrollo+econ%C3%B3mico+...&amp;cd=3DKhQxMzI3NTA0NjU3MzEzODk3M=
+zIzMzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmUx_AwUCokZd-=
+xGNax6JZv6bSclfw" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=
+=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D=
+"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> =
+<a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=
+=3Dhttps://cdn-0.diariolahuella.com/presidente-bukele-reactivo-la-mineria-e=
+n-el-salvador-para-impulsar-el-desarrollo-economico-salvadoreno/&amp;ss=3Dt=
+w&amp;rt=3DPresidente+Bukele+reactiv%C3%B3+la+miner%C3%ADa+en+El+Salvador+p=
+ara+impulsar+el+desarrollo+econ%C3%B3mico+...&amp;cd=3DKhQxMzI3NTA0NjU3MzEz=
+ODk3MzIzMzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmUx_AwUC=
+okZd-xGNax6JZv6bSclfw" style=3D"text-decoration:none"> <img alt=3D"Twitter"=
+ src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" heigh=
+t=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font=
+-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhtt=
+ps://cdn-0.diariolahuella.com/presidente-bukele-reactivo-la-mineria-en-el-s=
+alvador-para-impulsar-el-desarrollo-economico-salvadoreno/&amp;source=3Dale=
+rtsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM&amp=
+;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none=
+;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> =
+</td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px">=
+</td> </tr>    <tr> <td style=3D"padding-left:18px"></td> <td style=3D"padd=
+ing:18px 0px 12px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-=
+family:Arial">  <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"=
+https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://lapagina.co=
+m.sv/etiquetas/mineria-metalica-el-salvador/&amp;ct=3Dga&amp;cd=3DCAEYASoUM=
+TMyNzUwNDY1NzMxMzg5NzMyMzMyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=
+=3DAOvVaw1vLvh6_jdSc3MVfPKkk-aL" style=3D"color:#427fed;display:inline;text=
+-decoration:none;font-size:16px;line-height:20px"> <span>Etiqueta: <b>MINER=
+=C3=8DA</b> MET=C3=81LICA <b>EL SALVADOR</b></span> </a> </span>  <div> <di=
+v style=3D"padding:2px 0px 8px 0px"> <div style=3D"color:#737373;font-size:=
+12px"> <a style=3D"text-decoration:none;color:#737373"> <span>Diario La P=
+=C3=A1gina</span> </a> </div> <div style=3D"color:#252525;padding:2px 0px 0=
+px 0px;font-size:12px;line-height:18px">China confirma haber realizado <b>e=
+l</b> mayor hallazgo de yacimiento de oro en <b>el</b> mundo. por Agencias =
+&middot; domingo, 29 diciembre 2024 11:24 AM.</div> </div>   <table> <tr> <=
+td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.=
+com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/etiqu=
+etas/mineria-metalica-el-salvador/&amp;ss=3Dfb&amp;rt=3DEtiqueta:+MINER%C3%=
+8DA+MET%C3%81LICA+EL+SALVADOR&amp;cd=3DKhQxMzI3NTA0NjU3MzEzODk3MzIzMzIdMDMx=
+MDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmXzDzynVuJUJiutNh7_wtn8G=
+D0Txg" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https:/=
+/www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=
+=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D=
+"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://l=
+apagina.com.sv/etiquetas/mineria-metalica-el-salvador/&amp;ss=3Dtw&amp;rt=
+=3DEtiqueta:+MINER%C3%8DA+MET%C3%81LICA+EL+SALVADOR&amp;cd=3DKhQxMzI3NTA0Nj=
+U3MzEzODk3MzIzMzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmX=
+zDzynVuJUJiutNh7_wtn8GD0Txg" style=3D"text-decoration:none"> <img alt=3D"Tw=
+itter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0"=
+ height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15p=
+x;font-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=
+=3Dhttps://lapagina.com.sv/etiquetas/mineria-metalica-el-salvador/&amp;sour=
+ce=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzM=
+yMzM&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decorat=
+ion:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irreleva=
+nt </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"padding-righ=
+t:18px"></td> </tr>    <tr> <td colspan=3D"3" valign=3D"middle" style=3D"ba=
+ckground-color:#f8f8f8;font-size:14px;vertical-align:middle;text-align:cent=
+er;padding:10px 10px 10px 10px;line-height:20px;border:1px solid #e4e4e4;fo=
+nt-family:Arial"> <a href=3D"https://www.google.com/alerts?s=3DAB2Xq4gLYIoS=
+tM0gHKZCoJRggDm_QlrpF59usqs&amp;start=3D1735607894&amp;end=3D1735694204&amp=
+;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMz=
+g5NzMyMzM#history" style=3D"text-decoration:none;vertical-align:middle;colo=
+r:#427fed">  See more results  </a> <span style=3D"font-size:12px;padding-l=
+eft:15px;padding-right:15px;color:#aaa">|</span> <a href=3D"https://www.goo=
+gle.com/alerts/edit?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=
+=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59u=
+sqs&amp;email=3Ddeibi.sibrian%40berkeley.edu" style=3D"text-decoration:none=
+;vertical-align:middle;color:#427fed">Edit this alert</a>  </td> </tr>  </t=
+able> <table style=3D"padding-top:6px;font-size:12px;color:#252525;text-ali=
+gn:center;width:100%"> <tr> <td style=3D"font-family:Arial">  You have rece=
+ived this email because you have subscribed to <b>Google Alerts</b>. <div> =
+<a href=3D"https://www.google.com/alerts/remove?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM&amp;s=3DAB2Xq4gLY=
+IoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;color:#427fed=
+">Unsubscribe</a> <span style=3D"padding:0px 4px 0px 4px;color:#252525">|</=
+span> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM" style=3D"text-de=
+coration:none;color:#427fed">  View all your alerts  </a> </div> </td> </tr=
+> <tr> <td style=3D"padding:6px 10px 0px 0px;font-family:Arial"> <a href=3D=
+"https://www.google.com/alerts/feeds/16766221062399110009/96206865026125284=
+22" style=3D"text-decoration:none;color:#427fed"> <img src=3D"https://www.g=
+static.com/alerts/images/rss-16.gif" alt=3D"RSS" border=3D"0" style=3D"padd=
+ing:0px 8px 0px 0px;vertical-align:middle"> <span style=3D"display:inline;l=
+ine-height:16px;vertical-align:middle"> Receive this alert as RSS feed </sp=
+an> </a> </td> </tr> <tr> <td style=3D"padding:6px 0px 0px 0px;font-family:=
+Arial"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMTMyNzUwNDY1NzMxMzg5NzMyMzM&amp;s=3DAB2Xq4gLY=
+IoStM0gHKZCoJRggDm_QlrpF59usqs&amp;ffu=3D" style=3D"text-decoration:none;co=
+lor:#427fed"> <div style=3D"display:inline;line-height:16px;vertical-align:=
+middle"> Send Feedback </div> </a> </td> </tr> </table> </div> </div> <!--[=
+if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--0000000000008a35da062a9acc61--

@@ -1,0 +1,723 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:c3aa:b0:7f:5c58:326a with SMTP id b42csp585117rcd;
+        Tue, 4 Mar 2025 17:00:08 -0800 (PST)
+X-Received: by 2002:a05:690c:7207:b0:6f9:8605:ecb5 with SMTP id 00721157ae682-6fda3027b26mr21862007b3.28.1741136407873;
+        Tue, 04 Mar 2025 17:00:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1741136407; cv=none;
+        d=google.com; s=arc-20240605;
+        b=MQ+jwr934y68EghtpRO83DZtfT99BQfSi6qwV0UiQFz2011J33e0G+qqfa7txhPaLY
+         ItIWTpPGkjxusbLXawX+9HQ6z0JBQnGH6QFr6KWZfxTQIh/lDG1Go+NQw94v5eLVNb27
+         5DUOiCnR1Ll0c6bD+KvGWiJkFHQ9yuL0E+mrxQyjQs6lSyLtNTzKZecVkwRJ+VUhFLew
+         WBC3HIbI3WP75vYtNkYhXv+BxauKzazL/nxzIM7pCuC9yyO60s+2dYHjmW5jsIKBHHqP
+         4d3qWf86X8f0CBmiFXIoNV4LaYUoMxc/W5BEtC5w0zPsLmo4PBwrsJ8KedoatvqLvN5e
+         OpSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=arc1xnaHeNGGTVshfAtk68PeDtvq5pcEhl2J1+HxXFQ=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=Yc5ztGGv90L35w8M7oHTadUhBWgJ3jlCCRHxtNawR/C15EsWanrHPqBnxsAP2s1PSh
+         6Da/qlkWm89fso6lN0hYI33pTy45e47G6HIgl/3YYX9cTECaXm8fiO39fZijfIKpu1i7
+         w4QRSZzFj6fspCng+MpJCflHjiLLE/SjPG6VJhNocgyT5CHO/iDdDTnjS7pYeE077hlU
+         tk9cnLFclBRnkiKZe9y+rvSBM3mWXlKBDA1O9tK/fZ/Xbfbo6CUmW6bXeOC0rNapxC75
+         oMgQLCnQWBweqeHBQX7H+NKYm7KJ+Z6udBKxlJyOX70w+vfBRU6IWRPeszfIO+icOtEC
+         MK4A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=loxeCuoO;
+       spf=pass (google.com: domain of 3f6lhzxqkal4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3F6LHZxQKAL4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3F6LHZxQKAL4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 00721157ae682-6fd3ca6803asor77509817b3.9.2025.03.04.17.00.07
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Tue, 04 Mar 2025 17:00:07 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3f6lhzxqkal4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=loxeCuoO;
+       spf=pass (google.com: domain of 3f6lhzxqkal4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3F6LHZxQKAL4ksskpiepivxw-rsvitp2ksskpi.gsq@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1741136407; x=1741741207; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=arc1xnaHeNGGTVshfAtk68PeDtvq5pcEhl2J1+HxXFQ=;
+        b=loxeCuoO0ZWBrVaXM3fuOXr9QeJvCzqUqio2QbWFHW5wjSpgN40M9rj5NUQygJUAZC
+         TyXXO7UVl/c/ZoR9y4CGK9F+cBr46xJ83OvtYRmsIidHyuFlbawCqDszdZ7lDqBEAPxr
+         IxAZDG44qM7vDsR0xZ72+5foCAavpbiaCs10TEBubbVWGxYRlq3QuDTVagxS65tIROBc
+         DutZY1UEwvHREreEonNUVXHtXN/msxxvRw1z9GGSL9IXSNrDt3l1VRBpCb7Gfqfz+xnT
+         UWquQpGc3CQgNI6A0gkqAcxIFt3DRwFpgkwBhYWsx4lRXWFfn6mQV5RfQ15Ps751tQWh
+         kfiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741136407; x=1741741207;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=arc1xnaHeNGGTVshfAtk68PeDtvq5pcEhl2J1+HxXFQ=;
+        b=GbsXwIf/TSrps8kcVr7kdv4CJxFy+kV61gVtmrII1uwmzl6MulTAMdiVogGbQzlGVf
+         etu2+jB3RhN0DrFIH4ngv7qpj1I37+0M1Aplb1b141Q0OY7mqr8srr1nJyCZ9QexiNAl
+         /Mlda3WbWVyHjC/WblgeBt6f2WN5Y8zmkntYRxMb08zGrQWCmqy11xP319yBEOj9eI+j
+         Zrh2cNuxoxnZ5Y39BILA4/SBfHb+R21sF74ZGW4Xu8MA9i749PzGisA4caagp3cvdzEL
+         uIOHfYpJ+lOSlou/Nxj+7cocFe8Fich4dRl/Zj9lHHb40vvGD1ya+9qYYXxdGxqtZKT4
+         W+5w==
+X-Gm-Message-State: AOJu0Yz2KwrI1N4cU90i5iXsyIg7x0OGoZhvnSvmT2VupsRsDa7dRJjC
+	iVxmlKfoEbE3VP+btf7oYL6Gtp30LUD4zrQ=
+X-Google-Smtp-Source: AGHT+IFQMRRSVs8NqqMHKXVvA+R+vd6pBdbmDx3rXCkg2DJ4YbNOI4s5NKVJfXC62ROYN8/gVp4=
+MIME-Version: 1.0
+X-Received: by 2002:a05:690c:688f:b0:6ef:94db:b208 with SMTP id
+ 00721157ae682-6fda30279c0mr21819707b3.24.1741136407226; Tue, 04 Mar 2025
+ 17:00:07 -0800 (PST)
+Date: Tue, 04 Mar 2025 17:00:06 -0800
+List-Id: <8788187619656504868.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs>
+Message-ID: <67c7a216.050a0220.2b5ba7.a667googlealerts@google.com>
+Subject: =?UTF-8?Q?Google_Alert_=2D_El_Salvador_miner=C3=ADa?=
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="0000000000000eea44062f8de93a"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--0000000000000eea44062f8de93a
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IE5ld3MgLSA4IG5ldyByZXN1bHRzIGZvciBbRWwgU2FsdmFkb3IgbWluZXLDrWFdID09PQ0K
+DQpGTUkgcHVibGljYSB5IGhhY2Ugb2ZpY2lhbCBlbCBhY3VlcmRvIGNvbiBFbCBTYWx2YWRvciAt
+IEVsIERpYXJpbyBkZSBIb3kNCkVsIERpYXJpbyBkZSBIb3kNCkVQQVBFUiBEb25hbGQgVHJ1bXB8
+Rm90b211bHRhc3xNaW5lcsOtYXxUb3JuZW8gQ2xhdXN1cmEgMjAyNXxFc3BlY3TDoWN1bG9zDQou
+Li4gRWwgRm9uZG8gTW9uZXRhcmlvIEludGVybmFjaW9uYWwgKEZNSSkgcHVibGljw7MgZXN0ZSBs
+dW5lcyBlbCBhY3VlcmRvIGNvbg0KRWwgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/
+cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cuZWxzYWx2YWRvci5jb20vbm90aWNpYXMvbmVnb2Np
+b3MvZm1pLWVsLXNhbHZhZG9yLW5heWliLWJ1a2VsZS1wcmVzdGFtb3MtLzEyMDQwMDYvMjAyNS8m
+Y3Q9Z2EmY2Q9Q0FFWUFDb1ROall3T0RBMU1USXhPREUwTlRReE5UQTNOVElkTURNeE1EZG1Zelk0
+WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2VWt3JnVzZz1BT3ZWYXczd3NKdFZSelBSN2hOVWd2ZHpE
+eC1IPg0KDQpDb25vemNhIGxvcyBudWV2b3MgcHJlY2lvcyBkZSByZWZlcmVuY2lhIGRlIGxvcyBj
+b21idXN0aWJsZXMgLSBEaWFyaW8gTGENCkh1ZWxsYQ0KRGlhcmlvIExhIEh1ZWxsYQ0KTGEgRGly
+ZWNjacOzbiBHZW5lcmFsIGRlIEVuZXJnw61hLCBhIEhpZHJvY2FyYnVyb3MgeSBNaW5hcyAoREdF
+SE0pIC4uLg0KRVRJUVVFVEFETzpDb21idXN0aWJsZXNFY29ub23DrWFFbCBTYWx2YWRvcnByZWNp
+b3MuIENvbXBhcnRlIGVzdGEgbm90aWNpYS4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9y
+Y3Q9aiZzYT10JnVybD1odHRwczovL2RpYXJpb2xhaHVlbGxhLmNvbS9jb25vemNhLWxvcy1udWV2
+b3MtcHJlY2lvcy1kZS1yZWZlcmVuY2lhLWRlLWxvcy1jb21idXN0aWJsZXMvJmN0PWdhJmNkPUNB
+RVlBU29UTmpZd09EQTFNVEl4T0RFME5UUXhOVEEzTlRJZE1ETXhNRGRtWXpZNFlXRTVOR1ZtWmpw
+amIyMDZaVzQ2VTFZNlVrdyZ1c2c9QU92VmF3M29mWHJpWXV0SDVocGhlT0hlaFNTRz4NCg0KRGlz
+bWludXllbiBoYXN0YSAkMC4wNCBsb3MgcHJlY2lvcyBkZSBjb21idXN0aWJsZXMgZW4gbGEgcHJp
+bWVyYSBxdWluY2VuYQ0KZGUgbWFyem8gMjAyNQ0KRWwgRGlhcmlvIGRlIEhveQ0KRW4gZWwgcmVw
+b3J0ZSBkZSBsYSBEaXJlY2Npw7NuIEdlbmVyYWwgZGUgRW5lcmfDrWEsIEhpZHJvY2FyYnVyb3Mg
+eSBNaW5hcyAuLi4NCkNvbWJ1c3RpYmxlcyBFbCBTYWx2YWRvciBHYXNvbGluYSBQcmVjaW8gRGUg
+TGEgR2Fzb2xpbmEgU3VjZXNvcyBWZXIgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/
+cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cuZWxzYWx2YWRvci5jb20vbm90aWNpYXMvbmFjaW9u
+YWwvZ2Fzb2xpbmEtcHJlY2lvLWRlLWxhLWNvbWJ1c3RpYmxlcy1lbC1zYWx2YWRvci8xMjAzOTQy
+LzIwMjUvJmN0PWdhJmNkPUNBRVlBaW9UTmpZd09EQTFNVEl4T0RFME5UUXhOVEEzTlRJZE1ETXhN
+RGRtWXpZNFlXRTVOR1ZtWmpwamIyMDZaVzQ2VTFZNlVrdyZ1c2c9QU92VmF3MHJPTUlxZDEtQ2lQ
+V0NGQ0pQbnpXTj4NCg0KQW51bmNpYW4gbnVldm9zIHByZWNpb3MgZGUgcmVmZXJlbmNpYSBkZSBs
+b3MgY29tYnVzdGlibGVzIC0gRGlhcmlvIExhDQpIdWVsbGENCkRpYXJpbyBMYSBIdWVsbGENCkxh
+IERpcmVjY2nDs24gZGUgRW5lcmfDrWEsIEhpZHJvY2FyYnVyb3MgeSBNaW5hcyAoREdFSE0pIGFu
+dW5jacOzIC4uLiBFbA0KU2FsdmFkb3IsIGRlIGxvcyBwb2NvcyBwYcOtc2VzIGRlIEFtw6lyaWNh
+IExhdGluYSB5IGVsIENhcmliZSBzaW4gY29yb25hdmlydXMNCi4uLg0KPGh0dHBzOi8vd3d3Lmdv
+b2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vd3d3LmRpYXJpb2xhaHVlbGxhLmNv
+bS9hbnVuY2lhbi1udWV2b3MtcHJlY2lvcy1kZS1yZWZlcmVuY2lhLWRlLWxvcy1jb21idXN0aWJs
+ZXMtNC8mY3Q9Z2EmY2Q9Q0FFWUF5b1ROall3T0RBMU1USXhPREUwTlRReE5UQTNOVElkTURNeE1E
+ZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2VWt3JnVzZz1BT3ZWYXcybnJVNFdQV3U2MXFi
+YnpCWjd2VWJ0Pg0KDQpMZXZlIHJlZHVjY2nDs24gZW4gbG9zIHByZWNpb3MgZGUgbGEgZ2Fzb2xp
+bmEgcmVndWxhciB5IGRpw6lzZWwgZW4gRWwNClNhbHZhZG9yDQpEaWFyaW8gTGEgUMOhZ2luYQ0K
+TGEgRGlyZWNjacOzbiBHZW5lcmFsIGRlIEVuZXJnw61hLCBIaWRyb2NhcmJ1cm9zIHkgTWluYXMg
+KERHRUhNKSBhbnVuY2nDsyBsb3MNCm51ZXZvcyBwcmVjaW9zIGRlIHJlZmVyZW5jaWEgZGUgbG9z
+IGNvbWJ1c3RpYmxlcyBlbiBFbCBTYWx2YWRvciwgdmlnZW50ZXMNCi4uLg0KPGh0dHBzOi8vd3d3
+Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vbGFwYWdpbmEuY29tLnN2L2dl
+bmVyYWwvbGV2ZS1yZWR1Y2Npb24tZW4tbG9zLXByZWNpb3MtZGUtbGEtZ2Fzb2xpbmEtcmVndWxh
+ci15LWRpZXNlbC1lbi1lbC1zYWx2YWRvci8mY3Q9Z2EmY2Q9Q0FFWUJDb1ROall3T0RBMU1USXhP
+REUwTlRReE5UQTNOVElkTURNeE1EZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2VWt3JnVz
+Zz1BT3ZWYXcxbUZwbGFQOFU1V21wcFFHcDZsbGtXPg0KDQpBbnVuY2lhbiBiYWphcyBlbiBwcmVj
+aW9zIGRlIGxvcyBjb21idXN0aWJsZXMgcGFyYSBlc3RhIHF1aW5jZW5hIC0gRGlhcmlvDQpMYSBQ
+w6FnaW5hDQpEaWFyaW8gTGEgUMOhZ2luYQ0KTGEgRGlyZWNjacOzbiBHZW5lcmFsIGRlIEVuZXJn
+w61hIEhpZHJvY2FyYnVybyB5IE1pbmFzIChER0VITSkgYW51bmNpw7MgbG9zDQouLi4gQ29uIHVu
+YSBudWV2YSBjb21wcmEsIEVsIFNhbHZhZG9yIGFjdW11bGEgMTQgQlRDIGVuIGxvcyDDumx0aW1v
+cyBkw61hcy4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRw
+czovL2xhcGFnaW5hLmNvbS5zdi9uYWNpb25hbGVzL2FudW5jaWFuLWJhamFzLWVuLXByZWNpb3Mt
+ZGUtY29tYnVzdGlibGVzLXBhcmEtZXN0YS1xdWluY2VuYS8mY3Q9Z2EmY2Q9Q0FFWUJTb1ROall3
+T0RBMU1USXhPREUwTlRReE5UQTNOVElkTURNeE1EZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZV
+MVk2VWt3JnVzZz1BT3ZWYXcwNDBlMm43NkwyR0NicG9HNkZRbXFIPg0KDQpBY3R1YWxpemFuIHBy
+ZWNpbyBkZSBsYSBnYXNvbGluYSByZWd1bGFyIHkgZGnDqXNlbCBwYXJhIHByaW1lcmEgcXVpbmNl
+bmEgZGUNCm1hcnpvDQpMYSBQcmVuc2EgR3LDoWZpY2ENCi4uLiBNaW5hcy4gTGEgZW50aWRhZCBh
+bnVuY2nDsyBxdWUgZWwgcHJlY2lvIGRlIGxhIC4uLiBOdWV2YSDDoXJlYSBkZSBjaGVxdWVvDQpk
+ZWwgQWVyb3B1ZXJ0byBJbnRlcm5hY2lvbmFsIGRlIEVsIFNhbHZhZG9yIGVzdGFyw61hIGxpc3Rh
+IGVuIFNlbWFuYSBTYW50YS4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10
+JnVybD1odHRwczovL3d3dy5sYXByZW5zYWdyYWZpY2EuY29tL2Vjb25vbWlhL0FjdHVhbGl6YW4t
+cHJlY2lvLWRlLWxhLWdhc29saW5hLXJlZ3VsYXIteS1kaWVzZWwtcGFyYS1wcmltZXJhLXF1aW5j
+ZW5hLWRlLW1hcnpvLTIwMjUwMzAzLTAwMDkuaHRtbCZjdD1nYSZjZD1DQUVZQmlvVE5qWXdPREEx
+TVRJeE9ERTBOVFF4TlRBM05USWRNRE14TURkbVl6WTRZV0U1TkdWbVpqcGpiMjA2Wlc0NlUxWTZV
+a3cmdXNnPUFPdlZhdzNWaGN5RzdPOWJuTVNVOE5wUklTcFE+DQoNCkJhamFuIGxvcyBwcmVjaW9z
+IGRlIGxhIGdhc29saW5hIGVuIGVzdGEgcHLDs3hpbWEgcXVpbmNlbmEgLSBJbmZvcm1hIFRWWA0K
+SW5mb3JtYSBUVlgNCkxhIERpcmVjY2nDs24gR2VuZXJhbCBkZSBFbmVyZ8OtYSwgSGlkcm9jYXJi
+dXJvcyB5IE1pbmFzIChER0VITSkgLi4uIEFsIG1lbm9zDQoxNTAgcHVlc3RvcyBkZSB2ZW50YSBo
+YW4gc2lkbyBkZXNtb250YWRvcyBlbiBlbCBjZW50cm8gZGUgU2FuIFNhbHZhZG9yIC4uLg0KPGh0
+dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vaW5mb3JtYXR2
+eC5jb20vYmFqYW4tbG9zLXByZWNpb3MtZGUtbGEtZ2Fzb2xpbmEtZW4tZXN0YS1wcm94aW1hLXF1
+aW5jZW5hLyZjdD1nYSZjZD1DQUVZQnlvVE5qWXdPREExTVRJeE9ERTBOVFF4TlRBM05USWRNRE14
+TURkbVl6WTRZV0U1TkdWbVpqcGpiMjA2Wlc0NlUxWTZVa3cmdXNnPUFPdlZhdzE4Nnh0Q2c4SkpI
+VTJidVpGRkJ3cm8+DQoNCg0KPT09IFdlYiAtIDEgbmV3IHJlc3VsdCBmb3IgW0VsIFNhbHZhZG9y
+IG1pbmVyw61hXSA9PT0NCg0KQ29uZmVyZW5jaWE6IGltcGFjdG9zIGRlIGxhIG1pbmVyw61hIGVu
+IGVsIHLDrW8gU2FuIFNlYmFzdGnDoW4sIHViaWNhZG8gZW4NClNhbnRhIFJvc2EgZGUgLi4uDQpM
+YSBNZXNhIE5hY2lvbmFsIEZyZW50ZSBhIGxhIE1pbmVyw61hIE1ldMOhbGljYSBlbiBFbCBTYWx2
+YWRvciBlbg0KY29vcmRpbmFjacOzbiAuLi4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9y
+Y3Q9aiZzYT10JnVybD1odHRwczovL25vYWxhbWluZXJpYS5vcmcuc3YvMjAyNS8wMy8wMy9jb25m
+ZXJlbmNpYS1pbXBhY3Rvcy1kZS1sYS1taW5lcmlhLWVuLWVsLXJpby1zYW4tc2ViYXN0aWFuLXVi
+aWNhZG8tZW4tc2FudGEtcm9zYS1kZS1saW1hLWxhLXVuaW9uLTI4LTAyLTIwMjUvJmN0PWdhJmNk
+PUNBRVlBQ29UTmpZd09EQTFNVEl4T0RFME5UUXhOVEEzTlRJZE1ETXhNRGRtWXpZNFlXRTVOR1Zt
+WmpwamIyMDZaVzQ2VTFZNlVrdyZ1c2c9QU92VmF3M0E5a0xaeE5hX2FvMVZydGY0c3czUz4NCg0K
+DQotIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAt
+IC0gLSAtIC0gLSAtDQpVbnN1YnNjcmliZSBmcm9tIHRoaXMgR29vZ2xlIEFsZXJ0Og0KPGh0dHBz
+Oi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzL3JlbW92ZT9zb3VyY2U9YWxlcnRzbWFpbCZobD1lbiZn
+bD1TViZtc2dpZD1Oall3T0RBMU1USXhPREUwTlRReE5UQTNOUSZzPUFCMlhxNGdMWUlvU3RNMGdI
+S1pDb0pSZ2dEbV9RbHJwRjU5dXNxcz4NCg0KQ3JlYXRlIGFub3RoZXIgR29vZ2xlIEFsZXJ0Og0K
+PGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmds
+PVNWJm1zZ2lkPU5qWXdPREExTVRJeE9ERTBOVFF4TlRBM05RPg0KDQpTaWduIGluIHRvIG1hbmFn
+ZSB5b3VyIGFsZXJ0czoNCjxodHRwczovL3d3dy5nb29nbGUuY29tL2FsZXJ0cz9zb3VyY2U9YWxl
+cnRzbWFpbCZobD1lbiZnbD1TViZtc2dpZD1Oall3T0RBMU1USXhPREUwTlRReE5UQTNOUT4NCg==
+--0000000000000eea44062f8de93a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - El Salvador miner=C3=ADa",
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Latest: March 5, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "FMI publica y hace oficial el acuerdo con El Salvador - E=
+l Diario de Hoy"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Conozca los nuevos precios de referencia de los combustib=
+les - Diario La Huella"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Disminuyen hasta $0.04 los precios de combustibles en la =
+primera quincena de marzo 2025"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs\u0026start=3D1741050021\u0026end=3D1741136406\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DSV\u0026msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ#=
+history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "FMI publica y hace oficial el acuerdo con El Salvador - El =
+Diario de Hoy",
+      "description": "EPAPER Donald Trump|Fotomultas|Miner=C3=ADa|Torneo Cl=
+ausura 2025|Espect=C3=A1culos ... El Fondo Monetario Internacional (FMI) pu=
+blic=C3=B3 este lunes el acuerdo con El ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/noticias/negocios/fmi-el-salvador-nayib-bukele-pres=
+tamos-/1204006/2025/\u0026ct=3Dga\u0026cd=3DCAEYACoTNjYwODA1MTIxODE0NTQxNTA=
+3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw3wsJtVRzPR7hN=
+UgvdzDx-H"
+    }, {
+      "type": "LINK",
+      "title": "Conozca los nuevos precios de referencia de los combustible=
+s - Diario La Huella",
+      "description": "La Direcci=C3=B3n General de Energ=C3=ADa, a Hidrocar=
+buros y Minas (DGEHM) ... ETIQUETADO:CombustiblesEconom=C3=ADaEl Salvadorpr=
+ecios. Comparte esta noticia.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://diariolahuella.com/conozca-los-nuevos-precios-de-referencia-de-los-com=
+bustibles/\u0026ct=3Dga\u0026cd=3DCAEYASoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxM=
+DdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw3ofXriYutH5hpheOHehSSG"
+    }, {
+      "type": "LINK",
+      "title": "Disminuyen hasta $0.04 los precios de combustibles en la pr=
+imera quincena de marzo 2025",
+      "description": "En el reporte de la Direcci=C3=B3n General de Energ=
+=C3=ADa, Hidrocarburos y Minas ... Combustibles El Salvador Gasolina Precio=
+ De La Gasolina Sucesos Ver ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/noticias/nacional/gasolina-precio-de-la-combustible=
+s-el-salvador/1203942/2025/\u0026ct=3Dga\u0026cd=3DCAEYAioTNjYwODA1MTIxODE0=
+NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw0rOMIq=
+d1-CiPWCFCJPnzWN"
+    }, {
+      "type": "LINK",
+      "title": "Anuncian nuevos precios de referencia de los combustibles -=
+ Diario La Huella",
+      "description": "La Direcci=C3=B3n de Energ=C3=ADa, Hidrocarburos y Mi=
+nas (DGEHM) anunci=C3=B3 ... El Salvador, de los pocos pa=C3=ADses de Am=C3=
+=A9rica Latina y el Caribe sin coronavirus ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.diariolahuella.com/anuncian-nuevos-precios-de-referencia-de-los-co=
+mbustibles-4/\u0026ct=3Dga\u0026cd=3DCAEYAyoTNjYwODA1MTIxODE0NTQxNTA3NTIdMD=
+MxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw2nrU4WPWu61qbbzBZ7vU=
+bt"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ" style=3D"text-dec=
+oration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.pn=
+g?cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1" alt=3D"Google" border=3D"0" height=3D"=
+25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px;bor=
+der-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr>  <tr=
+> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0px 0=
+px;vertical-align:middle;line-height:20px;font-family:Arial"> <span style=
+=3D"color:#262626;font-size:22px">El Salvador miner=C3=ADa</span> <div styl=
+e=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-heig=
+ht:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4px"=
+>&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">March 5, 2025</=
+a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td style=
+=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;border-=
+bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373"> NE=
+WS </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr itemsco=
+pe=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:1=
+8px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;font-f=
+amily:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a hr=
+ef=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.e=
+lsalvador.com/noticias/negocios/fmi-el-salvador-nayib-bukele-prestamos-/120=
+4006/2025/&amp;ct=3Dga&amp;cd=3DCAEYACoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDd=
+mYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw3wsJtVRzPR7hNUgvdzDx-H" it=
+emprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration:none;f=
+ont-size:16px;line-height:20px"> <span itemprop=3D"name">FMI publica y hace=
+ oficial el acuerdo con <b>El Salvador</b> - El Diario de Hoy</span> </a> <=
+/span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publ=
+isher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"=
+color:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#7373=
+73"> <span itemprop=3D"name">El Diario de Hoy</span> </a> </div> <div itemp=
+rop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font-siz=
+e:12px;line-height:18px">EPAPER Donald Trump|Fotomultas|<b>Miner=C3=ADa</b>=
+|Torneo Clausura 2025|Espect=C3=A1culos ... <b>El</b> Fondo Monetario Inter=
+nacional (FMI) public=C3=B3 este lunes <b>el</b> acuerdo con <b>El</b>&nbsp=
+;...</div> </div>   <table> <tr> <td width=3D"16" style=3D"padding-right:6p=
+x"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;=
+ru=3Dhttps://www.elsalvador.com/noticias/negocios/fmi-el-salvador-nayib-buk=
+ele-prestamos-/1204006/2025/&amp;ss=3Dfb&amp;rt=3DFMI+publica+y+hace+oficia=
+l+el+acuerdo+con+El+Salvador+-+El+Diario+de+Hoy&amp;cd=3DKhM2NjA4MDUxMjE4MT=
+Q1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmVDrbUb=
+QXe-zWPjD89SetcOjXjaKw" style=3D"text-decoration:none"> <img alt=3D"Faceboo=
+k" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" hei=
+ght=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:=
+6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&am=
+p;ru=3Dhttps://www.elsalvador.com/noticias/negocios/fmi-el-salvador-nayib-b=
+ukele-prestamos-/1204006/2025/&amp;ss=3Dtw&amp;rt=3DFMI+publica+y+hace+ofic=
+ial+el+acuerdo+con+El+Salvador+-+El+Diario+de+Hoy&amp;cd=3DKhM2NjA4MDUxMjE4=
+MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmVDrb=
+UbQXe-zWPjD89SetcOjXjaKw" style=3D"text-decoration:none"> <img alt=3D"Twitt=
+er" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" he=
+ight=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;f=
+ont-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3D=
+https://www.elsalvador.com/noticias/negocios/fmi-el-salvador-nayib-bukele-p=
+restamos-/1204006/2025/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp=
+;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_Qlr=
+pF59usqs" style=3D"text-decoration:none;vertical-align:middle;color:#aaa;fo=
+nt-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> =
+</td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" it=
+emtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"></td>=
+ <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px s=
+olid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px =
+6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;=
+url=3Dhttps://diariolahuella.com/conozca-los-nuevos-precios-de-referencia-d=
+e-los-combustibles/&amp;ct=3Dga&amp;cd=3DCAEYASoTNjYwODA1MTIxODE0NTQxNTA3NT=
+IdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw3ofXriYutH5hpheOH=
+ehSSG" itemprop=3D"url" style=3D"color:#427fed;display:inline;text-decorati=
+on:none;font-size:16px;line-height:20px"> <span itemprop=3D"name">Conozca l=
+os nuevos precios de referencia de los combustibles - Diario La Huella</spa=
+n> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itempro=
+p=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" =
+style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none;co=
+lor:#737373"> <span itemprop=3D"name">Diario La Huella</span> </a> </div> <=
+div itemprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px=
+;font-size:12px;line-height:18px">La Direcci=C3=B3n General de Energ=C3=ADa=
+, a Hidrocarburos y <b>Minas</b> (DGEHM) ... ETIQUETADO:CombustiblesEconom=
+=C3=ADa<b>El Salvador</b>precios. Comparte esta noticia.</div> </div>   <ta=
+ble> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://=
+www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://diariolahu=
+ella.com/conozca-los-nuevos-precios-de-referencia-de-los-combustibles/&amp;=
+ss=3Dfb&amp;rt=3DConozca+los+nuevos+precios+de+referencia+de+los+combustibl=
+es+-+Diario+La+Huella&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhh=
+YTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmWlBggo1auaAi-eSmZDBVZ77AQiRg" st=
+yle=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gsta=
+tic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></=
+a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://w=
+ww.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://diariolahue=
+lla.com/conozca-los-nuevos-precios-de-referencia-de-los-combustibles/&amp;s=
+s=3Dtw&amp;rt=3DConozca+los+nuevos+precios+de+referencia+de+los+combustible=
+s+-+Diario+La+Huella&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhY=
+Tk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmWlBggo1auaAi-eSmZDBVZ77AQiRg" sty=
+le=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstati=
+c.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a>=
+ </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D=
+"https://www.google.com/alerts/feedback?ffu=3Dhttps://diariolahuella.com/co=
+nozca-los-nuevos-precios-de-referencia-de-los-combustibles/&amp;source=3Dal=
+ertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp=
+;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none=
+;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> =
+</td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px">=
+</td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <=
+td style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px=
+;vertical-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a=
+> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.go=
+ogle.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.elsalvador.com/notici=
+as/nacional/gasolina-precio-de-la-combustibles-el-salvador/1203942/2025/&am=
+p;ct=3Dga&amp;cd=3DCAEYAioTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVm=
+Zjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw0rOMIqd1-CiPWCFCJPnzWN" itemprop=3D"url=
+" style=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px=
+;line-height:20px"> <span itemprop=3D"name">Disminuyen hasta $0.04 los prec=
+ios de combustibles en la primera quincena de marzo 2025</span> </a> </span=
+>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher=
+" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color=
+:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#737373"> =
+<span itemprop=3D"name">El Diario de Hoy</span> </a> </div> <div itemprop=
+=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:1=
+2px;line-height:18px">En el reporte de la Direcci=C3=B3n General de Energ=
+=C3=ADa, Hidrocarburos y <b>Minas</b> ... Combustibles <b>El Salvador</b> G=
+asolina Precio De La Gasolina Sucesos Ver&nbsp;...</div> </div>   <table> <=
+tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.go=
+ogle.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.c=
+om/noticias/nacional/gasolina-precio-de-la-combustibles-el-salvador/1203942=
+/2025/&amp;ss=3Dfb&amp;rt=3DDisminuyen+hasta+%240.04+los+precios+de+combust=
+ibles+en+la+primera+quincena+de+marzo+2025&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE=
+1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUC2SQEaWC8m=
+liC5LPANWnlajwtlg" style=3D"text-decoration:none"> <img alt=3D"Facebook" sr=
+c=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=
+=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px=
+"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;r=
+u=3Dhttps://www.elsalvador.com/noticias/nacional/gasolina-precio-de-la-comb=
+ustibles-el-salvador/1203942/2025/&amp;ss=3Dtw&amp;rt=3DDisminuyen+hasta+%2=
+40.04+los+precios+de+combustibles+en+la+primera+quincena+de+marzo+2025&amp;=
+cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA=
+&amp;ssp=3DAMJHsmUC2SQEaWC8mliC5LPANWnlajwtlg" style=3D"text-decoration:non=
+e"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24=
+.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"paddi=
+ng:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/a=
+lerts/feedback?ffu=3Dhttps://www.elsalvador.com/noticias/nacional/gasolina-=
+precio-de-la-combustibles-el-salvador/1203942/2025/&amp;source=3Dalertsmail=
+&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2=
+Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertica=
+l-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </=
+tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </=
+tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td style=
+=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertica=
+l-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div> =
+ <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com=
+/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.diariolahuella.com/anuncian-n=
+uevos-precios-de-referencia-de-los-combustibles-4/&amp;ct=3Dga&amp;cd=3DCAE=
+YAyoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&am=
+p;usg=3DAOvVaw2nrU4WPWu61qbbzBZ7vUbt" itemprop=3D"url" style=3D"color:#427f=
+ed;display:inline;text-decoration:none;font-size:16px;line-height:20px"> <s=
+pan itemprop=3D"name">Anuncian nuevos precios de referencia de los combusti=
+bles - Diario La Huella</span> </a> </span>  <div> <div style=3D"padding:2p=
+x 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http=
+://schema.org/Organization" style=3D"color:#737373;font-size:12px"> <a styl=
+e=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">Diario La=
+ Huella</span> </a> </div> <div itemprop=3D"description" style=3D"color:#25=
+2525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">La Direcci=C3=
+=B3n de Energ=C3=ADa, Hidrocarburos y <b>Minas</b> (DGEHM) anunci=C3=B3 ...=
+ <b>El Salvador</b>, de los pocos pa=C3=ADses de Am=C3=A9rica Latina y el C=
+aribe sin coronavirus&nbsp;...</div> </div>   <table> <tr> <td width=3D"16"=
+ style=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/shar=
+e?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.diariolahuella.com/anuncian-nuev=
+os-precios-de-referencia-de-los-combustibles-4/&amp;ss=3Dfb&amp;rt=3DAnunci=
+an+nuevos+precios+de+referencia+de+los+combustibles+-+Diario+La+Huella&amp;=
+cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA=
+&amp;ssp=3DAMJHsmXd44WMWYz7lAi22Z312mt5eBsrSQ" style=3D"text-decoration:non=
+e"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-2=
+4.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" =
+style=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share=
+?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.diariolahuella.com/anuncian-nuevo=
+s-precios-de-referencia-de-los-combustibles-4/&amp;ss=3Dtw&amp;rt=3DAnuncia=
+n+nuevos+precios+de+referencia+de+los+combustibles+-+Diario+La+Huella&amp;c=
+d=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&=
+amp;ssp=3DAMJHsmXd44WMWYz7lAi22Z312mt5eBsrSQ" style=3D"text-decoration:none=
+"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24.=
+png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"paddin=
+g:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/al=
+erts/feedback?ffu=3Dhttps://www.diariolahuella.com/anuncian-nuevos-precios-=
+de-referencia-de-los-combustibles-4/&amp;source=3Dalertsmail&amp;hl=3Den&am=
+p;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHK=
+ZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;=
+color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  <=
+/div> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr item=
+scope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-lef=
+t:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;bor=
+der-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D=
+"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&am=
+p;sa=3Dt&amp;url=3Dhttps://lapagina.com.sv/general/leve-reduccion-en-los-pr=
+ecios-de-la-gasolina-regular-y-diesel-en-el-salvador/&amp;ct=3Dga&amp;cd=3D=
+CAEYBCoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw=
+&amp;usg=3DAOvVaw1mFplaP8U5WmppQGp6llkW" itemprop=3D"url" style=3D"color:#4=
+27fed;display:inline;text-decoration:none;font-size:16px;line-height:20px">=
+ <span itemprop=3D"name">Leve reducci=C3=B3n en los precios de la gasolina =
+regular y di=C3=A9sel en <b>El Salvador</b></span> </a> </span>  <div> <div=
+ style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=
+=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:#737373;fo=
+nt-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <span itemp=
+rop=3D"name">Diario La P=C3=A1gina</span> </a> </div> <div itemprop=3D"desc=
+ription" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;line=
+-height:18px">La Direcci=C3=B3n General de Energ=C3=ADa, Hidrocarburos y <b=
+>Minas</b> (DGEHM) anunci=C3=B3 los nuevos precios de referencia de los com=
+bustibles en <b>El Salvador</b>, vigentes&nbsp;...</div> </div>   <table> <=
+tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.go=
+ogle.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/=
+general/leve-reduccion-en-los-precios-de-la-gasolina-regular-y-diesel-en-el=
+-salvador/&amp;ss=3Dfb&amp;rt=3DLeve+reducci%C3%B3n+en+los+precios+de+la+ga=
+solina+regular+y+di%C3%A9sel+en+El+Salvador&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1ND=
+E1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmWtOPWP4ARD=
+8CN-OPw2NeyEQNy4fA" style=3D"text-decoration:none"> <img alt=3D"Facebook" s=
+rc=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=
+=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px=
+"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;r=
+u=3Dhttps://lapagina.com.sv/general/leve-reduccion-en-los-precios-de-la-gas=
+olina-regular-y-diesel-en-el-salvador/&amp;ss=3Dtw&amp;rt=3DLeve+reducci%C3=
+%B3n+en+los+precios+de+la+gasolina+regular+y+di%C3%A9sel+en+El+Salvador&amp=
+;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpST=
+A&amp;ssp=3DAMJHsmWtOPWP4ARD8CN-OPw2NeyEQNy4fA" style=3D"text-decoration:no=
+ne"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-2=
+4.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padd=
+ing:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/=
+alerts/feedback?ffu=3Dhttps://lapagina.com.sv/general/leve-reduccion-en-los=
+-precios-de-la-gasolina-regular-y-diesel-en-el-salvador/&amp;source=3Dalert=
+smail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=
+=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;v=
+ertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </=
+td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></=
+td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td=
+ style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;v=
+ertical-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> =
+<div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.goog=
+le.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://lapagina.com.sv/nacionales/=
+anuncian-bajas-en-precios-de-combustibles-para-esta-quincena/&amp;ct=3Dga&a=
+mp;cd=3DCAEYBSoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW4=
+6U1Y6Ukw&amp;usg=3DAOvVaw040e2n76L2GCbpoG6FQmqH" itemprop=3D"url" style=3D"=
+color:#427fed;display:inline;text-decoration:none;font-size:16px;line-heigh=
+t:20px"> <span itemprop=3D"name">Anuncian bajas en precios de los combustib=
+les para esta quincena - Diario La P=C3=A1gina</span> </a> </span>  <div> <=
+div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscop=
+e=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:#737373;f=
+ont-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <span item=
+prop=3D"name">Diario La P=C3=A1gina</span> </a> </div> <div itemprop=3D"des=
+cription" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;lin=
+e-height:18px">La Direcci=C3=B3n General de Energ=C3=ADa Hidrocarburo y <b>=
+Minas</b> (DGEHM) anunci=C3=B3 los ... Con una nueva compra, <b>El Salvador=
+</b> acumula 14 BTC en los =C3=BAltimos d=C3=ADas.</div> </div>   <table> <=
+tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.go=
+ogle.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/=
+nacionales/anuncian-bajas-en-precios-de-combustibles-para-esta-quincena/&am=
+p;ss=3Dfb&amp;rt=3DAnuncian+bajas+en+precios+de+los+combustibles+para+esta+=
+quincena+-+Diario+La+P%C3%A1gina&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wM=
+zEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmXHR3GbIBOdPHpZV4gSub3=
+ASnEnAQ" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https=
+://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" widt=
+h=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=
+=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps:=
+//lapagina.com.sv/nacionales/anuncian-bajas-en-precios-de-combustibles-para=
+-esta-quincena/&amp;ss=3Dtw&amp;rt=3DAnuncian+bajas+en+precios+de+los+combu=
+stibles+para+esta+quincena+-+Diario+La+P%C3%A1gina&amp;cd=3DKhM2NjA4MDUxMjE=
+4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmXHR=
+3GbIBOdPHpZV4gSub3ASnEnAQ" style=3D"text-decoration:none"> <img alt=3D"Twit=
+ter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" h=
+eight=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;=
+font-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=
+=3Dhttps://lapagina.com.sv/nacionales/anuncian-bajas-en-precios-de-combusti=
+bles-para-esta-quincena/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&am=
+p;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_Ql=
+rpF59usqs" style=3D"text-decoration:none;vertical-align:middle;color:#aaa;f=
+ont-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div>=
+ </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" i=
+temtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"></td=
+> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px =
+solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px=
+ 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp=
+;url=3Dhttps://www.laprensagrafica.com/economia/Actualizan-precio-de-la-gas=
+olina-regular-y-diesel-para-primera-quincena-de-marzo-20250303-0009.html&am=
+p;ct=3Dga&amp;cd=3DCAEYBioTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVm=
+Zjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw3VhcyG7O9bnMSU8NpRISpQ" itemprop=3D"url=
+" style=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px=
+;line-height:20px"> <span itemprop=3D"name">Actualizan precio de la gasolin=
+a regular y di=C3=A9sel para primera quincena de marzo</span> </a> </span> =
+ <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" =
+itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:#=
+737373;font-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <s=
+pan itemprop=3D"name">La Prensa Gr=C3=A1fica</span> </a> </div> <div itempr=
+op=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size=
+:12px;line-height:18px">... <b>Minas</b>. La entidad anunci=C3=B3 que el pr=
+ecio de la ... Nueva =C3=A1rea de chequeo del Aeropuerto Internacional de <=
+b>El Salvador</b> estar=C3=ADa lista en Semana Santa.</div> </div>   <table=
+> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www=
+.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprensag=
+rafica.com/economia/Actualizan-precio-de-la-gasolina-regular-y-diesel-para-=
+primera-quincena-de-marzo-20250303-0009.html&amp;ss=3Dfb&amp;rt=3DActualiza=
+n+precio+de+la+gasolina+regular+y+di%C3%A9sel+para+primera+quincena+de+marz=
+o&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpT=
+VjpSTA&amp;ssp=3DAMJHsmVtEkoYleZWmRIKwadPGBzUOSsuAQ" style=3D"text-decorati=
+on:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/image=
+s/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=
+=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/aler=
+ts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprensagrafica.com/econo=
+mia/Actualizan-precio-de-la-gasolina-regular-y-diesel-para-primera-quincena=
+-de-marzo-20250303-0009.html&amp;ss=3Dtw&amp;rt=3DActualizan+precio+de+la+g=
+asolina+regular+y+di%C3%A9sel+para+primera+quincena+de+marzo&amp;cd=3DKhM2N=
+jA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=
+=3DAMJHsmVtEkoYleZWmRIKwadPGBzUOSsuAQ" style=3D"text-decoration:none"> <img=
+ alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" bo=
+rder=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0=
+px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/fe=
+edback?ffu=3Dhttps://www.laprensagrafica.com/economia/Actualizan-precio-de-=
+la-gasolina-regular-y-diesel-para-primera-quincena-de-marzo-20250303-0009.h=
+tml&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTI=
+xODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"t=
+ext-decoration:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag =
+as irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"p=
+adding-right:18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D"http://sch=
+ema.org/Article"> <td style=3D"padding-left:18px"></td> <td style=3D"paddin=
+g:18px 0px 12px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-fa=
+mily:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a hre=
+f=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://inform=
+atvx.com/bajan-los-precios-de-la-gasolina-en-esta-proxima-quincena/&amp;ct=
+=3Dga&amp;cd=3DCAEYByoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpj=
+b206ZW46U1Y6Ukw&amp;usg=3DAOvVaw186xtCg8JJHU2buZFFBwro" itemprop=3D"url" st=
+yle=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px;lin=
+e-height:20px"> <span itemprop=3D"name">Bajan los precios de la gasolina en=
+ esta pr=C3=B3xima quincena - Informa TVX</span> </a> </span>  <div> <div s=
+tyle=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"=
+" itemtype=3D"http://schema.org/Organization" style=3D"color:#737373;font-s=
+ize:12px"> <a style=3D"text-decoration:none;color:#737373"> <span itemprop=
+=3D"name">Informa TVX</span> </a> </div> <div itemprop=3D"description" styl=
+e=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px"=
+>La Direcci=C3=B3n General de Energ=C3=ADa, Hidrocarburos y <b>Minas</b> (D=
+GEHM) ... Al menos 150 puestos de venta han sido desmontados en el centro <=
+b>de San Salvador</b>&nbsp;...</div> </div>   <table> <tr> <td width=3D"16"=
+ style=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/shar=
+e?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://informatvx.com/bajan-los-precios-de-=
+la-gasolina-en-esta-proxima-quincena/&amp;ss=3Dfb&amp;rt=3DBajan+los+precio=
+s+de+la+gasolina+en+esta+pr%C3%B3xima+quincena+-+Informa+TVX&amp;cd=3DKhM2N=
+jA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=
+=3DAMJHsmW2CdATh7bHTsuZma0shVyNnsOG3g" style=3D"text-decoration:none"> <img=
+ alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" b=
+order=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D=
+"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den=
+&amp;gl=3DSV&amp;ru=3Dhttps://informatvx.com/bajan-los-precios-de-la-gasoli=
+na-en-esta-proxima-quincena/&amp;ss=3Dtw&amp;rt=3DBajan+los+precios+de+la+g=
+asolina+en+esta+pr%C3%B3xima+quincena+-+Informa+TVX&amp;cd=3DKhM2NjA4MDUxMj=
+E4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmW2=
+CdATh7bHTsuZma0shVyNnsOG3g" style=3D"text-decoration:none"> <img alt=3D"Twi=
+tter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" =
+height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px=
+;font-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=
+=3Dhttps://informatvx.com/bajan-los-precios-de-la-gasolina-en-esta-proxima-=
+quincena/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwO=
+DA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" styl=
+e=3D"text-decoration:none;vertical-align:middle;color:#aaa;font-size:10px">=
+ Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td styl=
+e=3D"padding-right:18px"></td> </tr>    <tr> <td style=3D"padding-left:18px=
+"></td> <td style=3D"padding:16px 0px 12px 0px;border-bottom:1px solid #e4e=
+4e4"> <span style=3D"font-size:12px;color:#737373"> WEB </span> </td> <td s=
+tyle=3D"padding-right:18px"></td> </tr>   <tr> <td style=3D"padding-left:18=
+px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;font-fa=
+mily:Arial">  <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"ht=
+tps://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://noalamineria.=
+org.sv/2025/03/03/conferencia-impactos-de-la-mineria-en-el-rio-san-sebastia=
+n-ubicado-en-santa-rosa-de-lima-la-union-28-02-2025/&amp;ct=3Dga&amp;cd=3DC=
+AEYCCoTNjYwODA1MTIxODE0NTQxNTA3NTIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&=
+amp;usg=3DAOvVaw3A9kLZxNa_ao1Vrtf4sw3S" style=3D"color:#427fed;display:inli=
+ne;text-decoration:none;font-size:16px;line-height:20px"> <span>Conferencia=
+: impactos de la <b>miner=C3=ADa</b> en <b>el</b> r=C3=ADo San Sebasti=C3=
+=A1n, ubicado en Santa Rosa de ...</span> </a> </span>  <div> <div style=3D=
+"padding:2px 0px 8px 0px"> <div style=3D"color:#737373;font-size:12px"> <a =
+style=3D"text-decoration:none;color:#737373"> <span>Mesa Nacional Frente a =
+la Miner=C3=ADa Met=C3=A1lica</span> </a> </div> <div style=3D"color:#25252=
+5;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">La Mesa Nacional=
+ Frente a la <b>Miner=C3=ADa</b> Met=C3=A1lica en <b>El Salvador</b> en coo=
+rdinaci=C3=B3n&nbsp;...</div> </div>   <table> <tr> <td width=3D"16" style=
+=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DSV&amp;ru=3Dhttps://noalamineria.org.sv/2025/03/03/conferenc=
+ia-impactos-de-la-mineria-en-el-rio-san-sebastian-ubicado-en-santa-rosa-de-=
+lima-la-union-28-02-2025/&amp;ss=3Dfb&amp;rt=3DConferencia:+impactos+de+la+=
+miner%C3%ADa+en+el+r%C3%ADo+San+Sebasti%C3%A1n,+ubicado+en+Santa+Rosa+de+..=
+.&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpT=
+VjpSTA&amp;ssp=3DAMJHsmUKQqV0KcyoTLakxMCat1LmArCA4w" style=3D"text-decorati=
+on:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/image=
+s/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=
+=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/aler=
+ts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://noalamineria.org.sv/2025/03/0=
+3/conferencia-impactos-de-la-mineria-en-el-rio-san-sebastian-ubicado-en-san=
+ta-rosa-de-lima-la-union-28-02-2025/&amp;ss=3Dtw&amp;rt=3DConferencia:+impa=
+ctos+de+la+miner%C3%ADa+en+el+r%C3%ADo+San+Sebasti%C3%A1n,+ubicado+en+Santa=
++Rosa+de+...&amp;cd=3DKhM2NjA4MDUxMjE4MTQ1NDE1MDc1Mh0wMzEwN2ZjNjhhYTk0ZWZmO=
+mNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUKQqV0KcyoTLakxMCat1LmArCA4w" style=3D"te=
+xt-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/al=
+erts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <=
+td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https:/=
+/www.google.com/alerts/feedback?ffu=3Dhttps://noalamineria.org.sv/2025/03/0=
+3/conferencia-impactos-de-la-mineria-en-el-rio-san-sebastian-ubicado-en-san=
+ta-rosa-de-lima-la-union-28-02-2025/&amp;source=3Dalertsmail&amp;hl=3Den&am=
+p;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHK=
+ZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;=
+color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  <=
+/div> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr> <td=
+ colspan=3D"3" valign=3D"middle" style=3D"background-color:#f8f8f8;font-siz=
+e:14px;vertical-align:middle;text-align:center;padding:10px 10px 10px 10px;=
+line-height:20px;border:1px solid #e4e4e4;font-family:Arial"> <a href=3D"ht=
+tps://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp=
+;start=3D1741050021&amp;end=3D1741136406&amp;source=3Dalertsmail&amp;hl=3De=
+n&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ#history" style=3D"text=
+-decoration:none;vertical-align:middle;color:#427fed">  See more results  <=
+/a> <span style=3D"font-size:12px;padding-left:15px;padding-right:15px;colo=
+r:#aaa">|</span> <a href=3D"https://www.google.com/alerts/edit?source=3Dale=
+rtsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MTIxODE0NTQxNTA3NQ&amp;=
+s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;email=3Ddeibi.sibrian%40ber=
+keley.edu" style=3D"text-decoration:none;vertical-align:middle;color:#427fe=
+d">Edit this alert</a>  </td> </tr>  </table> <table style=3D"padding-top:6=
+px;font-size:12px;color:#252525;text-align:center;width:100%"> <tr> <td sty=
+le=3D"font-family:Arial">  You have received this email because you have su=
+bscribed to <b>Google Alerts</b>. <div> <a href=3D"https://www.google.com/a=
+lerts/remove?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwOD=
+A1MTIxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=
+=3D"text-decoration:none;color:#427fed">Unsubscribe</a> <span style=3D"padd=
+ing:0px 4px 0px 4px;color:#252525">|</span> <a href=3D"https://www.google.c=
+om/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1M=
+TIxODE0NTQxNTA3NQ" style=3D"text-decoration:none;color:#427fed">  View all =
+your alerts  </a> </div> </td> </tr> <tr> <td style=3D"padding:6px 10px 0px=
+ 0px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/feeds/167=
+66221062399110009/9620686502612528422" style=3D"text-decoration:none;color:=
+#427fed"> <img src=3D"https://www.gstatic.com/alerts/images/rss-16.gif" alt=
+=3D"RSS" border=3D"0" style=3D"padding:0px 8px 0px 0px;vertical-align:middl=
+e"> <span style=3D"display:inline;line-height:16px;vertical-align:middle"> =
+Receive this alert as RSS feed </span> </a> </td> </tr> <tr> <td style=3D"p=
+adding:6px 0px 0px 0px;font-family:Arial"> <a href=3D"https://www.google.co=
+m/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNjYwODA1MT=
+IxODE0NTQxNTA3NQ&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;ffu=3D=
+" style=3D"text-decoration:none;color:#427fed"> <div style=3D"display:inlin=
+e;line-height:16px;vertical-align:middle"> Send Feedback </div> </a> </td> =
+</tr> </table> </div> </div> <!--[if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--0000000000000eea44062f8de93a--

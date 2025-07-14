@@ -1,0 +1,601 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:8294:b0:7f:5c58:326a with SMTP id j20csp2303761rcd;
+        Sun, 2 Mar 2025 17:00:09 -0800 (PST)
+X-Received: by 2002:a05:6902:160c:b0:e5b:420b:8dc2 with SMTP id 3f1490d57ef6-e60b2ea0963mr13790772276.18.1740963609506;
+        Sun, 02 Mar 2025 17:00:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740963609; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KWtVLW1yjGsBRfrVDRyOl0IpuRx60n/xuqw2EhxJvIp70/uhiQqwSoCfoehEfAnHCG
+         Byz2/2x+YQW8zXyqPsL5VvHu56H3R3gHq6gOwDOY5YgL5eM6nG4aQ2TVsm3FLILJn4sY
+         Ja/XlyZkdQnunN76qTVC1ED7UnBrl0nUcY8tjLDfxJ0XH8Q6d6OPT0XjEaPVbMIyKHbg
+         FtHFL/yU3myejrVMNeFpQ7QHAzKGodGHg9oWzFJODiCFerx//eRbIq902vWwNLbbQ5Pz
+         PsbG2wYYZSdfHA6UICBvbOqGOYlRcjC9qNXLy+gHd6pt2IyUBICFOakGBXl4/RCaH6X1
+         qsjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=JZVPVijZiTA/PiBEAUo2ddKs7U/vxnIQzaiCc+glrlY=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=TDfOcJoW9RgyBU17XPX54A/EYiv2B2c2DFIL8O41RmNo21rAMOKDooUVjyilM7Yz9q
+         W7LomqPhuV9mv9LYfuvZprCtiaxz77FmHA4zc9IFc9sm/6+AXqRaAQ14pxIWcQf+K0Df
+         ARraHihNJ+tPjxchw/KImPsDhbK2nbGuXCE4qgQYn1KsmVUGcL4UPnCKSemCsfvUvnyc
+         viHw/WsphviiRDB63hPVVLCvm5TBW4TNEGw/kUfyBmd5po0hxLKkd7t1XJw76Gx7nZ2j
+         kv5umBr/uHW49yTWhe3olx7zAbnb1HmtU8PTvGBaXHLpDrK9O6RIWMkqeIMe2oaPK6X3
+         gQIg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=GbE8GJVL;
+       spf=pass (google.com: domain of 3gp_ezxqkag8tbbtyrnyregf-abercyltbbtyr.pbz@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3GP_EZxQKAG8TbbTYRNYRegf-abeRcYlTbbTYR.PbZ@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3GP_EZxQKAG8TbbTYRNYRegf-abeRcYlTbbTYR.PbZ@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 3f1490d57ef6-e60a3a42588sor4085491276.9.2025.03.02.17.00.08
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Sun, 02 Mar 2025 17:00:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3gp_ezxqkag8tbbtyrnyregf-abercyltbbtyr.pbz@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=GbE8GJVL;
+       spf=pass (google.com: domain of 3gp_ezxqkag8tbbtyrnyregf-abercyltbbtyr.pbz@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3GP_EZxQKAG8TbbTYRNYRegf-abeRcYlTbbTYR.PbZ@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1740963608; x=1741568408; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JZVPVijZiTA/PiBEAUo2ddKs7U/vxnIQzaiCc+glrlY=;
+        b=GbE8GJVL9H2ssmzbUm5KSh2SMk/OiIfuAUgrzXp6Wug3tmosNPjq2fBkapMHDBLr72
+         M0RBPKIoc9kW2pPQSDLcdSUDmMTeyZv42+ksWVmEc/2JvP5guHzNs/COVy1Gd2qnK5MY
+         yt0QUMWeiYASsn0LKn7aOzqjSW81ks1rNY5+QG7/lGrNhiNC8ryXl1LAPYgpk8Xvi9uD
+         KIEYtaV3lU61dyqo9gyXZ5ZuoimSzsqo7IvYbCZc8JLnfrlDDSn70DGWcBN4gXqCxwVI
+         eOwTqfRmqufdZGinDCWrbHtSgC3D4IQ6gaCjdYbzeCIaYaq6WBvgKvmXJ5Ai2VCwO8hC
+         a1Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740963608; x=1741568408;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JZVPVijZiTA/PiBEAUo2ddKs7U/vxnIQzaiCc+glrlY=;
+        b=T4aHKvtQm5Thw84/9/xLyHe4ZDx0sHF7fBrHqtatz3ZTisTMh4ImgrphxU3HK1JhSM
+         a6u4KmlDSpihHKvPNM4nLdaqLBpJB5sPoboK30bRsxA0EiNACIHzDG7O5qlsO+55BJUN
+         +HM51xj1EN1lwyVvylKxe+oThCA1qYqamucJUKhD1rR51lifpgF0fYVOQcMqz0O0NUpg
+         JB8eUGFz3XKL3wSxuYJBvG5foTi/LzySuH4QTmDGQ2M9e8KfwgQRkKOL19U5gv3TwgPX
+         ab+ZtqoGIIj4Kdnqc/NP5kDSJMR7VkWxMaqwLaObwF05BHwr+OUj81Wc2jPVkCIByOn9
+         vtmw==
+X-Gm-Message-State: AOJu0Yz/6i4Wkkt9FIAuZzB5t/3UPR/ojI90dRBOv/km1rMqhsGLSbQX
+	HxUCFR2+JwGWp7jJklH0kE6JYdXkqJKHFmw=
+X-Google-Smtp-Source: AGHT+IHUX7dzGsdHV1OpN9IqpmXrFOBi7EV2QTOiRLvBnmEoiOgpyySF8SWlupIt4yUbZN0dHdY=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6902:114f:b0:e57:f8cd:f0a4 with SMTP id
+ 3f1490d57ef6-e60b2f3eab7mr13172731276.34.1740963608444; Sun, 02 Mar 2025
+ 17:00:08 -0800 (PST)
+Date: Sun, 02 Mar 2025 17:00:08 -0800
+List-Id: <8788187619656504868.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs>
+Message-ID: <67c4ff18.050a0220.2b5ba7.6127googlealerts@google.com>
+Subject: =?UTF-8?Q?Google_Alert_=2D_El_Salvador_miner=C3=ADa?=
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="00000000000072be77062f65ad5f"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--00000000000072be77062f65ad5f
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IE5ld3MgLSA1IG5ldyByZXN1bHRzIGZvciBbRWwgU2FsdmFkb3IgbWluZXLDrWFdID09PQ0K
+DQpMb3MgcHJlY2lvcyBkZWwgZ2FzIHNpbiBjYW1iaW9zIGVuIG1hcnpvIC0gTGEgUHJlbnNhIEdy
+w6FmaWNhDQpMYSBQcmVuc2EgR3LDoWZpY2ENCi4uLiBNaW5hcyAoREdFSE0pLiAuLi4gwr9Fc3TD
+oSBwcmVwYXJhZG8gZWwgc2VjdG9yIGxlY2hlcm8gc2FsdmFkb3Jlw7FvPyBLYXJsYQ0KQWxmYXJv
+LiDCtyBBeWVyLiBFbCBkaXJlY3RvcmlvIGRlbCBGTUkgYXByb2LDsyBlbCBhY3VlcmRvIGNvbiBF
+bCBTYWx2YWRvciBlbA0KMjYgZGUgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cmN0
+PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cubGFwcmVuc2FncmFmaWNhLmNvbS9lY29ub21pYS9Mb3Mt
+cHJlY2lvcy1kZWwtZ2FzLXNpbi1jYW1iaW9zLWVuLW1hcnpvLTIwMjUwMjI4LTAxMDcuaHRtbCZj
+dD1nYSZjZD1DQUVZQUNvVU1UQXdOREV5TmpRME56TXhNRGN6T0RJNE56Y3lIVEF6TVRBM1ptTTJP
+R0ZoT1RSbFptWTZZMjl0T21WdU9sTldPbEpNJnVzZz1BT3ZWYXcwZUlqbVE3MlZwNlhHcVd4bmJF
+VEJ5Pg0KDQpNYWRyZSBzYWx2YWRvcmXDsWEgc3VwbGljYSBhIFRydW1wIHBvciBzdSBoaWpvIGlu
+ZG9jdW1lbnRhZG8gLSBOb3RpY2lhcyBkZQ0KRWwgU2FsdmFkb3INCkVsIERpYXJpbyBkZSBIb3kN
+CkVQQVBFUiBEb25hbGQgVHJ1bXB8Rm90b211bHRhc3xNaW5lcsOtYXxUb3JuZW8gQ2xhdXN1cmEg
+MjAyNXxFc3BlY3TDoWN1bG9zDQouLi4gRWwgU2FsdmFkb3IgeSBudW5jYSBoYSB2aWFqYWRvIGEg
+ZXNlIHBhw61zLiBTaW4gZW1iYXJnbywgYSBzdXMgNzMgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cuZWxzYWx2YWRvci5jb20vbm90aWNp
+YXMvbmFjaW9uYWwvaW5taWdyYW50ZXMtc2FsdmFkb3Jlbm9zLWVuLWVsLWV4dGVyaW9yLXJlbWVz
+YXMtZmFtaWxpYXJlcy1lc3RhZG9zLXVuaWRvcy1zYW50YS1yb3NhLWRlLWxpbWEtbGEtdW5pb24t
+LzEyMDM0NjcvMjAyNS8mY3Q9Z2EmY2Q9Q0FFWUFTb1VNVEF3TkRFeU5qUTBOek14TURjek9ESTRO
+emN5SFRBek1UQTNabU0yT0dGaE9UUmxabVk2WTI5dE9tVnVPbE5XT2xKTSZ1c2c9QU92VmF3MDgz
+MzFsNEZ3bjFqSDEyamY1VkxIXz4NCg0KTG9zIHNhbHZhZG9yZcOxb3Mgdml2ZW4gZW4gdW5hIG51
+ZXZhIGPDoXJjZWwgLSBSZXZpc3RhIEZhY3R1bQ0KUmV2aXN0YSBGYWN0dW0NCkVsIFNhbHZhZG9y
+IGVzIGVsIHRlcmNlciBwYcOtcyBhIG5pdmVsIG11bmRpYWwgcXVlIG3DoXMgcmV0cm9jZXNvcyBo
+YSAuLi4gVW4NCmNlcmNvIG1pbGl0YXIgYWxlcnTDsyBhIGxhIGNvbXVuaWRhZCBxdWUgcmVzaXN0
+ZSBhIGxhIG1pbmVyw61hLiBwb3IgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cmN0
+PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cucmV2aXN0YWZhY3R1bS5jb20vc2xtLW51ZXZhLWNhcmNl
+bC8mY3Q9Z2EmY2Q9Q0FFWUFpb1VNVEF3TkRFeU5qUTBOek14TURjek9ESTROemN5SFRBek1UQTNa
+bU0yT0dGaE9UUmxabVk2WTI5dE9tVnVPbE5XT2xKTSZ1c2c9QU92VmF3MnBNZlY2NjZqRUZuY01C
+SXNwOVVnbT4NCg0KRWwgQ29sZWdpbyBNw6lkaWNvIGp1cmFtZW50YSBzdSBudWV2YSBKdW50YSBE
+aXJlY3RpdmEgMjAyNS0yMDI3IC0gTm90aWNpYXMNCmRlIEVsIFNhbHZhZG9yDQpFbCBEaWFyaW8g
+ZGUgSG95DQpFbCBkb2N0b3IgSXbDoW4gU29sYW5vIGZ1ZSByZWVsZWN0byBwYXJhIHVuIG51ZXZv
+IHBlcmlvZG8sIGVuIHVuIGNvbnRleHRvIGRlDQpkZXNhZsOtb3MgcGFyYSBsYSBzYWx1ZCBww7pi
+bGljYS4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRwczov
+L3d3dy5lbHNhbHZhZG9yLmNvbS9ub3RpY2lhcy9uYWNpb25hbC9jb2xlZ2lvLW1lZGljby1zYW4t
+c2FsdmFkb3ItcHJldmVuY2lvbi1kZS1lbmZlcm1lZGFkZXMteS1oYWJpdG9zLXNhbHVkLzEyMDM2
+MjkvMjAyNS8mY3Q9Z2EmY2Q9Q0FFWUF5b1VNVEF3TkRFeU5qUTBOek14TURjek9ESTROemN5SFRB
+ek1UQTNabU0yT0dGaE9UUmxabVk2WTI5dE9tVnVPbE5XT2xKTSZ1c2c9QU92VmF3MHhWdjNxa0Vx
+c0hDVTNXZV9RLV8wYz4NCg0KQW51bmNpYW4gcHJlY2lvcyBkZWwgZ2FzIHByb3Bhbm8gcGFyYSBl
+bCBtZXMgZGUgbWFyem8gLSBEaWFyaW8gTGEgUMOhZ2luYQ0KRGlhcmlvIExhIFDDoWdpbmENCkxh
+IERpcmVjY2nDs24gZGUgRW5lcmfDrWEsIEhpZHJvY2FyYnVyb3MgeSBNaW5hcywgZGlvIGEgY29u
+b2NlciBsb3MgLi4uIMKpDQoyMDI0IERpYXJpbyBMYSBQw6FnaW5hIC0gTm90aWNpYXMgZGUgRWwg
+U2FsdmFkb3IuIE5vIFJlc3VsdC4gVmlldyBBbGwgLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNv
+bS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly9sYXBhZ2luYS5jb20uc3YvbmFjaW9uYWxlcy9h
+bnVuY2lhbi1wcmVjaW9zLWRlbC1nYXMtcHJvcGFuby1wYXJhLWVsLW1lcy1kZS1tYXJ6by8mY3Q9
+Z2EmY2Q9Q0FFWUJDb1VNVEF3TkRFeU5qUTBOek14TURjek9ESTROemN5SFRBek1UQTNabU0yT0dG
+aE9UUmxabVk2WTI5dE9tVnVPbE5XT2xKTSZ1c2c9QU92VmF3M1BFcElhMmR5bXpUWGUwZTVXZEVR
+VD4NCg0KDQo9PT0gV2ViIC0gMSBuZXcgcmVzdWx0IGZvciBbRWwgU2FsdmFkb3IgbWluZXLDrWFd
+ID09PQ0KDQpMb3MgY3Jpc3RpYW5vcyB5IGVsIGN1aWRhZG8gZGUgbGEgQ3JlYWNpw7NuIC0gRWwg
+RGlhcmlvIGRlIEhveQ0KRVBBUEVSIERvbmFsZCBUcnVtcHxGb3RvbXVsdGFzfE1pbmVyw61hfFRv
+cm5lbyBDbGF1c3VyYSAyMDI1fEVzcGVjdMOhY3Vsb3MNCi4uLiBFbCBDb21wcm9taXNvIGRlIENp
+dWRhZCBkZWwgQ2FibywgbmFjaWRvIGRlbCBDb25ncmVzbyBNdW5kaWFsIGRlIC4uLg0KPGh0dHBz
+Oi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vd3d3LmVsc2FsdmFk
+b3IuY29tL29waW5pb24vZWRpdG9yaWFsZXMvbWluZXJpYS0vMTIwMzYwMC8yMDI1LyZjdD1nYSZj
+ZD1DQUVZQUNvVU1UQXdOREV5TmpRME56TXhNRGN6T0RJNE56Y3lIVEF6TVRBM1ptTTJPR0ZoT1RS
+bFptWTZZMjl0T21WdU9sTldPbEpNJnVzZz1BT3ZWYXczdHc5dHY2MlhXMkQ0bjc2VjVPbHNOPg0K
+DQoNCi0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAt
+IC0gLSAtIC0gLSAtIC0NClVuc3Vic2NyaWJlIGZyb20gdGhpcyBHb29nbGUgQWxlcnQ6DQo8aHR0
+cHM6Ly93d3cuZ29vZ2xlLmNvbS9hbGVydHMvcmVtb3ZlP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVu
+JmdsPVNWJm1zZ2lkPU1UQXdOREV5TmpRME56TXhNRGN6T0RJNE56YyZzPUFCMlhxNGdMWUlvU3RN
+MGdIS1pDb0pSZ2dEbV9RbHJwRjU5dXNxcz4NCg0KQ3JlYXRlIGFub3RoZXIgR29vZ2xlIEFsZXJ0
+Og0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVu
+JmdsPVNWJm1zZ2lkPU1UQXdOREV5TmpRME56TXhNRGN6T0RJNE56Yz4NCg0KU2lnbiBpbiB0byBt
+YW5hZ2UgeW91ciBhbGVydHM6DQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hbGVydHM/c291cmNl
+PWFsZXJ0c21haWwmaGw9ZW4mZ2w9U1YmbXNnaWQ9TVRBd05ERXlOalEwTnpNeE1EY3pPREk0Tnpj
+Pg0K
+--00000000000072be77062f65ad5f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - El Salvador miner=C3=ADa",
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Latest: March 3, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "Los precios del gas sin cambios en marzo - La Prensa Gr=
+=C3=A1fica"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Madre salvadore=C3=B1a suplica a Trump por su hijo indocu=
+mentado - Noticias de El Salvador"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Los salvadore=C3=B1os viven en una nueva c=C3=A1rcel - Re=
+vista Factum"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs\u0026start=3D1740877207\u0026end=3D1740963608\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DSV\u0026msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc=
+#history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "Los precios del gas sin cambios en marzo - La Prensa Gr=C3=
+=A1fica",
+      "description": "... Minas (DGEHM). ... =C2=BFEst=C3=A1 preparado el s=
+ector lechero salvadore=C3=B1o? Karla Alfaro. =C2=B7 Ayer. El directorio de=
+l FMI aprob=C3=B3 el acuerdo con El Salvador el 26 de ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.laprensagrafica.com/economia/Los-precios-del-gas-sin-cambios-en-ma=
+rzo-20250228-0107.html\u0026ct=3Dga\u0026cd=3DCAEYACoUMTAwNDEyNjQ0NzMxMDczO=
+DI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM\u0026usg=3DAOvVaw0eIjmQ72Vp=
+6XGqWxnbETBy"
+    }, {
+      "type": "LINK",
+      "title": "Madre salvadore=C3=B1a suplica a Trump por su hijo indocume=
+ntado - Noticias de El Salvador",
+      "description": "EPAPER Donald Trump|Fotomultas|Miner=C3=ADa|Torneo Cl=
+ausura 2025|Espect=C3=A1culos ... El Salvador y nunca ha viajado a ese pa=
+=C3=ADs. Sin embargo, a sus 73 ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/noticias/nacional/inmigrantes-salvadorenos-en-el-ex=
+terior-remesas-familiares-estados-unidos-santa-rosa-de-lima-la-union-/12034=
+67/2025/\u0026ct=3Dga\u0026cd=3DCAEYASoUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA=
+3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM\u0026usg=3DAOvVaw08331l4Fwn1jH12jf5VLH_"
+    }, {
+      "type": "LINK",
+      "title": "Los salvadore=C3=B1os viven en una nueva c=C3=A1rcel - Revi=
+sta Factum",
+      "description": "El Salvador es el tercer pa=C3=ADs a nivel mundial qu=
+e m=C3=A1s retrocesos ha ... Un cerco militar alert=C3=B3 a la comunidad qu=
+e resiste a la miner=C3=ADa. por ...",
+      "image_url": "https://i.ytimg.com/vi/nfLI6Qr1xjg/mqdefault.jpg",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.revistafactum.com/slm-nueva-carcel/\u0026ct=3Dga\u0026cd=3DCAEYAio=
+UMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM\u0026=
+usg=3DAOvVaw2pMfV666jEFncMBIsp9Ugm"
+    }, {
+      "type": "LINK",
+      "title": "El Colegio M=C3=A9dico juramenta su nueva Junta Directiva 2=
+025-2027 - Noticias de El Salvador",
+      "description": "El doctor Iv=C3=A1n Solano fue reelecto para un nuevo=
+ periodo, en un contexto de desaf=C3=ADos para la salud p=C3=BAblica.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/noticias/nacional/colegio-medico-san-salvador-preve=
+ncion-de-enfermedades-y-habitos-salud/1203629/2025/\u0026ct=3Dga\u0026cd=3D=
+CAEYAyoUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJ=
+M\u0026usg=3DAOvVaw0xVv3qkEqsHCU3We_Q-_0c"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc" style=3D"text-de=
+coration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.p=
+ng?cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4Mjg3Nw" alt=3D"Google" border=3D"0" height=
+=3D"25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px=
+;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr> =
+ <tr> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0=
+px 0px;vertical-align:middle;line-height:20px;font-family:Arial"> <span sty=
+le=3D"color:#262626;font-size:22px">El Salvador miner=C3=ADa</span> <div st=
+yle=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-he=
+ight:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4p=
+x">&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">March 3, 2025=
+</a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td sty=
+le=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;borde=
+r-bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373"> =
+NEWS </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr items=
+cope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left=
+:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;font=
+-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a =
+href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www=
+.laprensagrafica.com/economia/Los-precios-del-gas-sin-cambios-en-marzo-2025=
+0228-0107.html&amp;ct=3Dga&amp;cd=3DCAEYACoUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTA=
+zMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw0eIjmQ72Vp6XGqWxnbETB=
+y" itemprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration:n=
+one;font-size:16px;line-height:20px"> <span itemprop=3D"name">Los precios <=
+b>del</b> gas sin cambios en marzo - La Prensa Gr=C3=A1fica</span> </a> </s=
+pan>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publis=
+her" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"co=
+lor:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#737373=
+"> <span itemprop=3D"name">La Prensa Gr=C3=A1fica</span> </a> </div> <div i=
+temprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font=
+-size:12px;line-height:18px">... <b>Minas</b> (DGEHM). ... =C2=BFEst=C3=A1 =
+preparado el sector lechero salvadore=C3=B1o? Karla Alfaro. =C2=B7 Ayer. El=
+ directorio del FMI aprob=C3=B3 el acuerdo con <b>El Salvador</b> el 26 de&=
+nbsp;...</div> </div>   <table> <tr> <td width=3D"16" style=3D"padding-righ=
+t:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&=
+amp;ru=3Dhttps://www.laprensagrafica.com/economia/Los-precios-del-gas-sin-c=
+ambios-en-marzo-20250228-0107.html&amp;ss=3Dfb&amp;rt=3DLos+precios+del+gas=
++sin+cambios+en+marzo+-+La+Prensa+Gr%C3%A1fica&amp;cd=3DKhQxMDA0MTI2NDQ3MzE=
+wNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmVhWYKG=
+EAC6rtWrHxJCvFb4dwvlOg" style=3D"text-decoration:none"> <img alt=3D"Faceboo=
+k" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" hei=
+ght=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:=
+6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&am=
+p;ru=3Dhttps://www.laprensagrafica.com/economia/Los-precios-del-gas-sin-cam=
+bios-en-marzo-20250228-0107.html&amp;ss=3Dtw&amp;rt=3DLos+precios+del+gas+s=
+in+cambios+en+marzo+-+La+Prensa+Gr%C3%A1fica&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwN=
+zM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmVhWYKGEA=
+C6rtWrHxJCvFb4dwvlOg" style=3D"text-decoration:none"> <img alt=3D"Twitter" =
+src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=
+=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-=
+family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttp=
+s://www.laprensagrafica.com/economia/Los-precios-del-gas-sin-cambios-en-mar=
+zo-20250228-0107.html&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;m=
+sgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_Qlrp=
+F59usqs" style=3D"text-decoration:none;vertical-align:middle;color:#aaa;fon=
+t-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> <=
+/td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" ite=
+mtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"></td> =
+<td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px so=
+lid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6=
+px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;u=
+rl=3Dhttps://www.elsalvador.com/noticias/nacional/inmigrantes-salvadorenos-=
+en-el-exterior-remesas-familiares-estados-unidos-santa-rosa-de-lima-la-unio=
+n-/1203467/2025/&amp;ct=3Dga&amp;cd=3DCAEYASoUMTAwNDEyNjQ0NzMxMDczODI4NzcyH=
+TAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw08331l4Fwn1jH12jf5V=
+LH_" itemprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration=
+:none;font-size:16px;line-height:20px"> <span itemprop=3D"name">Madre salva=
+dore=C3=B1a suplica a Trump por su hijo indocumentado - Noticias de <b>El S=
+alvador</b></span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0p=
+x"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.or=
+g/Organization" style=3D"color:#737373;font-size:12px"> <a style=3D"text-de=
+coration:none;color:#737373"> <span itemprop=3D"name">El Diario de Hoy</spa=
+n> </a> </div> <div itemprop=3D"description" style=3D"color:#252525;padding=
+:2px 0px 0px 0px;font-size:12px;line-height:18px">EPAPER Donald Trump|Fotom=
+ultas|<b>Miner=C3=ADa</b>|Torneo Clausura 2025|Espect=C3=A1culos ... <b>El =
+Salvador</b> y nunca ha viajado a ese pa=C3=ADs. Sin embargo, a sus 73&nbsp=
+;...</div> </div>   <table> <tr> <td width=3D"16" style=3D"padding-right:6p=
+x"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;=
+ru=3Dhttps://www.elsalvador.com/noticias/nacional/inmigrantes-salvadorenos-=
+en-el-exterior-remesas-familiares-estados-unidos-santa-rosa-de-lima-la-unio=
+n-/1203467/2025/&amp;ss=3Dfb&amp;rt=3DMadre+salvadore%C3%B1a+suplica+a+Trum=
+p+por+su+hijo+indocumentado+-+Noticias+de+El+Salvador&amp;cd=3DKhQxMDA0MTI2=
+NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHs=
+mXLd6TLkDakL2esECkJmXKu5d4XKA" style=3D"text-decoration:none"> <img alt=3D"=
+Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D=
+"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding=
+-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=
+=3DSV&amp;ru=3Dhttps://www.elsalvador.com/noticias/nacional/inmigrantes-sal=
+vadorenos-en-el-exterior-remesas-familiares-estados-unidos-santa-rosa-de-li=
+ma-la-union-/1203467/2025/&amp;ss=3Dtw&amp;rt=3DMadre+salvadore%C3%B1a+supl=
+ica+a+Trump+por+su+hijo+indocumentado+-+Noticias+de+El+Salvador&amp;cd=3DKh=
+QxMDA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;s=
+sp=3DAMJHsmXLd6TLkDakL2esECkJmXKu5d4XKA" style=3D"text-decoration:none"> <i=
+mg alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" =
+border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px=
+ 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/=
+feedback?ffu=3Dhttps://www.elsalvador.com/noticias/nacional/inmigrantes-sal=
+vadorenos-en-el-exterior-remesas-familiares-estados-unidos-santa-rosa-de-li=
+ma-la-union-/1203467/2025/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&=
+amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;color:#aa=
+a;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </d=
+iv> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"=
+" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"><=
+/td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1=
+px solid #e4e4e4;font-family:Arial"> <a href=3D"https://www.google.com/url?=
+rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.revistafactum.com/slm-nueva-carcel=
+/&amp;ct=3Dga&amp;cd=3DCAEYAioUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2OGFh=
+OTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw2pMfV666jEFncMBIsp9Ugm" style=3D"t=
+ext-decoration:none"> <table align=3D"right" style=3D"display:inline;border=
+-collapse:collapse"> <tr> <td style=3D"padding-left:18px"></td> <td height=
+=3D"100" width=3D"100" valign=3D"bottom" style=3D"padding:0px 0px 0px 0px;b=
+ackground-repeat:no-repeat;text-align:center;background-image:url(https://e=
+ncrypted-tbn3.gstatic.com/images?q=3Dtbn:ANd9GcQby1ZlE-wP-TgE3VSzHh7GmneTuo=
+Vcf2iZaBIsF-hi9nUsqDSXuRdhgnaj);border:1px solid #e4e4e4"> <link href=3D"ht=
+tps://encrypted-tbn3.gstatic.com/images?q=3Dtbn:ANd9GcSeeA9CCC068Nef1QvfSYK=
+hle7SxAsNkoGb7O23cgthJyNLADSJLNVVvhsfQh0" itemprop=3D"image"> <!--[if gte m=
+so 9]>
+       <v:image xmlns:v=3D"urn:schemas-microsoft-com:vml" id=3D"theImage"
+                style=3D'behavior: url(#default#VML);
+                       display:inline-block; position:absolute;
+                       height: 100px; width: 100px;
+                       top:0; left:0; border:0; z-index:1;' src=3D"https://=
+encrypted-tbn3.gstatic.com/images%3Fq%3Dtbn:ANd9GcQby1ZlE-wP-TgE3VSzHh7Gmne=
+TuoVcf2iZaBIsF-hi9nUsqDSXuRdhgnaj"/>
+       <v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+               style=3D'behavior: url(#default#VML);
+                      display:inline-block;
+                      position: absolute; top: 82px; left: 0px;
+                      width:100px; border:0; z-index:2;' strokecolor=3D"non=
+e">
+       <v:fill opacity=3D"50%" color=3D"#000000"/>
+       <v:textbox style=3D"mso-fit-shape-to-text:t;
+                         mso-column-margin: 0pt;
+                         letter-spacing: 0.8px;"
+                         inset=3D"0pt,0pt,0pt,0pt">
+         <font size=3D"-1" color=3D"#ffffff"></font>
+       </v:textbox>
+       </v:rect>
+       <div style=3D"display: none">
+       <![endif]--> <div style=3D"color:#fff;font-size:9px;letter-spacing:0=
+.8px"> <div style=3D"padding:3px 0px 4px 4px;background:rgb(255,255,255);ba=
+ckground-color:rgba(0,0,0,0.5);width:96px"></div> </div> <!--[if gte mso 9]=
+></div><![endif]--> </td> </tr> </table> </a> <div>  <span style=3D"padding=
+:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt=
+&amp;url=3Dhttps://www.revistafactum.com/slm-nueva-carcel/&amp;ct=3Dga&amp;=
+cd=3DCAEYAioUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOl=
+NWOlJM&amp;usg=3DAOvVaw2pMfV666jEFncMBIsp9Ugm" itemprop=3D"url" style=3D"co=
+lor:#427fed;display:inline;text-decoration:none;font-size:16px;line-height:=
+20px"> <span itemprop=3D"name">Los salvadore=C3=B1os viven en una nueva c=
+=C3=A1rcel - Revista Factum</span> </a> </span>  <div> <div style=3D"paddin=
+g:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=3D"=
+http://schema.org/Organization" style=3D"color:#737373;font-size:12px"> <a =
+style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">Revis=
+ta Factum</span> </a> </div> <div itemprop=3D"description" style=3D"color:#=
+252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px"><b>El Salva=
+dor</b> es el tercer pa=C3=ADs a nivel mundial que m=C3=A1s retrocesos ha .=
+.. Un cerco militar alert=C3=B3 a la comunidad que resiste a la <b>miner=C3=
+=ADa</b>. por&nbsp;...</div> </div>   <table> <tr> <td width=3D"16" style=
+=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.revistafactum.com/slm-nueva-carcel/&=
+amp;ss=3Dfb&amp;rt=3DLos+salvadore%C3%B1os+viven+en+una+nueva+c%C3%A1rcel+-=
++Revista+Factum&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NG=
+VmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmUcowEFeb4C11UlRIefpS25fHrfew" style=
+=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic=
+.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> =
+</td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.=
+google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.revistafac=
+tum.com/slm-nueva-carcel/&amp;ss=3Dtw&amp;rt=3DLos+salvadore%C3%B1os+viven+=
+en+una+nueva+c%C3%A1rcel+-+Revista+Factum&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4=
+Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmUcowEFeb4C1=
+1UlRIefpS25fHrfew" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=
+=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D=
+"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-fam=
+ily:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps:/=
+/www.revistafactum.com/slm-nueva-carcel/&amp;source=3Dalertsmail&amp;hl=3De=
+n&amp;gl=3DSV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoSt=
+M0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:mi=
+ddle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </tabl=
+e>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr=
+ itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"paddin=
+g-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:to=
+p;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span sty=
+le=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=
+=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.elsalvador.com/noticias/nacional/cole=
+gio-medico-san-salvador-prevencion-de-enfermedades-y-habitos-salud/1203629/=
+2025/&amp;ct=3Dga&amp;cd=3DCAEYAyoUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2=
+OGFhOTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw0xVv3qkEqsHCU3We_Q-_0c" itempr=
+op=3D"url" style=3D"color:#427fed;display:inline;text-decoration:none;font-=
+size:16px;line-height:20px"> <span itemprop=3D"name">El Colegio M=C3=A9dico=
+ juramenta su nueva Junta Directiva 2025-2027 - Noticias de <b>El Salvador<=
+/b></span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div=
+ itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organi=
+zation" style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration=
+:none;color:#737373"> <span itemprop=3D"name">El Diario de Hoy</span> </a> =
+</div> <div itemprop=3D"description" style=3D"color:#252525;padding:2px 0px=
+ 0px 0px;font-size:12px;line-height:18px"><b>El</b> doctor Iv=C3=A1n Solano=
+ fue reelecto para un nuevo periodo, en un contexto de desaf=C3=ADos para l=
+a salud p=C3=BAblica.</div> </div>   <table> <tr> <td width=3D"16" style=3D=
+"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den=
+&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.com/noticias/nacional/colegio-=
+medico-san-salvador-prevencion-de-enfermedades-y-habitos-salud/1203629/2025=
+/&amp;ss=3Dfb&amp;rt=3DEl+Colegio+M%C3%A9dico+juramenta+su+nueva+Junta+Dire=
+ctiva+2025-2027+-+Noticias+de+El+Salvador&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4=
+Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmWlSCrQibphD=
+HaORMsZArM4ZE5Dmg" style=3D"text-decoration:none"> <img alt=3D"Facebook" sr=
+c=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=
+=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px=
+"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;r=
+u=3Dhttps://www.elsalvador.com/noticias/nacional/colegio-medico-san-salvado=
+r-prevencion-de-enfermedades-y-habitos-salud/1203629/2025/&amp;ss=3Dtw&amp;=
+rt=3DEl+Colegio+M%C3%A9dico+juramenta+su+nueva+Junta+Directiva+2025-2027+-+=
+Noticias+de+El+Salvador&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYz=
+Y4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmWlSCrQibphDHaORMsZArM4ZE5Dmg"=
+ style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gs=
+tatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16">=
+</a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a hre=
+f=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www.elsalvador.co=
+m/noticias/nacional/colegio-medico-san-salvador-prevencion-de-enfermedades-=
+y-habitos-salud/1203629/2025/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3D=
+SV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRg=
+gDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;color:=
+#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> =
+</div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=
+=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18p=
+x"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-t=
+op:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padd=
+ing:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=
+=3Dt&amp;url=3Dhttps://lapagina.com.sv/nacionales/anuncian-precios-del-gas-=
+propano-para-el-mes-de-marzo/&amp;ct=3Dga&amp;cd=3DCAEYBCoUMTAwNDEyNjQ0NzMx=
+MDczODI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw3PEpIa=
+2dymzTXe0e5WdEQT" itemprop=3D"url" style=3D"color:#427fed;display:inline;te=
+xt-decoration:none;font-size:16px;line-height:20px"> <span itemprop=3D"name=
+">Anuncian precios <b>del</b> gas propano para <b>el</b> mes de marzo - Dia=
+rio La P=C3=A1gina</span> </a> </span>  <div> <div style=3D"padding:2px 0px=
+ 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://sc=
+hema.org/Organization" style=3D"color:#737373;font-size:12px"> <a style=3D"=
+text-decoration:none;color:#737373"> <span itemprop=3D"name">Diario La P=C3=
+=A1gina</span> </a> </div> <div itemprop=3D"description" style=3D"color:#25=
+2525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">La Direcci=C3=
+=B3n de Energ=C3=ADa, Hidrocarburos y <b>Minas</b>, dio a conocer los ... =
+=C2=A9 2024 Diario La P=C3=A1gina - Noticias de <b>El Salvador</b>. No Resu=
+lt. View All&nbsp;...</div> </div>   <table> <tr> <td width=3D"16" style=3D=
+"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den=
+&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/nacionales/anuncian-precios-d=
+el-gas-propano-para-el-mes-de-marzo/&amp;ss=3Dfb&amp;rt=3DAnuncian+precios+=
+del+gas+propano+para+el+mes+de+marzo+-+Diario+La+P%C3%A1gina&amp;cd=3DKhQxM=
+DA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=
+=3DAMJHsmXGxOH_S12cg4_aTKxE-UB6IpHuJA" style=3D"text-decoration:none"> <img=
+ alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" b=
+order=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D=
+"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den=
+&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/nacionales/anuncian-precios-d=
+el-gas-propano-para-el-mes-de-marzo/&amp;ss=3Dtw&amp;rt=3DAnuncian+precios+=
+del+gas+propano+para+el+mes+de+marzo+-+Diario+La+P%C3%A1gina&amp;cd=3DKhQxM=
+DA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=
+=3DAMJHsmXGxOH_S12cg4_aTKxE-UB6IpHuJA" style=3D"text-decoration:none"> <img=
+ alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" bo=
+rder=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0=
+px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/fe=
+edback?ffu=3Dhttps://lapagina.com.sv/nacionales/anuncian-precios-del-gas-pr=
+opano-para-el-mes-de-marzo/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV=
+&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggD=
+m_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;color:#a=
+aa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </=
+div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr> <td style=
+=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;border-=
+bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373"> WE=
+B </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr> <td sty=
+le=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;verti=
+cal-align:top;font-family:Arial">  <div>  <span style=3D"padding:0px 6px 0p=
+x 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3D=
+https://www.elsalvador.com/opinion/editoriales/mineria-/1203600/2025/&amp;c=
+t=3Dga&amp;cd=3DCAEYBSoUMTAwNDEyNjQ0NzMxMDczODI4NzcyHTAzMTA3ZmM2OGFhOTRlZmY=
+6Y29tOmVuOlNWOlJM&amp;usg=3DAOvVaw3tw9tv62XW2D4n76V5OlsN" style=3D"color:#4=
+27fed;display:inline;text-decoration:none;font-size:16px;line-height:20px">=
+ <span>Los cristianos y <b>el</b> cuidado de la Creaci=C3=B3n - El Diario d=
+e Hoy</span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <d=
+iv style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none=
+;color:#737373"> <span>El Diario de Hoy</span> </a> </div> <div style=3D"co=
+lor:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">EPAPER=
+ Donald Trump|Fotomultas|<b>Miner=C3=ADa</b>|Torneo Clausura 2025|Espect=C3=
+=A1culos ... <b>El</b> Compromiso de Ciudad <b>del</b> Cabo, nacido <b>del<=
+/b> Congreso Mundial de&nbsp;...</div> </div>   <table> <tr> <td width=3D"1=
+6" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/sh=
+are?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.com/opinion/editori=
+ales/mineria-/1203600/2025/&amp;ss=3Dfb&amp;rt=3DLos+cristianos+y+el+cuidad=
+o+de+la+Creaci%C3%B3n+-+El+Diario+de+Hoy&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4M=
+jg3NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmWtWQ59MTD_-D=
+EjLEmD2HbtrtPwVA" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=
+=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D=
+"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> =
+<a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=
+=3Dhttps://www.elsalvador.com/opinion/editoriales/mineria-/1203600/2025/&am=
+p;ss=3Dtw&amp;rt=3DLos+cristianos+y+el+cuidado+de+la+Creaci%C3%B3n+-+El+Dia=
+rio+de+Hoy&amp;cd=3DKhQxMDA0MTI2NDQ3MzEwNzM4Mjg3NzIdMDMxMDdmYzY4YWE5NGVmZjp=
+jb206ZW46U1Y6Ukw&amp;ssp=3DAMJHsmWtWQ59MTD_-DEjLEmD2HbtrtPwVA" style=3D"tex=
+t-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/ale=
+rts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <t=
+d style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://=
+www.google.com/alerts/feedback?ffu=3Dhttps://www.elsalvador.com/opinion/edi=
+toriales/mineria-/1203600/2025/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=
+=3DSV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCo=
+JRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;col=
+or:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </di=
+v> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr> <td co=
+lspan=3D"3" valign=3D"middle" style=3D"background-color:#f8f8f8;font-size:1=
+4px;vertical-align:middle;text-align:center;padding:10px 10px 10px 10px;lin=
+e-height:20px;border:1px solid #e4e4e4;font-family:Arial"> <a href=3D"https=
+://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;st=
+art=3D1740877207&amp;end=3D1740963608&amp;source=3Dalertsmail&amp;hl=3Den&a=
+mp;gl=3DSV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc#history" style=3D"text-d=
+ecoration:none;vertical-align:middle;color:#427fed">  See more results  </a=
+> <span style=3D"font-size:12px;padding-left:15px;padding-right:15px;color:=
+#aaa">|</span> <a href=3D"https://www.google.com/alerts/edit?source=3Dalert=
+smail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTAwNDEyNjQ0NzMxMDczODI4Nzc&amp;s=
+=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;email=3Ddeibi.sibrian%40berk=
+eley.edu" style=3D"text-decoration:none;vertical-align:middle;color:#427fed=
+">Edit this alert</a>  </td> </tr>  </table> <table style=3D"padding-top:6p=
+x;font-size:12px;color:#252525;text-align:center;width:100%"> <tr> <td styl=
+e=3D"font-family:Arial">  You have received this email because you have sub=
+scribed to <b>Google Alerts</b>. <div> <a href=3D"https://www.google.com/al=
+erts/remove?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTAwNDE=
+yNjQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=
+=3D"text-decoration:none;color:#427fed">Unsubscribe</a> <span style=3D"padd=
+ing:0px 4px 0px 4px;color:#252525">|</span> <a href=3D"https://www.google.c=
+om/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTAwNDEyN=
+jQ0NzMxMDczODI4Nzc" style=3D"text-decoration:none;color:#427fed">  View all=
+ your alerts  </a> </div> </td> </tr> <tr> <td style=3D"padding:6px 10px 0p=
+x 0px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/feeds/16=
+766221062399110009/9620686502612528422" style=3D"text-decoration:none;color=
+:#427fed"> <img src=3D"https://www.gstatic.com/alerts/images/rss-16.gif" al=
+t=3D"RSS" border=3D"0" style=3D"padding:0px 8px 0px 0px;vertical-align:midd=
+le"> <span style=3D"display:inline;line-height:16px;vertical-align:middle">=
+ Receive this alert as RSS feed </span> </a> </td> </tr> <tr> <td style=3D"=
+padding:6px 0px 0px 0px;font-family:Arial"> <a href=3D"https://www.google.c=
+om/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMTAwNDEyN=
+jQ0NzMxMDczODI4Nzc&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;ffu=
+=3D" style=3D"text-decoration:none;color:#427fed"> <div style=3D"display:in=
+line;line-height:16px;vertical-align:middle"> Send Feedback </div> </a> </t=
+d> </tr> </table> </div> </div> <!--[if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--00000000000072be77062f65ad5f--

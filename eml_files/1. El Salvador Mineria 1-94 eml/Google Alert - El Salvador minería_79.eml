@@ -1,0 +1,387 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:62a:b0:7c:3f8b:73d5 with SMTP id 42csp1052070rce;
+        Sat, 11 Jan 2025 17:19:22 -0800 (PST)
+X-Received: by 2002:a05:690c:f05:b0:6ef:5d41:d00 with SMTP id 00721157ae682-6f531226232mr125630607b3.5.1736644762654;
+        Sat, 11 Jan 2025 17:19:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736644762; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z8cv7J3Fz5O3nA5CSv+et1ABDAKSK4Gi7iBeOQVSnp8CmXiLWthRBQ57B6jutt1APh
+         Zg09GMJ73IVYF1vs3WMHUkjjQIKwe2sS9S2gr+cVlHOn6IMJCu54WRsrOIzPw1h64k+N
+         q2/hhwS667oLfKG5AkCJDzOeJ8dM5pmyIsnbCGJRs5lJlVykXd2AJVfg98NgcjC3/mPb
+         DUiyu/derSARhCDNLODREqOEhSD+wmTdOfJp7eUWmnWHhESmbbPugpf1BfAWIbfUBvqA
+         2MsMYaYsmfOdau5zWuoMWGbSsaj0gLSZHsz2bLQQzDiKbUZ8ymgKLNtZK0uVkeMjurzE
+         2Qkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=CcDXCs/m2LLhw4CmNpbUektiiMyEgOXAICWOV3nB4Sc=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=UXT0Ie6bSxZkSNjCiiDC8VUlf4aJt/FLcL+WGT/7LfcTV4ylfMRm4oO1A7xqyjGjau
+         kpplWZ+PVp8hQQ7a53Rd5rtGdVLmowuTL21wXe0/VSoMN57Ub1lvVOAOitw96MoarVkv
+         6Ka6G/J7gT+9X+dTDWDA8NmZE0uRAleppXvWv3g2ETicDmZJ1bNrmB73dRZIEAQHu0w5
+         vAxGQW5QogTCXjcSuW8+gUJFBztCD4lDJw+8SxitLkHVCF8sy65sxjNN0/0soi3LTzUM
+         b8ilSNOCmpsBDxDCiEpg0vQ69YlLXvIDeHfZt7qR7ieI7ZVn3ki7Yc1PHY3dKnhNcPij
+         m7QA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=zJUdnuJL;
+       spf=pass (google.com: domain of 3mridzxqkabo6ee6b40b4hji-deh4fbo6ee6b4.2ec@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3mRiDZxQKABo6EE6B40B4HJI-DEH4FBO6EE6B4.2EC@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3mRiDZxQKABo6EE6B40B4HJI-DEH4FBO6EE6B4.2EC@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 00721157ae682-6f546d38bbcsor39356297b3.14.2025.01.11.17.19.22
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Sat, 11 Jan 2025 17:19:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3mridzxqkabo6ee6b40b4hji-deh4fbo6ee6b4.2ec@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=zJUdnuJL;
+       spf=pass (google.com: domain of 3mridzxqkabo6ee6b40b4hji-deh4fbo6ee6b4.2ec@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3mRiDZxQKABo6EE6B40B4HJI-DEH4FBO6EE6B4.2EC@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1736644762; x=1737249562; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CcDXCs/m2LLhw4CmNpbUektiiMyEgOXAICWOV3nB4Sc=;
+        b=zJUdnuJLWjk5yUTqx71PjgSyLq74+l+gx4A9a6xPvA0PUiQhSY/hr1mX58GQEaHOiV
+         CXiWM6sotniV84tbeswBhr72qIvC87+W6EOcOzXuXownbW/232EzsRbRfiYcRhy91eIF
+         BQFObluIxxOZhJjPXnaXb4fvUtGP/cQsn9qc0T8AhzhouvzEhOFosrEncS9tpYAmOLhD
+         sDHFsHuahPpdBrBsi9rs6lGY5aus/z+gDrnkdlYbgnwjcYHvcgtIaCMsfxETlQtsJE2O
+         xbd12OPeYdh/TUfI0Y1foGkThSN2e8MCA0ik5cr6Hk2BOYV+5XosJPIhqIBV++gWnnLn
+         wTwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736644762; x=1737249562;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CcDXCs/m2LLhw4CmNpbUektiiMyEgOXAICWOV3nB4Sc=;
+        b=js/kgCLL9tG+d8q02e8IcmmNl1qGTWDIo7aZoBL11vsVGhOmWFP/UrsKtjWdO2in6V
+         QqjMmsSMNql6Hb9WTBmPcD2u8cjQUUP9W2xx6pxi7b9bbUtvqVdl+0H6hOd1q3XsbVjT
+         2RTWKs9KLm2EI5txMeHG4zzBwFguyMX09+Nt/dqiFhOUSWI+h8bs9w77x51XoswS8IlX
+         xL6RR8P3s8wjIXfyd2haPMuoibe/+0d7noGPLpby2/bBvUeYVnWsrMUX8T99ArTQsi9I
+         ANIVUFhYh69u0RUEBxvRIEWG8g6zMWW16daLnzhjIt8gNu74CPCxhT5YQcYQvuimmpj6
+         E4dQ==
+X-Gm-Message-State: AOJu0Ywha0T53TzMdBtG+yCQ9DtJbeFWIwnJmfuzfNT2F2yIppI0ucYy
+	ErFz8yNbWyFUNaLxcG06rWJXeIBs2qDh398=
+X-Google-Smtp-Source: AGHT+IEUkJLfIfjG1htbTzVE4l/AcPDWJNo5o8S4cFbOol5J3U1ok5Gv0b8NOf5KqDCXNFSkJqI=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6902:1245:b0:e57:3641:7d55 with SMTP id
+ 3f1490d57ef6-e5736418007mr3393523276.12.1736644761881; Sat, 11 Jan 2025
+ 17:19:21 -0800 (PST)
+Date: Sat, 11 Jan 2025 17:19:21 -0800
+List-Id: <8788187619656504868.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs>
+Message-ID: <67831899.050a0220.2b297f.8e5cgooglealerts@google.com>
+Subject: =?UTF-8?Q?Google_Alert_=2D_El_Salvador_miner=C3=ADa?=
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="000000000000220e89062b781e38"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--000000000000220e89062b781e38
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IFdlYiAtIDMgbmV3IHJlc3VsdHMgZm9yIFtFbCBTYWx2YWRvciBtaW5lcsOtYV0gPT09DQoN
+ClJlcHVkaW8gcG9yIGFwcm9iYWNpw7NuIGRlIG1pbmVyw61hIG1ldMOhbGljYSBlbiBFbCBTYWx2
+YWRvciAtIEVsDQpJbmRlcGVuZGllbnRlDQpFbCBwcmVzaWRlbnRlIGRlIEVsIFNhbHZhZG9yLCBO
+YXlpYiBCdWtlbGUsIGF2YWzDsyBsYSBsZXkgcXVlIHBvc2liaWxpdGFyw6ENCmxhIGV4cGxvdGFj
+acOzbiBkZSBsYSBtaW5lcsOtYSBtZXTDoWxpY2EsIHNlZ8O6biBjb25zaWduYSBob3kgdW5hIC4u
+Lg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vd3d3
+LmVsaW5kZXBlbmRpZW50ZS5zdi8yMDI1LzAxLzExL3JlcHVkaW8tcG9yLWFwcm9iYWNpb24tZGUt
+bWluZXJpYS1tZXRhbGljYS1lbi1lbC1zYWx2YWRvci8mY3Q9Z2EmY2Q9Q0FFWUFDb1ROVFV5TURR
+ek1EUTVNRGM0TURneU1EUTFOeklkTURNeE1EZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2
+VWt3JnVzZz1BT3ZWYXcyVVUzb19SaEVCZ0QxLWV0dlpVV1gtPg0KDQpFbCBTYWx2YWRvciB8IE1p
+bmVyw61hIG1ldMOhbGljYSBlbiBlcGljZW50cm8gZGUgY29uZmxpY3RvcyAtIEVsDQpJbmRlcGVu
+ZGllbnRlDQpEZXRlbmVyIGxhIGV4cGxvdGFjacOzbiBtaW5lcmEgbWV0w6FsaWNhIHNlIG1hbnRp
+ZW5lIGVuIGVsIGVwaWNlbnRybyBkZSBsb3MNCnByaW5jaXBhbGVzIHByb2JsZW1hcyBxdWUgZW5m
+cmVudGEgZWwgZ29iaWVybm8gZW4gRWwgU2FsdmFkb3IuDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNv
+bS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cuZWxpbmRlcGVuZGllbnRlLnN2LzIwMjUv
+MDEvMTAvZWwtc2FsdmFkb3ItbWluZXJpYS1tZXRhbGljYS1lbi1lcGljZW50cm8tZGUtY29uZmxp
+Y3Rvcy8mY3Q9Z2EmY2Q9Q0FFWUFTb1ROVFV5TURRek1EUTVNRGM0TURneU1EUTFOeklkTURNeE1E
+ZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2VWt3JnVzZz1BT3ZWYXcwYURKRy1IOGZiazhZ
+cmp1RnczNkpLPg0KDQpMYSBMZXkgZGUgTWluZXLDrWEgTWV0w6FsaWNhIGUgaW5pY2nDsyB2aWdl
+bmNpYSBlbCA3IGRlIGVuZXJvIC0gRW4gTGEgTWlyYQ0KTm90aWNpYXMNCkVsIHByZXNpZGVudGUg
+TmF5aWIgQnVrZWxlIHNhbmNpb27DsyBsYSBsZXkgZGUgbWluZXLDrWEgbWV0w6FsaWNhIGVsIDcg
+ZGUNCmVuZXJvIGRFIGVzdGUgYcOxbyBwb3IgbG8gcXVlIHlhIHNlIHB1ZWRlIHJlYWxpemFyIGVu
+IEVsIFNhbHZhZG9yLg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJs
+PWh0dHBzOi8vZW5sYW1pcmEuY29tLnN2L2xhLWxleS1kZS1taW5lcmlhLW1ldGFsaWNhLWUtaW5p
+Y2lvLXZpZ2VuY2lhLWVsLTctZGUtZW5lcm8vJmN0PWdhJmNkPUNBRVlBaW9UTlRVeU1EUXpNRFE1
+TURjNE1EZ3lNRFExTnpJZE1ETXhNRGRtWXpZNFlXRTVOR1ZtWmpwamIyMDZaVzQ2VTFZNlVrdyZ1
+c2c9QU92VmF3MXJRT25MUkx3Q2tvZjRRdDNjaEp6eT4NCg0KDQotIC0gLSAtIC0gLSAtIC0gLSAt
+IC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtDQpVbnN1YnNj
+cmliZSBmcm9tIHRoaXMgR29vZ2xlIEFsZXJ0Og0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWxl
+cnRzL3JlbW92ZT9zb3VyY2U9YWxlcnRzbWFpbCZobD1lbiZnbD1TViZtc2dpZD1OVFV5TURRek1E
+UTVNRGM0TURneU1EUTFOdyZzPUFCMlhxNGdMWUlvU3RNMGdIS1pDb0pSZ2dEbV9RbHJwRjU5dXNx
+cz4NCg0KQ3JlYXRlIGFub3RoZXIgR29vZ2xlIEFsZXJ0Og0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5j
+b20vYWxlcnRzP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmdsPVNWJm1zZ2lkPU5UVXlNRFF6TURR
+NU1EYzRNRGd5TURRMU53Pg0KDQpTaWduIGluIHRvIG1hbmFnZSB5b3VyIGFsZXJ0czoNCjxodHRw
+czovL3d3dy5nb29nbGUuY29tL2FsZXJ0cz9zb3VyY2U9YWxlcnRzbWFpbCZobD1lbiZnbD1TViZt
+c2dpZD1OVFV5TURRek1EUTVNRGM0TURneU1EUTFOdz4NCg==
+--000000000000220e89062b781e38
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - El Salvador miner=C3=ADa",
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Latest: January 12, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "Repudio por aprobaci=C3=B3n de miner=C3=ADa met=C3=A1lica=
+ en El Salvador - El Independiente"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "El Salvador | Miner=C3=ADa met=C3=A1lica en epicentro de =
+conflictos - El Independiente"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "La Ley de Miner=C3=ADa Met=C3=A1lica e inici=C3=B3 vigenc=
+ia el 7 de enero - En La Mira Noticias"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs\u0026start=3D1736557229\u0026end=3D1736644761\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DSV\u0026msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw#=
+history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "Repudio por aprobaci=C3=B3n de miner=C3=ADa met=C3=A1lica e=
+n El Salvador - El Independiente",
+      "description": "El presidente de El Salvador, Nayib Bukele, aval=C3=
+=B3 la ley que posibilitar=C3=A1 la explotaci=C3=B3n de la miner=C3=ADa met=
+=C3=A1lica, seg=C3=BAn consigna hoy una ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elindependiente.sv/2025/01/11/repudio-por-aprobacion-de-mineria-me=
+talica-en-el-salvador/\u0026ct=3Dga\u0026cd=3DCAEYACoTNTUyMDQzMDQ5MDc4MDgyM=
+DQ1NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw2UU3o_RhEBg=
+D1-etvZUWX-"
+    }, {
+      "type": "LINK",
+      "title": "El Salvador | Miner=C3=ADa met=C3=A1lica en epicentro de co=
+nflictos - El Independiente",
+      "description": "Detener la explotaci=C3=B3n minera met=C3=A1lica se m=
+antiene en el epicentro de los principales problemas que enfrenta el gobier=
+no en El Salvador.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elindependiente.sv/2025/01/10/el-salvador-mineria-metalica-en-epic=
+entro-de-conflictos/\u0026ct=3Dga\u0026cd=3DCAEYASoTNTUyMDQzMDQ5MDc4MDgyMDQ=
+1NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw0aDJG-H8fbk8Y=
+rjuFw36JK"
+    }, {
+      "type": "LINK",
+      "title": "La Ley de Miner=C3=ADa Met=C3=A1lica e inici=C3=B3 vigencia=
+ el 7 de enero - En La Mira Noticias",
+      "description": "El presidente Nayib Bukele sancion=C3=B3 la ley de mi=
+ner=C3=ADa met=C3=A1lica el 7 de enero dE este a=C3=B1o por lo que ya se pu=
+ede realizar en El Salvador.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://enlamira.com.sv/la-ley-de-mineria-metalica-e-inicio-vigencia-el-7-de-e=
+nero/\u0026ct=3Dga\u0026cd=3DCAEYAioTNTUyMDQzMDQ5MDc4MDgyMDQ1NzIdMDMxMDdmYz=
+Y4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw1rQOnLRLwCkof4Qt3chJzy"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw" style=3D"text-dec=
+oration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.pn=
+g?cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU3" alt=3D"Google" border=3D"0" height=3D"=
+25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px;bor=
+der-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr>  <tr=
+> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0px 0=
+px;vertical-align:middle;line-height:20px;font-family:Arial"> <span style=
+=3D"color:#262626;font-size:22px">El Salvador miner=C3=ADa</span> <div styl=
+e=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-heig=
+ht:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4px"=
+>&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">January 12, 202=
+5</a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td st=
+yle=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;bord=
+er-bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373">=
+ WEB </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr> <td =
+style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;ve=
+rtical-align:top;font-family:Arial">  <div>  <span style=3D"padding:0px 6px=
+ 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=
+=3Dhttps://www.elindependiente.sv/2025/01/11/repudio-por-aprobacion-de-mine=
+ria-metalica-en-el-salvador/&amp;ct=3Dga&amp;cd=3DCAEYACoTNTUyMDQzMDQ5MDc4M=
+DgyMDQ1NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw2UU3o_Rh=
+EBgD1-etvZUWX-" style=3D"color:#427fed;display:inline;text-decoration:none;=
+font-size:16px;line-height:20px"> <span>Repudio por aprobaci=C3=B3n de <b>m=
+iner=C3=ADa</b> met=C3=A1lica en <b>El Salvador</b> - El Independiente</spa=
+n> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div style=
+=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#=
+737373"> <span>El Independiente</span> </a> </div> <div style=3D"color:#252=
+525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">El presidente =
+de <b>El Salvador</b>, Nayib Bukele, aval=C3=B3 la ley que posibilitar=C3=
+=A1 la explotaci=C3=B3n de la <b>miner=C3=ADa</b> met=C3=A1lica, seg=C3=BAn=
+ consigna hoy una&nbsp;...</div> </div>   <table> <tr> <td width=3D"16" sty=
+le=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elindependiente.sv/2025/01/11/repudi=
+o-por-aprobacion-de-mineria-metalica-en-el-salvador/&amp;ss=3Dfb&amp;rt=3DR=
+epudio+por+aprobaci%C3%B3n+de+miner%C3%ADa+met%C3%A1lica+en+El+Salvador+-+E=
+l+Independiente&amp;cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU3Mh0wMzEwN2ZjNjhhYTk0ZW=
+ZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmV_rEzKbI6Spd2ugnht9N9jg4gJJQ" style=3D=
+"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.co=
+m/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </t=
+d> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.goo=
+gle.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elindependien=
+te.sv/2025/01/11/repudio-por-aprobacion-de-mineria-metalica-en-el-salvador/=
+&amp;ss=3Dtw&amp;rt=3DRepudio+por+aprobaci%C3%B3n+de+miner%C3%ADa+met%C3%A1=
+lica+en+El+Salvador+-+El+Independiente&amp;cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU=
+3Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmV_rEzKbI6Spd2ug=
+nht9N9jg4gJJQ" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"=
+https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16"=
+ width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:=
+Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www=
+.elindependiente.sv/2025/01/11/repudio-por-aprobacion-de-mineria-metalica-e=
+n-el-salvador/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3D=
+NTUyMDQzMDQ5MDc4MDgyMDQ1Nw&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs"=
+ style=3D"text-decoration:none;vertical-align:middle;color:#aaa;font-size:1=
+0px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td=
+ style=3D"padding-right:18px"></td> </tr>    <tr> <td style=3D"padding-left=
+:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;bord=
+er-top:1px solid #e4e4e4;font-family:Arial">  <div>  <span style=3D"padding=
+:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt=
+&amp;url=3Dhttps://www.elindependiente.sv/2025/01/10/el-salvador-mineria-me=
+talica-en-epicentro-de-conflictos/&amp;ct=3Dga&amp;cd=3DCAEYASoTNTUyMDQzMDQ=
+5MDc4MDgyMDQ1NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw0a=
+DJG-H8fbk8YrjuFw36JK" style=3D"color:#427fed;display:inline;text-decoration=
+:none;font-size:16px;line-height:20px"> <span><b>El Salvador</b> | <b>Miner=
+=C3=ADa</b> met=C3=A1lica en epicentro de conflictos - El Independiente</sp=
+an> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div style=
+=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#=
+737373"> <span>El Independiente</span> </a> </div> <div style=3D"color:#252=
+525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">Detener la exp=
+lotaci=C3=B3n <b>minera</b> met=C3=A1lica se mantiene en el epicentro de lo=
+s principales problemas que enfrenta el gobierno en <b>El Salvador</b>.</di=
+v> </div>   <table> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a h=
+ref=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhtt=
+ps://www.elindependiente.sv/2025/01/10/el-salvador-mineria-metalica-en-epic=
+entro-de-conflictos/&amp;ss=3Dfb&amp;rt=3DEl+Salvador+%7C+Miner%C3%ADa+met%=
+C3%A1lica+en+epicentro+de+conflictos+-+El+Independiente&amp;cd=3DKhM1NTIwND=
+MwNDkwNzgwODIwNDU3Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJH=
+smW7SahTAcFcvPgmnBsEsOlUwRBEwg" style=3D"text-decoration:none"> <img alt=3D=
+"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=
+=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padd=
+ing-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;=
+gl=3DSV&amp;ru=3Dhttps://www.elindependiente.sv/2025/01/10/el-salvador-mine=
+ria-metalica-en-epicentro-de-conflictos/&amp;ss=3Dtw&amp;rt=3DEl+Salvador+%=
+7C+Miner%C3%ADa+met%C3%A1lica+en+epicentro+de+conflictos+-+El+Independiente=
+&amp;cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU3Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTV=
+jpSTA&amp;ssp=3DAMJHsmW7SahTAcFcvPgmnBsEsOlUwRBEwg" style=3D"text-decoratio=
+n:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/=
+tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"=
+padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.=
+com/alerts/feedback?ffu=3Dhttps://www.elindependiente.sv/2025/01/10/el-salv=
+ador-mineria-metalica-en-epicentro-de-conflictos/&amp;source=3Dalertsmail&a=
+mp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw&amp;s=3DAB2Xq=
+4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-=
+align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr=
+> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </tr=
+>    <tr> <td style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0=
+px 12px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-family:Ari=
+al">  <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://ww=
+w.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://enlamira.com.sv/la-le=
+y-de-mineria-metalica-e-inicio-vigencia-el-7-de-enero/&amp;ct=3Dga&amp;cd=
+=3DCAEYAioTNTUyMDQzMDQ5MDc4MDgyMDQ1NzIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6=
+Ukw&amp;usg=3DAOvVaw1rQOnLRLwCkof4Qt3chJzy" style=3D"color:#427fed;display:=
+inline;text-decoration:none;font-size:16px;line-height:20px"> <span>La Ley =
+de <b>Miner=C3=ADa</b> Met=C3=A1lica e inici=C3=B3 vigencia <b>el</b> 7 de =
+enero - En La Mira Noticias</span> </a> </span>  <div> <div style=3D"paddin=
+g:2px 0px 8px 0px"> <div style=3D"color:#737373;font-size:12px"> <a style=
+=3D"text-decoration:none;color:#737373"> <span>En La Mira Noticias</span> <=
+/a> </div> <div style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12=
+px;line-height:18px">El presidente Nayib Bukele sancion=C3=B3 la ley de <b>=
+miner=C3=ADa</b> met=C3=A1lica el 7 de enero dE este a=C3=B1o por lo que ya=
+ se puede realizar en <b>El Salvador</b>.</div> </div>   <table> <tr> <td w=
+idth=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/=
+alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://enlamira.com.sv/la-ley-de=
+-mineria-metalica-e-inicio-vigencia-el-7-de-enero/&amp;ss=3Dfb&amp;rt=3DLa+=
+Ley+de+Miner%C3%ADa+Met%C3%A1lica+e+inici%C3%B3+vigencia+el+7+de+enero+-+En=
++La+Mira+Noticias&amp;cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU3Mh0wMzEwN2ZjNjhhYTk0=
+ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUjKVPhpj26wtM-wLtCrHCbGU97IQ" style=
+=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic=
+.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> =
+</td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.=
+google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://enlamira.com.s=
+v/la-ley-de-mineria-metalica-e-inicio-vigencia-el-7-de-enero/&amp;ss=3Dtw&a=
+mp;rt=3DLa+Ley+de+Miner%C3%ADa+Met%C3%A1lica+e+inici%C3%B3+vigencia+el+7+de=
++enero+-+En+La+Mira+Noticias&amp;cd=3DKhM1NTIwNDMwNDkwNzgwODIwNDU3Mh0wMzEwN=
+2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUjKVPhpj26wtM-wLtCrHCbGU9=
+7IQ" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://ww=
+w.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"=
+16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a=
+ href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://enlamira.com.=
+sv/la-ley-de-mineria-metalica-e-inicio-vigencia-el-7-de-enero/&amp;source=
+=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1N=
+w&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration=
+:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant =
+</a> </td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:1=
+8px"></td> </tr>    <tr> <td colspan=3D"3" valign=3D"middle" style=3D"backg=
+round-color:#f8f8f8;font-size:14px;vertical-align:middle;text-align:center;=
+padding:10px 10px 10px 10px;line-height:20px;border:1px solid #e4e4e4;font-=
+family:Arial"> <a href=3D"https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0=
+gHKZCoJRggDm_QlrpF59usqs&amp;start=3D1736557229&amp;end=3D1736644761&amp;so=
+urce=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyM=
+DQ1Nw#history" style=3D"text-decoration:none;vertical-align:middle;color:#4=
+27fed">  See more results  </a> <span style=3D"font-size:12px;padding-left:=
+15px;padding-right:15px;color:#aaa">|</span> <a href=3D"https://www.google.=
+com/alerts/edit?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DNTU=
+yMDQzMDQ5MDc4MDgyMDQ1Nw&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp=
+;email=3Ddeibi.sibrian%40berkeley.edu" style=3D"text-decoration:none;vertic=
+al-align:middle;color:#427fed">Edit this alert</a>  </td> </tr>  </table> <=
+table style=3D"padding-top:6px;font-size:12px;color:#252525;text-align:cent=
+er;width:100%"> <tr> <td style=3D"font-family:Arial">  You have received th=
+is email because you have subscribed to <b>Google Alerts</b>. <div> <a href=
+=3D"https://www.google.com/alerts/remove?source=3Dalertsmail&amp;hl=3Den&am=
+p;gl=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw&amp;s=3DAB2Xq4gLYIoStM0gHK=
+ZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;color:#427fed">Unsubsc=
+ribe</a> <span style=3D"padding:0px 4px 0px 4px;color:#252525">|</span> <a =
+href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=3Den&amp;g=
+l=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw" style=3D"text-decoration:non=
+e;color:#427fed">  View all your alerts  </a> </div> </td> </tr> <tr> <td s=
+tyle=3D"padding:6px 10px 0px 0px;font-family:Arial"> <a href=3D"https://www=
+.google.com/alerts/feeds/16766221062399110009/9620686502612528422" style=3D=
+"text-decoration:none;color:#427fed"> <img src=3D"https://www.gstatic.com/a=
+lerts/images/rss-16.gif" alt=3D"RSS" border=3D"0" style=3D"padding:0px 8px =
+0px 0px;vertical-align:middle"> <span style=3D"display:inline;line-height:1=
+6px;vertical-align:middle"> Receive this alert as RSS feed </span> </a> </t=
+d> </tr> <tr> <td style=3D"padding:6px 0px 0px 0px;font-family:Arial"> <a h=
+ref=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=
+=3DSV&amp;msgid=3DNTUyMDQzMDQ5MDc4MDgyMDQ1Nw&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJ=
+RggDm_QlrpF59usqs&amp;ffu=3D" style=3D"text-decoration:none;color:#427fed">=
+ <div style=3D"display:inline;line-height:16px;vertical-align:middle"> Send=
+ Feedback </div> </a> </td> </tr> </table> </div> </div> <!--[if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--000000000000220e89062b781e38--

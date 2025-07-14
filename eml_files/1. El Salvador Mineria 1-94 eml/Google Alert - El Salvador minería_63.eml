@@ -1,0 +1,578 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:a261:b0:7c:3f8b:73d5 with SMTP id t33csp2940900rcb;
+        Mon, 27 Jan 2025 17:00:18 -0800 (PST)
+X-Received: by 2002:a05:6902:1883:b0:e58:1412:95f3 with SMTP id 3f1490d57ef6-e58141296d4mr18802736276.32.1738026017993;
+        Mon, 27 Jan 2025 17:00:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738026017; cv=none;
+        d=google.com; s=arc-20240605;
+        b=FSntSSbBj31ZZO4MQl+tsrjh/ApouG6LoX5RM1LC2LM214SxtjNwxUKAm+1d8YbvlO
+         LgRlsx0QffNw9eskKCl7/7FYzxn0NDn3Y01ywZFuAnrKd8x5wbXxHoLXRN/LGLHIO2Xx
+         MRZRw77MLUrAWAiT4NqB1tTcFpkltrfmDOxn80Dkmkf6WisjBK2i33El6/oqfeZ6YyBi
+         z9sjW89ZoHQ4fvgjGt1ny7/MqCtv6ekzxVmwBr9Tgk8/QcMLsHCH07Sk4pdkpWQdf7Do
+         d4ORfib8ViNpLCyt+zgOsqQUPv9Mc/njYwgphw4Y0OZrrJZZTQf8Oou/sXhs+1YD3iYZ
+         URzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=mGoGQ2toc9BJtRuQyIcS17XVRt3G+Dwu/gupZ9ANiUc=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=S4SrPI4RTxDBi6pdah1cSkHTlqdUKtbH2z7S638WcqGY54LFWfGXi29L8GhwMQvijw
+         ssuUryqdB1FqfECCaPBoJXVtUo4ufGFJjSDiKqcXic+PjDCvO2TM2vSFrlzKv86X80h9
+         OcZxM8M0kjFS+lgUFt+If0WP8jTw6IsFLFNP7MLeDuaInUgN6uuUj85pcEeAYCHc9omp
+         P6rVtptXaANbM9dFgp2GD+FyUbGVl9EY5zq/qSIiBgK17ZGWyVm6sw7S6IEV2nQHakH5
+         vrsvmnwL8l1DzhNwr3nmstDIFWx+V7JTARDcw7x4qrT9pepKkz4/fY0d+u50LuZyiTaW
+         VyoA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=Dz5uALbc;
+       spf=pass (google.com: domain of 3isyyzxqkab4aiiaf84f8lnm-hil8jfsaiiaf8.6ig@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ISyYZxQKAB4AIIAF84F8LNM-HIL8JFSAIIAF8.6IG@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3ISyYZxQKAB4AIIAF84F8LNM-HIL8JFSAIIAF8.6IG@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 3f1490d57ef6-e583b7697e3sor4498136276.6.2025.01.27.17.00.17
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Mon, 27 Jan 2025 17:00:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3isyyzxqkab4aiiaf84f8lnm-hil8jfsaiiaf8.6ig@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=Dz5uALbc;
+       spf=pass (google.com: domain of 3isyyzxqkab4aiiaf84f8lnm-hil8jfsaiiaf8.6ig@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ISyYZxQKAB4AIIAF84F8LNM-HIL8JFSAIIAF8.6IG@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1738026017; x=1738630817; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mGoGQ2toc9BJtRuQyIcS17XVRt3G+Dwu/gupZ9ANiUc=;
+        b=Dz5uALbcCsMl6Neq0tHnaPMKjuG7PQNflJoxFUwCJFwZ1mhUFU2lf3F64fQosEY3f4
+         mVQRwNvwyNsP5xHP0APX+ZHClj857ld5KfV9CJSy/jnq7q10ab0PQeS95ZkYqkNnr5Dj
+         j8ulTXW6Of94A1JJO+rKJhah1bbDFk+Zi4JJoyt3gWy8hetByDf8B+MdhIPWlB50zXnO
+         ghEQ9GJdVX0KAQ+lK/8r6jcXefcXV71nWC7QPwxp7i5i6Dnz6+P+HSWadoCXyPe5Lx3B
+         EIjR0fhPXkzYPksIQhEWqlyAnQixPv7zt7i4aH2Cn4ZzFTihKJYgGt96JdKfvhnNxGVT
+         eWgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738026017; x=1738630817;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mGoGQ2toc9BJtRuQyIcS17XVRt3G+Dwu/gupZ9ANiUc=;
+        b=ODQziDKDhx+dnoHRjENgswFsmZM+Lwx0MXBWipgCuFp9hM9g6PkNm9EDcNX3wFtnuj
+         ksiu61ZIwFzUMzp8SPgFQfdNjeqa+RMUpuQ2F5mvUmJx2s4Wa0DooDU4LUL7Ia1LfcCP
+         Ki6EsnW7u3ScfIQJQvkeRV/Ji/MfFdkVCEAMeKWISb5fpi97eXLH0tpjKzeTiD+CFXsL
+         yA214cOFbBizFrVTooDfrSXkCBZPVSo7voIJe6lf70R3s9o+0i6gr+JIcGjFlq5zaZ/m
+         G4c9R9Iwzia/zuBfkGeRrtWMX75Ods2PU04aiG5WNNOkfhPYJBu+/FZT7CqOLT/6pfZK
+         iLiA==
+X-Gm-Message-State: AOJu0YxuZhI17QBy9c42K13ry5C4WsS4vehfuWtLXVpPxyZOayohnB7R
+	d/+6OTEuBK9wZMcdrOPwCe0y75YPPiEm5QQ=
+X-Google-Smtp-Source: AGHT+IGnwwxrTJ1aSy65y9EtyLoqoB23Rf65JFeEzqtOt5LmqQ5Dgw6VT58ycc6A/DruRyZfYoQ=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6902:2b8c:b0:e44:82ef:3981 with SMTP id
+ 3f1490d57ef6-e57b10364damr31645963276.7.1738026017323; Mon, 27 Jan 2025
+ 17:00:17 -0800 (PST)
+Date: Mon, 27 Jan 2025 17:00:16 -0800
+List-Id: <8788187619656504868.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs>
+Message-ID: <67982c20.050a0220.6329c.d5begooglealerts@google.com>
+Subject: =?UTF-8?Q?Google_Alert_=2D_El_Salvador_miner=C3=ADa?=
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="0000000000005f7bb0062cb9b75a"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--0000000000005f7bb0062cb9b75a
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IE5ld3MgLSA2IG5ldyByZXN1bHRzIGZvciBbRWwgU2FsdmFkb3IgbWluZXLDrWFdID09PQ0K
+DQpPcmdhbml6YWNpb25lcyBtYW50aWVuZW4gcHJlc2nDs24gcGFyYSBkZXJvZ2FyIGxhIG51ZXZh
+IGxleSBkZSBtaW5lcsOtYQ0KTGEgUHJlbnNhIEdyw6FmaWNhDQpDT1NBVkkgeSBkaXB1dGFkYSBz
+ZSBwcm9udW5jaWFyb24gYW50ZSBlbCBzaWxlbmNpbyBkZSBhdXRvcmlkYWRlcyBwb3INCmRlcm9n
+YXIgbGEgbGV5IGRlIG1pbmVyw61hIG1ldMOhbGljYS4NCjxodHRwczovL3d3dy5nb29nbGUuY29t
+L3VybD9yY3Q9aiZzYT10JnVybD1odHRwczovL3d3dy5sYXByZW5zYWdyYWZpY2EuY29tL2Vsc2Fs
+dmFkb3IvT3JnYW5pemFjaW9uZXMtbWFudGllbmVuLXByZXNpb24tcGFyYS1kZXJvZ2FyLWxhLW51
+ZXZhLWxleS1kZS1taW5lcmlhLTIwMjUwMTI2LTAwNDEuaHRtbCZjdD1nYSZjZD1DQUVZQUNvVE16
+QXhPREl4T1RZNE5EVTRNekF6TkRNNE9ESWRNRE14TURkbVl6WTRZV0U1TkdWbVpqcGpiMjA2Wlc0
+NlUxWTZVa3cmdXNnPUFPdlZhdzBQczVGdEkwc2lTaFJrVWM1X1ZGa1U+DQoNCkVuIFNhbiBJc2lk
+cm8gYWNlY2hhIGxhIHNvbWJyYSBkZSBsYSBtaW5lcsOtYSAtIExhIFByZW5zYSBHcsOhZmljYQ0K
+TGEgUHJlbnNhIEdyw6FmaWNhDQpMYSBBc29jaWFjacOzbiBDb21pdMOpIEFtYmllbnRhbCBkZSBD
+YWJhw7FhcyBlbiBEZWZlbnNhIGRlbCBBZ3VhIHkgbGEgQ3VsdHVyYQ0KYWZpcm1hIHF1ZSBtw6Fz
+IGRlIGxhIG1pdGFkIGRlbCBkaXN0cml0byB5YSBmdWUgZXhwbG9yYWRvIGNvbiAuLi4NCjxodHRw
+czovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRwczovL3d3dy5sYXByZW5z
+YWdyYWZpY2EuY29tL2Vsc2FsdmFkb3IvRW4tU2FuLUlzaWRyby1hY2VjaGEtbGEtc29tYnJhLWRl
+LWxhLW1pbmVyaWEtMjAyNTAxMjQtMDA4MS5odG1sJmN0PWdhJmNkPUNBRVlBU29UTXpBeE9ESXhP
+VFk0TkRVNE16QXpORE00T0RJZE1ETXhNRGRtWXpZNFlXRTVOR1ZtWmpwamIyMDZaVzQ2VTFZNlVr
+dyZ1c2c9QU92VmF3MTR0LWZKZUhkMkN4anBWYXhaZWV3Rz4NCg0KUGllemFzIGRlbCBIb3NwaXRh
+bCBSb3NhbGVzIHNvbiByZWR1Y2lkYXMgYSBlc2NvbWJyb3MgLSBOb3RpY2lhcyBkZSBFbA0KU2Fs
+dmFkb3INCkVsIERpYXJpbyBkZSBIb3kNCkxhcyBwaWV6YXMgZGUgbGFtaW5hIGRlIGhpZXJybyBo
+YW4gc2lkbyBhY3VtdWxhZGFzIGVuIHVuIGVzdGFjaW9uYW1pZW50bw0KaW50ZXJubyBkZWwgY2Vu
+dHJvIGRlIHNhbHVkLiBGb3RvIEVESC8gTWVubHkgR29uemFsZXo7IHRvZGEgbGEgZXN0cnVjdHVy
+YQ0KLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6
+Ly93d3cuZWxzYWx2YWRvci5jb20vZm90b2dhbGVyaWFzL25vdGljaWFzLWZvdG9nYWxlcmlhcy9o
+b3NwaXRhbC1yb3NhbGVzLWRlbW9saWNpb24tZGUtZWRpZmljaW9zLWRlc2Fsb2pvLWFycXVpdGVj
+dHVyYS1zYWx2YWRvcmVuYS1lbC1zYWx2YWRvci8xMTk2MjM0LzIwMjUvJmN0PWdhJmNkPUNBRVlB
+aW9UTXpBeE9ESXhPVFk0TkRVNE16QXpORE00T0RJZE1ETXhNRGRtWXpZNFlXRTVOR1ZtWmpwamIy
+MDZaVzQ2VTFZNlVrdyZ1c2c9QU92VmF3MnpQOUxjS05XaTZpajlTaXh2WU91ZD4NCg0KQnVrZWxl
+IG9yZGVuYXLDoSBhIGRpcHV0YWRvcyBxdWUgYXBydWViZW4gbGV5IGRlIGNvbmRvbmFjacOzbiBk
+ZSBtdWx0YXMgZGUNCnRyw6Fuc2l0bw0KRWwgRGlhcmlvIGRlIEhveQ0KQnVrZWxlIGFmaXJtw7Mg
+cXVlIGxhIGNvbmRvbmFjacOzbiBzZXLDoSBjb24gbGFzIG11bHRhcyBpbXB1ZXN0YXMgZGVzZGUg
+ZWwgMjANCmRlIGRpY2llbWJyZSBoYXN0YSBlc3RlIGRvbWluZ28gMjYsIHBlcm8gcXVlIHF1aWVu
+ZXMgaGF5YW4gY29tZXRpZG8gLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cmN0PWom
+c2E9dCZ1cmw9aHR0cHM6Ly93d3cuZWxzYWx2YWRvci5jb20vbm90aWNpYXMvbmFjaW9uYWwvYnVr
+ZWxlLW9yZGVuYXJhLWRpcHV0YWRvcy1maXJtYS1kZWNyZXRvLWNvbmRvbmFjaW9uLW11bHRhcy8x
+MTk2MzY3LzIwMjUvJmN0PWdhJmNkPUNBRVlBeW9UTXpBeE9ESXhPVFk0TkRVNE16QXpORE00T0RJ
+ZE1ETXhNRGRtWXpZNFlXRTVOR1ZtWmpwamIyMDZaVzQ2VTFZNlVrdyZ1c2c9QU92VmF3MFJzSjFy
+blNCZ2NDSU9GU2N6YVdjZT4NCg0KUHJlc2lkZW50ZSBCdWtlbGUgYW51bmNpYSBleG9uZXJhY2nD
+s24gZGUgcGFnbyBkZSBsYXMgbXVsdGFzIGltcHVlc3RhcyBiYWpvDQpsYSBudWV2YSAuLi4NCkRp
+YXJpbyBMYSBQw6FnaW5hDQpFbiByZXNwdWVzdGEgYSBsYXMgY3LDrXRpY2FzIHkgcnVtb3JlcyBz
+b2JyZSBsYSBzdXB1ZXN0YSBpbnRlbmNpw7NuDQpyZWNhdWRhdG9yaWEgZGV0csOhcyBkZSBsYXMg
+bnVldmFzIGxleWVzIGRlIHRyw6Fuc2l0bywgZWwgcHJlc2lkZW50ZSBOYXlpYg0KQnVrZWxlLCAu
+Li4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRwczovL2xh
+cGFnaW5hLmNvbS5zdi9nZW5lcmFsL3ByZXNpZGVudGUtYnVrZWxlLWFudW5jaWEtZXhvbmVyYWNp
+b24tZGUtcGFnby1kZS1sYXMtbXVsdGFzLWltcHVlc3Rhcy1iYWpvLWxhLW51ZXZhLW5vcm1hdGl2
+YS12aWFsLyZjdD1nYSZjZD1DQUVZQkNvVE16QXhPREl4T1RZNE5EVTRNekF6TkRNNE9ESWRNRE14
+TURkbVl6WTRZV0U1TkdWbVpqcGpiMjA2Wlc0NlUxWTZVa3cmdXNnPUFPdlZhdzEtblp2SmJhUGFF
+bEU5Q3ZCZkZCSUU+DQoNClByZXNpZGVudGUgZGUgbGEgQXNhbWJsZWEgTGVnaXNsYXRpdmEgcmVz
+cGFsZGEgZWxpbWluYXIgcGFnbyBkZSBtdWx0YXMgYQ0KaW5mcmFjdG9yZXMgZGUgLi4uDQpEaWFy
+aW8gTGEgUMOhZ2luYQ0KRWwgUHJlc2lkZW50ZSBkZSBsYSBBc2FtYmxlYSBMZWdpc2xhdGl2YSwg
+RXJuZXN0byBDYXN0cm8sIGRpam8gZXN0YXIgbGlzdG8NCnBhcmEgYXRlbmRlciBsYSBwcm9wdWVz
+dGEgZGVsIHByZXNpZGVudGUgTmF5aWIgQnVrZWxlLCBzb2JyZSBleG9uZXJhciAuLi4NCjxodHRw
+czovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRwczovL2xhcGFnaW5hLmNv
+bS5zdi9uYWNpb25hbGVzL3ByZXNpZGVudGUtZGUtbGEtYXNhbWJsZWEtbGVnaXNsYXRpdmEtcmVz
+cGFsZGEtZWxpbWluYXItcGFnby1kZS1tdWx0YXMtYS1pbmZyYWN0b3Jlcy1kZS10cmFuc2l0by1w
+cm9wdWVzdG8tcG9yLW5heWliLWJ1a2VsZS8mY3Q9Z2EmY2Q9Q0FFWUJTb1RNekF4T0RJeE9UWTRO
+RFU0TXpBek5ETTRPRElkTURNeE1EZG1Zelk0WVdFNU5HVm1aanBqYjIwNlpXNDZVMVk2VWt3JnVz
+Zz1BT3ZWYXczQ2NkVXp2OV9IWTRXSFpqTEl5c2VjPg0KDQoNCi0gLSAtIC0gLSAtIC0gLSAtIC0g
+LSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0NClVuc3Vic2Ny
+aWJlIGZyb20gdGhpcyBHb29nbGUgQWxlcnQ6DQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hbGVy
+dHMvcmVtb3ZlP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmdsPVNWJm1zZ2lkPU16QXhPREl4T1RZ
+NE5EVTRNekF6TkRNNE9BJnM9QUIyWHE0Z0xZSW9TdE0wZ0hLWkNvSlJnZ0RtX1FscnBGNTl1c3Fz
+Pg0KDQpDcmVhdGUgYW5vdGhlciBHb29nbGUgQWxlcnQ6DQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNv
+bS9hbGVydHM/c291cmNlPWFsZXJ0c21haWwmaGw9ZW4mZ2w9U1YmbXNnaWQ9TXpBeE9ESXhPVFk0
+TkRVNE16QXpORE00T0E+DQoNClNpZ24gaW4gdG8gbWFuYWdlIHlvdXIgYWxlcnRzOg0KPGh0dHBz
+Oi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzP3NvdXJjZT1hbGVydHNtYWlsJmhsPWVuJmdsPVNWJm1z
+Z2lkPU16QXhPREl4T1RZNE5EVTRNekF6TkRNNE9BPg0K
+--0000000000005f7bb0062cb9b75a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - El Salvador miner=C3=ADa",
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Latest: January 28, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "Organizaciones mantienen presi=C3=B3n para derogar la nue=
+va ley de miner=C3=ADa"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "En San Isidro acecha la sombra de la miner=C3=ADa - La Pr=
+ensa Gr=C3=A1fica"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Piezas del Hospital Rosales son reducidas a escombros - N=
+oticias de El Salvador"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - El Salvador miner=C3=ADa",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm=
+_QlrpF59usqs\u0026start=3D1737939710\u0026end=3D1738026016\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DSV\u0026msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA#=
+history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "Organizaciones mantienen presi=C3=B3n para derogar la nueva=
+ ley de miner=C3=ADa",
+      "description": "COSAVI y diputada se pronunciaron ante el silencio de=
+ autoridades por derogar la ley de miner=C3=ADa met=C3=A1lica.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.laprensagrafica.com/elsalvador/Organizaciones-mantienen-presion-pa=
+ra-derogar-la-nueva-ley-de-mineria-20250126-0041.html\u0026ct=3Dga\u0026cd=
+=3DCAEYACoTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6=
+Ukw\u0026usg=3DAOvVaw0Ps5FtI0siShRkUc5_VFkU"
+    }, {
+      "type": "LINK",
+      "title": "En San Isidro acecha la sombra de la miner=C3=ADa - La Pren=
+sa Gr=C3=A1fica",
+      "description": "La Asociaci=C3=B3n Comit=C3=A9 Ambiental de Caba=C3=
+=B1as en Defensa del Agua y la Cultura afirma que m=C3=A1s de la mitad del =
+distrito ya fue explorado con ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.laprensagrafica.com/elsalvador/En-San-Isidro-acecha-la-sombra-de-l=
+a-mineria-20250124-0081.html\u0026ct=3Dga\u0026cd=3DCAEYASoTMzAxODIxOTY4NDU=
+4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw14t-f=
+JeHd2CxjpVaxZeewG"
+    }, {
+      "type": "LINK",
+      "title": "Piezas del Hospital Rosales son reducidas a escombros - Not=
+icias de El Salvador",
+      "description": "Las piezas de lamina de hierro han sido acumuladas en=
+ un estacionamiento interno del centro de salud. Foto EDH/ Menly Gonzalez; =
+toda la estructura ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/fotogalerias/noticias-fotogalerias/hospital-rosales=
+-demolicion-de-edificios-desalojo-arquitectura-salvadorena-el-salvador/1196=
+234/2025/\u0026ct=3Dga\u0026cd=3DCAEYAioTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMD=
+dmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3DAOvVaw2zP9LcKNWi6ij9SixvYOud"
+    }, {
+      "type": "LINK",
+      "title": "Bukele ordenar=C3=A1 a diputados que aprueben ley de condon=
+aci=C3=B3n de multas de tr=C3=A1nsito",
+      "description": "Bukele afirm=C3=B3 que la condonaci=C3=B3n ser=C3=A1 =
+con las multas impuestas desde el 20 de diciembre hasta este domingo 26, pe=
+ro que quienes hayan cometido ...",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://www.elsalvador.com/noticias/nacional/bukele-ordenara-diputados-firma-d=
+ecreto-condonacion-multas/1196367/2025/\u0026ct=3Dga\u0026cd=3DCAEYAyoTMzAx=
+ODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw\u0026usg=3D=
+AOvVaw0RsJ1rnSBgcCIOFSczaWce"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA" style=3D"text-dec=
+oration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.pn=
+g?cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4" alt=3D"Google" border=3D"0" height=3D"=
+25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px;bor=
+der-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr>  <tr=
+> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0px 0=
+px;vertical-align:middle;line-height:20px;font-family:Arial"> <span style=
+=3D"color:#262626;font-size:22px">El Salvador miner=C3=ADa</span> <div styl=
+e=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-heig=
+ht:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4px"=
+>&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">January 28, 202=
+5</a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td st=
+yle=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;bord=
+er-bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373">=
+ NEWS </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr item=
+scope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-lef=
+t:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;fon=
+t-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a=
+ href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://ww=
+w.laprensagrafica.com/elsalvador/Organizaciones-mantienen-presion-para-dero=
+gar-la-nueva-ley-de-mineria-20250126-0041.html&amp;ct=3Dga&amp;cd=3DCAEYACo=
+TMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;us=
+g=3DAOvVaw0Ps5FtI0siShRkUc5_VFkU" itemprop=3D"url" style=3D"color:#427fed;d=
+isplay:inline;text-decoration:none;font-size:16px;line-height:20px"> <span =
+itemprop=3D"name">Organizaciones mantienen presi=C3=B3n para derogar la nue=
+va ley de <b>miner=C3=ADa</b></span> </a> </span>  <div> <div style=3D"padd=
+ing:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=
+=3D"http://schema.org/Organization" style=3D"color:#737373;font-size:12px">=
+ <a style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">L=
+a Prensa Gr=C3=A1fica</span> </a> </div> <div itemprop=3D"description" styl=
+e=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px"=
+>COSAVI y diputada se pronunciaron ante <b>el</b> silencio de autoridades p=
+or derogar la ley de <b>miner=C3=ADa</b> met=C3=A1lica.</div> </div>   <tab=
+le> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://w=
+ww.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprens=
+agrafica.com/elsalvador/Organizaciones-mantienen-presion-para-derogar-la-nu=
+eva-ley-de-mineria-20250126-0041.html&amp;ss=3Dfb&amp;rt=3DOrganizaciones+m=
+antienen+presi%C3%B3n+para+derogar+la+nueva+ley+de+miner%C3%ADa&amp;cd=3DKh=
+MzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ss=
+p=3DAMJHsmVBZoIVt2Y5Ts6h8z4d4VA-DKCBHg" style=3D"text-decoration:none"> <im=
+g alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" =
+border=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=
+=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprensagrafica.com/elsalvador/Organ=
+izaciones-mantienen-presion-para-derogar-la-nueva-ley-de-mineria-20250126-0=
+041.html&amp;ss=3Dtw&amp;rt=3DOrganizaciones+mantienen+presi%C3%B3n+para+de=
+rogar+la+nueva+ley+de+miner%C3%ADa&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0=
+wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmVBZoIVt2Y5Ts6h8z4d4=
+VA-DKCBHg" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"http=
+s://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" wid=
+th=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Aria=
+l"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www.lap=
+rensagrafica.com/elsalvador/Organizaciones-mantienen-presion-para-derogar-l=
+a-nueva-ley-de-mineria-20250126-0041.html&amp;source=3Dalertsmail&amp;hl=3D=
+en&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoSt=
+M0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:mi=
+ddle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </tabl=
+e>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr=
+ itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"paddin=
+g-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:to=
+p;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span sty=
+le=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=
+=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.laprensagrafica.com/elsalvador/En-San=
+-Isidro-acecha-la-sombra-de-la-mineria-20250124-0081.html&amp;ct=3Dga&amp;c=
+d=3DCAEYASoTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW46U1Y=
+6Ukw&amp;usg=3DAOvVaw14t-fJeHd2CxjpVaxZeewG" itemprop=3D"url" style=3D"colo=
+r:#427fed;display:inline;text-decoration:none;font-size:16px;line-height:20=
+px"> <span itemprop=3D"name"><b>En San</b> Isidro acecha la sombra de la <b=
+>miner=C3=ADa</b> - La Prensa Gr=C3=A1fica</span> </a> </span>  <div> <div =
+style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D=
+"" itemtype=3D"http://schema.org/Organization" style=3D"color:#737373;font-=
+size:12px"> <a style=3D"text-decoration:none;color:#737373"> <span itemprop=
+=3D"name">La Prensa Gr=C3=A1fica</span> </a> </div> <div itemprop=3D"descri=
+ption" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;line-h=
+eight:18px">La Asociaci=C3=B3n Comit=C3=A9 Ambiental de Caba=C3=B1as en Def=
+ensa <b>del</b> Agua y la Cultura afirma que m=C3=A1s de la mitad <b>del</b=
+> distrito ya fue explorado con&nbsp;...</div> </div>   <table> <tr> <td wi=
+dth=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/a=
+lerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprensagrafica.com/el=
+salvador/En-San-Isidro-acecha-la-sombra-de-la-mineria-20250124-0081.html&am=
+p;ss=3Dfb&amp;rt=3DEn+San+Isidro+acecha+la+sombra+de+la+miner%C3%ADa+-+La+P=
+rensa+Gr%C3%A1fica&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk=
+0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmVKQerWTLPdOdKZ2ePgDqHRGNMTLQ" style=
+=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic=
+.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> =
+</td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.=
+google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.laprensagr=
+afica.com/elsalvador/En-San-Isidro-acecha-la-sombra-de-la-mineria-20250124-=
+0081.html&amp;ss=3Dtw&amp;rt=3DEn+San+Isidro+acecha+la+sombra+de+la+miner%C=
+3%ADa+-+La+Prensa+Gr%C3%A1fica&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzE=
+wN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmVKQerWTLPdOdKZ2ePgDqHRG=
+NMTLQ" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://=
+www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=
+=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"=
+> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www.lapre=
+nsagrafica.com/elsalvador/En-San-Isidro-acecha-la-sombra-de-la-mineria-2025=
+0124-0081.html&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3D=
+MzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs"=
+ style=3D"text-decoration:none;vertical-align:middle;color:#aaa;font-size:1=
+0px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td=
+ style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D=
+"http://schema.org/Article"> <td style=3D"padding-left:18px"></td> <td styl=
+e=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px solid #e4e=
+4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0=
+px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhtt=
+ps://www.elsalvador.com/fotogalerias/noticias-fotogalerias/hospital-rosales=
+-demolicion-de-edificios-desalojo-arquitectura-salvadorena-el-salvador/1196=
+234/2025/&amp;ct=3Dga&amp;cd=3DCAEYAioTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdm=
+YzY4YWE5NGVmZjpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw2zP9LcKNWi6ij9SixvYOud" ite=
+mprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration:none;fo=
+nt-size:16px;line-height:20px"> <span itemprop=3D"name">Piezas del Hospital=
+ Rosales son reducidas a escombros - Noticias de <b>El Salvador</b></span> =
+</a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=
+=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" s=
+tyle=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none;col=
+or:#737373"> <span itemprop=3D"name">El Diario de Hoy</span> </a> </div> <d=
+iv itemprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;=
+font-size:12px;line-height:18px">Las piezas de lamina de hierro han sido ac=
+umuladas en un estacionamiento interno <b>del</b> centro de salud. Foto EDH=
+/ Menly Gonzalez; toda la estructura&nbsp;...</div> </div>   <table> <tr> <=
+td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.=
+com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.com/fo=
+togalerias/noticias-fotogalerias/hospital-rosales-demolicion-de-edificios-d=
+esalojo-arquitectura-salvadorena-el-salvador/1196234/2025/&amp;ss=3Dfb&amp;=
+rt=3DPiezas+del+Hospital+Rosales+son+reducidas+a+escombros+-+Noticias+de+El=
++Salvador&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNv=
+bTplbjpTVjpSTA&amp;ssp=3DAMJHsmVEwOOtpUdYM4LJWgC624o8GDwSvg" style=3D"text-=
+decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/aler=
+ts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td=
+ width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.co=
+m/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.com/foto=
+galerias/noticias-fotogalerias/hospital-rosales-demolicion-de-edificios-des=
+alojo-arquitectura-salvadorena-el-salvador/1196234/2025/&amp;ss=3Dtw&amp;rt=
+=3DPiezas+del+Hospital+Rosales+son+reducidas+a+escombros+-+Noticias+de+El+S=
+alvador&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbT=
+plbjpTVjpSTA&amp;ssp=3DAMJHsmVEwOOtpUdYM4LJWgC624o8GDwSvg" style=3D"text-de=
+coration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/=
+images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td st=
+yle=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.=
+google.com/alerts/feedback?ffu=3Dhttps://www.elsalvador.com/fotogalerias/no=
+ticias-fotogalerias/hospital-rosales-demolicion-de-edificios-desalojo-arqui=
+tectura-salvadorena-el-salvador/1196234/2025/&amp;source=3Dalertsmail&amp;h=
+l=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLY=
+IoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-alig=
+n:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </=
+table>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </tr>   =
+ <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"pa=
+dding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-alig=
+n:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span=
+ style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?r=
+ct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.elsalvador.com/noticias/nacional/bu=
+kele-ordenara-diputados-firma-decreto-condonacion-multas/1196367/2025/&amp;=
+ct=3Dga&amp;cd=3DCAEYAyoTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZj=
+pjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw0RsJ1rnSBgcCIOFSczaWce" itemprop=3D"url" =
+style=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px;l=
+ine-height:20px"> <span itemprop=3D"name">Bukele ordenar=C3=A1 a diputados =
+que aprueben ley de condonaci=C3=B3n de multas de tr=C3=A1nsito</span> </a>=
+ </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"pu=
+blisher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=
+=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#=
+737373"> <span itemprop=3D"name">El Diario de Hoy</span> </a> </div> <div i=
+temprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font=
+-size:12px;line-height:18px">Bukele afirm=C3=B3 que la condonaci=C3=B3n ser=
+=C3=A1 con las multas impuestas desde <b>el</b> 20 de diciembre hasta este =
+domingo 26, pero que quienes hayan cometido&nbsp;...</div> </div>   <table>=
+ <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.=
+google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador=
+.com/noticias/nacional/bukele-ordenara-diputados-firma-decreto-condonacion-=
+multas/1196367/2025/&amp;ss=3Dfb&amp;rt=3DBukele+ordenar%C3%A1+a+diputados+=
+que+aprueben+ley+de+condonaci%C3%B3n+de+multas+de+tr%C3%A1nsito&amp;cd=3DKh=
+MzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ss=
+p=3DAMJHsmUC9k_WfQoRTe74pxpiVxYkWG5bsg" style=3D"text-decoration:none"> <im=
+g alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" =
+border=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=
+=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DSV&amp;ru=3Dhttps://www.elsalvador.com/noticias/nacional/buk=
+ele-ordenara-diputados-firma-decreto-condonacion-multas/1196367/2025/&amp;s=
+s=3Dtw&amp;rt=3DBukele+ordenar%C3%A1+a+diputados+que+aprueben+ley+de+condon=
+aci%C3%B3n+de+multas+de+tr%C3%A1nsito&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4=
+Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUC9k_WfQoRTe74px=
+piVxYkWG5bsg" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"h=
+ttps://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" =
+width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:A=
+rial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www.=
+elsalvador.com/noticias/nacional/bukele-ordenara-diputados-firma-decreto-co=
+ndonacion-multas/1196367/2025/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=
+=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJ=
+RggDm_QlrpF59usqs" style=3D"text-decoration:none;vertical-align:middle;colo=
+r:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div=
+> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscop=
+e=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:18=
+px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-=
+top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"pad=
+ding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=
+=3Dt&amp;url=3Dhttps://lapagina.com.sv/general/presidente-bukele-anuncia-ex=
+oneracion-de-pago-de-las-multas-impuestas-bajo-la-nueva-normativa-vial/&amp=
+;ct=3Dga&amp;cd=3DCAEYBCoTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZ=
+jpjb206ZW46U1Y6Ukw&amp;usg=3DAOvVaw1-nZvJbaPaElE9CvBfFBIE" itemprop=3D"url"=
+ style=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px;=
+line-height:20px"> <span itemprop=3D"name">Presidente Bukele anuncia exoner=
+aci=C3=B3n de pago de las multas impuestas bajo la nueva ...</span> </a> </=
+span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publi=
+sher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"c=
+olor:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#73737=
+3"> <span itemprop=3D"name">Diario La P=C3=A1gina</span> </a> </div> <div i=
+temprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font=
+-size:12px;line-height:18px">En respuesta a las cr=C3=ADticas y rumores sob=
+re la supuesta intenci=C3=B3n recaudatoria detr=C3=A1s de las nuevas leyes =
+de tr=C3=A1nsito, <b>el</b> presidente Nayib Bukele,&nbsp;...</div> </div> =
+  <table> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"htt=
+ps://www.google.com/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapag=
+ina.com.sv/general/presidente-bukele-anuncia-exoneracion-de-pago-de-las-mul=
+tas-impuestas-bajo-la-nueva-normativa-vial/&amp;ss=3Dfb&amp;rt=3DPresidente=
++Bukele+anuncia+exoneraci%C3%B3n+de+pago+de+las+multas+impuestas+bajo+la+nu=
+eva+...&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbT=
+plbjpTVjpSTA&amp;ssp=3DAMJHsmXTQe2AM_45u_1M5VNGNiD7C4CrPw" style=3D"text-de=
+coration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts=
+/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td w=
+idth=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/=
+alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/general/p=
+residente-bukele-anuncia-exoneracion-de-pago-de-las-multas-impuestas-bajo-l=
+a-nueva-normativa-vial/&amp;ss=3Dtw&amp;rt=3DPresidente+Bukele+anuncia+exon=
+eraci%C3%B3n+de+pago+de+las+multas+impuestas+bajo+la+nueva+...&amp;cd=3DKhM=
+zMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=
+=3DAMJHsmXTQe2AM_45u_1M5VNGNiD7C4CrPw" style=3D"text-decoration:none"> <img=
+ alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" bo=
+rder=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0=
+px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/alerts/fe=
+edback?ffu=3Dhttps://lapagina.com.sv/general/presidente-bukele-anuncia-exon=
+eracion-de-pago-de-las-multas-impuestas-bajo-la-nueva-normativa-vial/&amp;s=
+ource=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAz=
+NDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decor=
+ation:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrele=
+vant </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"padding-ri=
+ght:18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/A=
+rticle"> <td style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0p=
+x 12px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-family:Aria=
+l"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"http=
+s://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://lapagina.com.sv=
+/nacionales/presidente-de-la-asamblea-legislativa-respalda-eliminar-pago-de=
+-multas-a-infractores-de-transito-propuesto-por-nayib-bukele/&amp;ct=3Dga&a=
+mp;cd=3DCAEYBSoTMzAxODIxOTY4NDU4MzAzNDM4ODIdMDMxMDdmYzY4YWE5NGVmZjpjb206ZW4=
+6U1Y6Ukw&amp;usg=3DAOvVaw3CcdUzv9_HY4WHZjLIysec" itemprop=3D"url" style=3D"=
+color:#427fed;display:inline;text-decoration:none;font-size:16px;line-heigh=
+t:20px"> <span itemprop=3D"name">Presidente de la Asamblea Legislativa resp=
+alda eliminar pago de multas a infractores de ...</span> </a> </span>  <div=
+> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" items=
+cope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:#73737=
+3;font-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <span i=
+temprop=3D"name">Diario La P=C3=A1gina</span> </a> </div> <div itemprop=3D"=
+description" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;=
+line-height:18px"><b>El</b> Presidente de la Asamblea Legislativa, Ernesto =
+Castro, dijo estar listo para atender la propuesta <b>del</b> presidente Na=
+yib Bukele, sobre exonerar&nbsp;...</div> </div>   <table> <tr> <td width=
+=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/aler=
+ts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/nacionales/pr=
+esidente-de-la-asamblea-legislativa-respalda-eliminar-pago-de-multas-a-infr=
+actores-de-transito-propuesto-por-nayib-bukele/&amp;ss=3Dfb&amp;rt=3DPresid=
+ente+de+la+Asamblea+Legislativa+respalda+eliminar+pago+de+multas+a+infracto=
+res+de+...&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYTk0ZWZmOmN=
+vbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUAsSoS_EIRAB7FycFaQHCYeDL6lQ" style=3D"text=
+-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/ale=
+rts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <t=
+d width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.c=
+om/alerts/share?hl=3Den&amp;gl=3DSV&amp;ru=3Dhttps://lapagina.com.sv/nacion=
+ales/presidente-de-la-asamblea-legislativa-respalda-eliminar-pago-de-multas=
+-a-infractores-de-transito-propuesto-por-nayib-bukele/&amp;ss=3Dtw&amp;rt=
+=3DPresidente+de+la+Asamblea+Legislativa+respalda+eliminar+pago+de+multas+a=
++infractores+de+...&amp;cd=3DKhMzMDE4MjE5Njg0NTgzMDM0Mzg4Mh0wMzEwN2ZjNjhhYT=
+k0ZWZmOmNvbTplbjpTVjpSTA&amp;ssp=3DAMJHsmUAsSoS_EIRAB7FycFaQHCYeDL6lQ" styl=
+e=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic=
+.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> =
+</td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"=
+https://www.google.com/alerts/feedback?ffu=3Dhttps://lapagina.com.sv/nacion=
+ales/presidente-de-la-asamblea-legislativa-respalda-eliminar-pago-de-multas=
+-a-infractores-de-transito-propuesto-por-nayib-bukele/&amp;source=3Dalertsm=
+ail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3D=
+AB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs" style=3D"text-decoration:none;vert=
+ical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td>=
+ </tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></td>=
+ </tr>    <tr> <td colspan=3D"3" valign=3D"middle" style=3D"background-colo=
+r:#f8f8f8;font-size:14px;vertical-align:middle;text-align:center;padding:10=
+px 10px 10px 10px;line-height:20px;border:1px solid #e4e4e4;font-family:Ari=
+al"> <a href=3D"https://www.google.com/alerts?s=3DAB2Xq4gLYIoStM0gHKZCoJRgg=
+Dm_QlrpF59usqs&amp;start=3D1737939710&amp;end=3D1738026016&amp;source=3Dale=
+rtsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA#hist=
+ory" style=3D"text-decoration:none;vertical-align:middle;color:#427fed">  S=
+ee more results  </a> <span style=3D"font-size:12px;padding-left:15px;paddi=
+ng-right:15px;color:#aaa">|</span> <a href=3D"https://www.google.com/alerts=
+/edit?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;msgid=3DMzAxODIxOTY4N=
+DU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_QlrpF59usqs&amp;email=3Dd=
+eibi.sibrian%40berkeley.edu" style=3D"text-decoration:none;vertical-align:m=
+iddle;color:#427fed">Edit this alert</a>  </td> </tr>  </table> <table styl=
+e=3D"padding-top:6px;font-size:12px;color:#252525;text-align:center;width:1=
+00%"> <tr> <td style=3D"font-family:Arial">  You have received this email b=
+ecause you have subscribed to <b>Google Alerts</b>. <div> <a href=3D"https:=
+//www.google.com/alerts/remove?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&=
+amp;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_=
+QlrpF59usqs" style=3D"text-decoration:none;color:#427fed">Unsubscribe</a> <=
+span style=3D"padding:0px 4px 0px 4px;color:#252525">|</span> <a href=3D"ht=
+tps://www.google.com/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp=
+;msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA" style=3D"text-decoration:none;color:#4=
+27fed">  View all your alerts  </a> </div> </td> </tr> <tr> <td style=3D"pa=
+dding:6px 10px 0px 0px;font-family:Arial"> <a href=3D"https://www.google.co=
+m/alerts/feeds/16766221062399110009/9620686502612528422" style=3D"text-deco=
+ration:none;color:#427fed"> <img src=3D"https://www.gstatic.com/alerts/imag=
+es/rss-16.gif" alt=3D"RSS" border=3D"0" style=3D"padding:0px 8px 0px 0px;ve=
+rtical-align:middle"> <span style=3D"display:inline;line-height:16px;vertic=
+al-align:middle"> Receive this alert as RSS feed </span> </a> </td> </tr> <=
+tr> <td style=3D"padding:6px 0px 0px 0px;font-family:Arial"> <a href=3D"htt=
+ps://www.google.com/alerts?source=3Dalertsmail&amp;hl=3Den&amp;gl=3DSV&amp;=
+msgid=3DMzAxODIxOTY4NDU4MzAzNDM4OA&amp;s=3DAB2Xq4gLYIoStM0gHKZCoJRggDm_Qlrp=
+F59usqs&amp;ffu=3D" style=3D"text-decoration:none;color:#427fed"> <div styl=
+e=3D"display:inline;line-height:16px;vertical-align:middle"> Send Feedback =
+</div> </a> </td> </tr> </table> </div> </div> <!--[if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--0000000000005f7bb0062cb9b75a--
