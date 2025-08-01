@@ -1,0 +1,755 @@
+Delivered-To: deibi.sibrian@berkeley.edu
+Received: by 2002:a05:6f02:848f:b0:81:c96e:abe0 with SMTP id y15csp1083419rce;
+        Fri, 28 Mar 2025 22:42:56 -0700 (PDT)
+X-Received: by 2002:a05:690c:67c6:b0:6ff:1c8d:fbfc with SMTP id 00721157ae682-7025733795emr28148127b3.31.1743226976343;
+        Fri, 28 Mar 2025 22:42:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743226976; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ZWz1VOcTEuZGv4k7osZ3cDvINW0BwNgggOiBjJFUasiBMTx4Emdv5DLVHx22UEDefC
+         bCiMEhC5qP0OeFhU0F2W3rXBlMxAlmNFYbbZbnOY2uteMKQo99kDKHB0E4W/o5hSrTat
+         OaDayEd0v8BR4rerIBBnMrPl4dGvvJZ7oz1RJjmXLIedPEQLh1Ia5RrEdfR8fkT0P/K5
+         9MHxat7YkbVzOQCgU93HA8aiqRjqVguOaSwmPhSlY4Y9sHmnikDv2713NFfZgnXUekmI
+         bGgItyHUb2Expryd35w4aA+VFXeHri5PHEcBhnFJP12HC3EG2lgnC4CaJxJtj2vG544D
+         juHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:dkim-signature;
+        bh=QKfnr4KWD2W13r+jg95R01+kratIlsfqkCl9WtvIzBI=;
+        fh=EwWoG5BDEiz+sF7QM/2D5AJR58SOCw1baynLGZnxhMA=;
+        b=Y4z47DICeC0J979hheYNVgfB7xlK5Irj0HhTOtOJ9mlJtCfA0EP0XyEqoPFQGWeZfT
+         UnPQ7Zp2WwZUZlhrYCxCY3Kmaetr/yZlExCI2uOJKQhhv8TUOwSUDpQoedp+WcoDcYeq
+         9KbjXCDQOE58J2nACuMIyZ6OCnebD/ajTcOxr3mYaRm2ceUGC+P3gH1bY/SoWQM7nUV1
+         LROR1NdaJ8VXI1MTzZIWmOA2sHrQIAdlLhTJxDIyRb9svBpDCjf6JQYapGZS5WapSmS7
+         T69yPX1W2qM2SJzoKYNdY0tcd65+JBTO0RLJPJNPLbGqMwoVSzkZZUfaTMOv01QYrAc5
+         iu+w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=mAh8LHAZ;
+       spf=pass (google.com: domain of 3x4jnzxqkafq2aa270w70dfe-9ad0b7k2aa270.ya8@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3X4jnZxQKAFQ2AA270w70DFE-9AD0B7K2AA270.yA8@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+Return-Path: <3X4jnZxQKAFQ2AA270w70DFE-9AD0B7K2AA270.yA8@alerts.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 00721157ae682-7023a38850csor23284767b3.5.2025.03.28.22.42.55
+        for <deibi.sibrian@berkeley.edu>
+        (Google Transport Security);
+        Fri, 28 Mar 2025 22:42:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3x4jnzxqkafq2aa270w70dfe-9ad0b7k2aa270.ya8@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=mAh8LHAZ;
+       spf=pass (google.com: domain of 3x4jnzxqkafq2aa270w70dfe-9ad0b7k2aa270.ya8@alerts.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3X4jnZxQKAFQ2AA270w70DFE-9AD0B7K2AA270.yA8@alerts.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@berkeley.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1743226975; x=1743831775; darn=berkeley.edu;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QKfnr4KWD2W13r+jg95R01+kratIlsfqkCl9WtvIzBI=;
+        b=mAh8LHAZYySyrawanFxVAWOpHsanv1T8O9g1eXqP0OXp3zrbdnKahFWb0/VWdSu5QW
+         bhK5YIZs+16EanzxEUeEjCk5UDC/h2KbqD81GMG1qblzV2/0Lc79l/2/L4weNUyO5o/t
+         jSGTsgSd/GKnyZtcxIkb7L4L1at0DL7Qa18Lr9R+RiKxi8KVaoswThtbPOZBzNbRAXtO
+         R7JHcb/eD1I2TS0jhf1kxkyznrBRC8yKmy7WtRkEl1ysBVn9gK3bvh2Vl2jAee5RlR3M
+         l5Yn5bI7yI83fPJeklBED+0hbAEXZV8MjWiqX74IZa51C/BRuk7FDQxcaP59QJ+b3YQc
+         rSDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743226975; x=1743831775;
+        h=to:from:subject:message-id:list-unsubscribe:list-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QKfnr4KWD2W13r+jg95R01+kratIlsfqkCl9WtvIzBI=;
+        b=PJyUP4lPCRQNI96savqDtvNQkrYy6cRXX3737ZfL+uRXHcOAXm/o+yCWDtj+vobRxG
+         vvNAthDe2wbqumMnS/Ts5DvMO9zUc0XdYbROr/QYNMpT7dsZno7o8EIrXPvPT9PeG3tu
+         9gfDGGSQMzHQRcxPe/hN/YoUCR0ZZ3rcU05LLssn5MQcy2GLSr9xeryvQ4NQL8NjK0kd
+         wHBUgc17qmTf27v56Jh8fN+Sf3XIhNXEn3oAEVX6WELUZubGCyKPkjtiPC53mjNCsCYp
+         +mW+hDPUplP8ac0mrrnkBbN5OFOlZKNEeNqxuuKev9mtFTm6x4n8IDJvCiRC1Cj/Qnxe
+         fkWw==
+X-Gm-Message-State: AOJu0YxHR/hh0IrMWFWA02v+RvaGySiyKDIMC38CQ1gfPBxB1D2a/MAb
+	aMB093W+t9yADouprErMtgU8Z4/j7rUmfh4=
+X-Google-Smtp-Source: AGHT+IEUsrOVC3Z/OddOjbbvqJlthYltxEdTZBb602v/YTH/3KZhohihxU7AtC3hH3BEyhdEKg0=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6902:1616:b0:e66:8fa5:622e with SMTP id
+ 3f1490d57ef6-e6b838d6365mr2602632276.5.1743226975453; Fri, 28 Mar 2025
+ 22:42:55 -0700 (PDT)
+Date: Fri, 28 Mar 2025 22:42:55 -0700
+List-Id: <7986525324513588222.alerts.google.com>
+List-Unsubscribe: <mailto:ur@unsubscribe.alerts.google.com?subject=AB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU>
+Message-ID: <67e7885f.050a0220.319dcc.2b7cgooglealerts@google.com>
+Subject: Google Alert - "Bitcoin" "El Salvador"
+From: Google Alerts <googlealerts-noreply@google.com>
+To: deibi.sibrian@berkeley.edu
+Content-Type: multipart/alternative; boundary="000000000000a2842a063174a841"
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+
+--000000000000a2842a063174a841
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+PT09IE5ld3MgLSAxMCBuZXcgcmVzdWx0cyBmb3IgWyJCaXRjb2luIiAiRWwgU2FsdmFkb3IiXSA9
+PT0NCg0KVHJ1bXAgcGxhbnMgdG8gbWVldCB3aXRoIEJpdGNvaW4gYnVsbCBOYXlpYiBCdWtlbGUg
+bmV4dCBtb250aCAtIENyeXB0bw0KQnJpZWZpbmcNCkNyeXB0byBCcmllZmluZw0KVHJ1bXAgdG8g
+aG9zdCBCaXRjb2luIG1lZXRpbmcgYXQgV2hpdGUgSG91c2Ugd2l0aCBFbCBTYWx2YWRvcidzIFBy
+ZXNpZGVudA0KQnVrZWxlLCBkaXNjdXNzaW5nIGltbWlncmF0aW9uLCBnYW5ncywgYW5kIGNyeXB0
+byBwb2xpY2llcy4NCjxodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1o
+dHRwczovL2NyeXB0b2JyaWVmaW5nLmNvbS9iaXRjb2luLW1lZXRpbmctd2hpdGUtaG91c2UtYnVr
+ZWxlLyZjdD1nYSZjZD1DQUVZQUNvVU1URTJPREE1T1RrMU56azBNRGszT0RFM01UUXlHamsyTnpa
+aU1XRXdOREkzTmpRNE0yTTZZMjl0T21WdU9sVlQmdXNnPUFPdlZhdzJsSDdXR3drTEt5QnJQblln
+eXdjOEo+DQoNCkZpcnN0IFRva2VuaXplZCBXYXJlaG91c2UgQ29tcGxleCBCdWlsdCBpbiBFbCBT
+YWx2YWRvciAtIEJpdGNvaW4uY29tIE5ld3MNCkJpdGNvaW4uY29tIE5ld3MNClRva2VuaXplZCBX
+YXJlaG91c2UgSW5hdWd1cmF0ZWQgaW4gRWwgU2FsdmFkb3IgwrcgQml0Y29pbiBHYW1pbmcgUGlj
+a3MuDQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly9u
+ZXdzLmJpdGNvaW4uY29tL2ZpcnN0LXRva2VuaXplZC13YXJlaG91c2UtY29tcGxleC1idWlsdC1p
+bi1lbC1zYWx2YWRvci8mY3Q9Z2EmY2Q9Q0FFWUFTb1VNVEUyT0RBNU9UazFOemswTURrM09ERTNN
+VFF5R2prMk56WmlNV0V3TkRJM05qUTRNMk02WTI5dE9tVnVPbFZUJnVzZz1BT3ZWYXcyRnJLNHk5
+OEVtMGhhZEIzTUNGMENMPg0KDQpUcnVtcCBwbGFucyBXaGl0ZSBIb3VzZSB2aXNpdCBmb3IgRWwg
+U2FsdmFkb3IncyBwcm8tQml0Y29pbiBCdWtlbGUgLSBDcnlwdG8NCk5ld3MNCkNyeXB0byBOZXdz
+DQpQcmVzaWRlbnQgRG9uYWxkIFRydW1wIGlzIHNldCB0byBob3N0IEVsIFNhbHZhZG9yJ3MgUHJv
+LUJpdGNvaW4gUHJlc2lkZW50DQpOYXlpYiBCdWtlbGUgYXQgdGhlIFdoaXRlIEhvdXNlIGluIEFw
+cmlsLg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8v
+Y3J5cHRvLm5ld3MvdHJ1bXAtcGxhbnMtd2hpdGUtaG91c2UtdmlzaXQtZm9yLWVsLXNhbHZhZG9y
+cy1wcm8tYml0Y29pbi1idWtlbGUvJmN0PWdhJmNkPUNBRVlBaW9VTVRFMk9EQTVPVGsxTnprME1E
+azNPREUzTVRReUdqazJOelppTVdFd05ESTNOalE0TTJNNlkyOXRPbVZ1T2xWVCZ1c2c9QU92VmF3
+MFlITVBhUGtkeklGdGg2TFRzbWJFaz4NCg0KVHJ1bXAgdG8gSG9zdCBOYXlpYiBCdWtlbGUgRm9s
+bG93aW5nIERlcG9ydGF0aW9uIENvb3BlcmF0aW9uICYgU2hhcmVkDQpCaXRjb2luIFZpc2lvbg0K
+Q29pbkNlbnRyYWwNClRydW1wIHBsYW5zIHRvIGhvc3QgRWwgU2FsdmFkb3IncyBQcmVzaWRlbnQg
+QnVrZWxlIGF0IHRoZSBXaGl0ZSBIb3VzZSBpbg0KQXByaWwsIGZvbGxvd2luZyBjb29wZXJhdGlv
+biBvbiBkZXBvcnRhdGlvbnMgYW5kIHNoYXJlZCBpbnRlcmVzdCBpbiBCaXRjb2luLg0KPGh0dHBz
+Oi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vY29pbmNlbnRyYWwu
+Y29tL3RydW1wLXRvLWhvc3QtbmF5aWItYnVrZWxlLWZvbGxvd2luZy1kZXBvcnRhdGlvbi1jb29w
+ZXJhdGlvbi1zaGFyZWQtYml0Y29pbi12aXNpb24vJmN0PWdhJmNkPUNBRVlBeW9VTVRFMk9EQTVP
+VGsxTnprME1EazNPREUzTVRReUdqazJOelppTVdFd05ESTNOalE0TTJNNlkyOXRPbVZ1T2xWVCZ1
+c2c9QU92VmF3MHVqOEhQU0Yzb3dyR2Rxb2M4UFNmMj4NCg0KQml0Y29pbiBhZG9wdGlvbiBieSBj
+b3VudHJ5OiBXaG8ncyBsZWFkaW5nIGFuZCB3aG8ncyBsYWdnaW5nIGJlaGluZD8gLQ0KQ29pbnRl
+bGVncmFwaA0KQ29pbnRlbGVncmFwaA0KQ291bnRyaWVzIHN1Y2ggYXMgRWwgU2FsdmFkb3IsIHRo
+ZSBVQUUsIFN3aXR6ZXJsYW5kIGFuZCBTaW5nYXBvcmUgYXJlDQpsZWFkaW5nIHRoZSB3YXkgd2l0
+aCBwcm8tQml0Y29pbiBwb2xpY2llcywgc3VwcG9ydGl2ZSBsZWFkZXJzaGlwIGFuZCBjcnlwdG8N
+Ci4uLg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8v
+Y29pbnRlbGVncmFwaC5jb20vbGVhcm4vYXJ0aWNsZXMvYml0Y29pbi1hZG9wdGlvbi1ieS1jb3Vu
+dHJ5JmN0PWdhJmNkPUNBRVlCQ29VTVRFMk9EQTVPVGsxTnprME1EazNPREUzTVRReUdqazJOelpp
+TVdFd05ESTNOalE0TTJNNlkyOXRPbVZ1T2xWVCZ1c2c9QU92VmF3MUxYTHFZNF9HOFlENW9ncnlQ
+aGl4WD4NCg0KVHJ1bXAgdG8gTWVldCBFbCBTYWx2YWRvciBMZWFkZXIgYXQgV2hpdGUgSG91c2Us
+IEJpdGNvaW4gRGlzY3Vzc2lvbg0KQW50aWNpcGF0ZWQNCkJsb2NrY2hhaW4gTmV3cw0KVGhpcyBt
+ZWV0aW5nIGNvdWxkIHBvdGVudGlhbGx5IGltcGFjdCBCaXRjb2luJ3MgbWFya2V0IHBlcmNlcHRp
+b24gYW5kDQp0cmFkaW5nIHNlbnRpbWVudCBhcyBFbCBTYWx2YWRvciBpcyBrbm93biBmb3IgaXRz
+IHBpb25lZXJpbmcgYWRvcHRpb24gb2YNCkJpdGNvaW4gLi4uDQo8aHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly9ibG9ja2NoYWluLm5ld3MvZmxhc2huZXdz
+L3RydW1wLXRvLW1lZXQtZWwtc2FsdmFkb3ItbGVhZGVyLWF0LXdoaXRlLWhvdXNlLWJpdGNvaW4t
+ZGlzY3Vzc2lvbi1hbnRpY2lwYXRlZCZjdD1nYSZjZD1DQUVZQlNvVU1URTJPREE1T1RrMU56azBN
+RGszT0RFM01UUXlHamsyTnpaaU1XRXdOREkzTmpRNE0yTTZZMjl0T21WdU9sVlQmdXNnPUFPdlZh
+dzMxb295cHZIOGw2RU4wbmFlUDVhb0w+DQoNCkJ1a2VsZSBSZWplY3RzIElNRiwgS2VlcHMgQnV5
+aW5nIEJUQywgYW5kIEZYR3V5cycgUHJlc2FsZSBJcyBCbG93aW5nIFBhc3QNCkV4cGVjdGF0aW9u
+cyENCkNyeXB0byBSZXBvcnRlcg0KRWwgU2FsdmFkb3IncyBQcmVzaWRlbnQgTmF5aWIgQnVrZWxl
+IG1hZGUgbmV3cyBieSBkaXNtaXNzaW5nIHdhcm5pbmdzIGZyb20NCnRoZSBJbnRlcm5hdGlvbmFs
+IE1vbmV0YXJ5IEZ1bmQgYW5kIGJ1eWluZyBtb3JlIEJpdGNvaW4uDQo8aHR0cHM6Ly93d3cuZ29v
+Z2xlLmNvbS91cmw/cmN0PWomc2E9dCZ1cmw9aHR0cHM6Ly93d3cuY3J5cHRvLXJlcG9ydGVyLmNv
+bS9wcmVzcy1yZWxlYXNlcy9idWtlbGUtcmVqZWN0cy1pbWYta2VlcHMtYnV5aW5nLWJ0Yy1hbmQt
+ZnhndXlzLXByZXNhbGUtaXMtYmxvd2luZy1wYXN0LWV4cGVjdGF0aW9ucy05Mzc1MC8mY3Q9Z2Em
+Y2Q9Q0FFWUJpb1VNVEUyT0RBNU9UazFOemswTURrM09ERTNNVFF5R2prMk56WmlNV0V3TkRJM05q
+UTRNMk02WTI5dE9tVnVPbFZUJnVzZz1BT3ZWYXcwNTQ2bG1SVnNjRHd1SDZjYXkwWnV6Pg0KDQpB
+dCB0aGUgc3RhcnRpbmcgbGluZTogV2hlbiB3aWxsIHRoZSBlcmEgb2YgQml0Y29pbiBuYXRpb25z
+IGJlZ2luPyAtIFRyYWRlcnMNClVuaW9uDQpUcmFkZXJzIFVuaW9uDQpNb3JlIGNvdW50cmllcyBh
+cmUgZXhwbG9yaW5nIEJpdGNvaW4gYWRvcHRpb24gYXMgQmh1dGFuIGFuZCBFbCBTYWx2YWRvcg0K
+bGVhZCB0aGUgd2F5IGluIGJ1aWxkaW5nIGNyeXB0by1wb3dlcmVkIGVjb25vbWllcy4NCjxodHRw
+czovL3d3dy5nb29nbGUuY29tL3VybD9yY3Q9aiZzYT10JnVybD1odHRwczovL3RyYWRlcnN1bmlv
+bi5jb20vbmV3cy9lZGl0b3JzLXBpY2tzL3Nob3cvMTc3NDQ4LWF0LXRoZS1zdGFydGluZy1saW5l
+LyZjdD1nYSZjZD1DQUVZQnlvVU1URTJPREE1T1RrMU56azBNRGszT0RFM01UUXlHamsyTnpaaU1X
+RXdOREkzTmpRNE0yTTZZMjl0T21WdU9sVlQmdXNnPUFPdlZhdzJ5M0M1Z3MyMkF3N0dubmZISlYw
+TEM+DQoNCk5ldyBMZWdpc2xhdGlvbiBJbnRyb2R1Y2VkIGluIFBhbmFtYSB0byBUdXJuIHRoZSBD
+b3VudHJ5IGludG8gYSBDcnlwdG8gSHViDQotIENyeXB0b05pbmphcw0KQ3J5cHRvTmluamFzDQpV
+bmxpa2UgRWwgU2FsdmFkb3IncyBtYW5kYXRvcnkgQml0Y29pbiBhZG9wdGlvbiBwb2xpY3ksIFBh
+bmFtYSdzIGFwcHJvYWNoDQpnaXZlcyBidXNpbmVzc2VzIGFuZCBpbmRpdmlkdWFscyB0aGUgZmxl
+eGliaWxpdHkgdG8gYWRvcHQgY3J5cHRvIGF0IC4uLg0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20v
+dXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vd3d3LmNyeXB0b25pbmphcy5uZXQvbmV3cy9uZXct
+bGVnaXNsYXRpb24taW50cm9kdWNlZC1pbi1wYW5hbWEtdG8tdHVybi10aGUtY291bnRyeS1pbnRv
+LWEtY3J5cHRvLWh1Yi8mY3Q9Z2EmY2Q9Q0FFWUNDb1VNVEUyT0RBNU9UazFOemswTURrM09ERTNN
+VFF5R2prMk56WmlNV0V3TkRJM05qUTRNMk02WTI5dE9tVnVPbFZUJnVzZz1BT3ZWYXcyT2swZjJD
+MjNKQmFMLXR2cjAxRlBoPg0KDQpUaGUgUm9sZSBvZiBDcnlwdG9jdXJyZW5jeSBpbiBEZXZlbG9w
+aW5nIEVjb25vbWllcyAtIE5vdmluaXRlLmNvbSAtIFNvZmlhDQpOZXdzIEFnZW5jeQ0KTm92aW5p
+dGUuY29tDQpJbiBjb250cmFzdCB0byB0aGUgdm9sYXRpbGl0eSBvZiBCaXRjb2luLCBTb2xhbmEg
+cHJvdmVkIC4uLiBFbCBTYWx2YWRvcg0KYXR0ZW1wdGVkIHNvbWV0aGluZyBuZXcgaW4gMjAyMSB3
+aGVuIGl0IGxlZ2FsaXplZCBCaXRjb2luIGFzIGEgdGVuZGVyLg0KPGh0dHBzOi8vd3d3Lmdvb2ds
+ZS5jb20vdXJsP3JjdD1qJnNhPXQmdXJsPWh0dHBzOi8vd3d3Lm5vdmluaXRlLmNvbS9hcnRpY2xl
+cy8yMzE1NDUvVGhlJTJCUm9sZSUyQm9mJTJCQ3J5cHRvY3VycmVuY3klMkJpbiUyQkRldmVsb3Bp
+bmclMkJFY29ub21pZXMmY3Q9Z2EmY2Q9Q0FFWUNTb1VNVEUyT0RBNU9UazFOemswTURrM09ERTNN
+VFF5R2prMk56WmlNV0V3TkRJM05qUTRNMk02WTI5dE9tVnVPbFZUJnVzZz1BT3ZWYXczNEo1SEp5
+THpCNW82dTFSdmVRSTJSPg0KDQoNCi0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAt
+IC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0NClVuc3Vic2NyaWJlIGZyb20gdGhpcyBH
+b29nbGUgQWxlcnQ6DQo8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hbGVydHMvcmVtb3ZlP3NvdXJj
+ZT1hbGVydHNtYWlsJmhsPWVuJmdsPVVTJm1zZ2lkPU1URTJPREE1T1RrMU56azBNRGszT0RFM01U
+USZzPUFCMlhxNGhOdDJTMnNaOXVlVFdVYmc2NVVSdGo2bnRrbVBvN0ZyVT4NCg0KQ3JlYXRlIGFu
+b3RoZXIgR29vZ2xlIEFsZXJ0Og0KPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYWxlcnRzP3NvdXJj
+ZT1hbGVydHNtYWlsJmhsPWVuJmdsPVVTJm1zZ2lkPU1URTJPREE1T1RrMU56azBNRGszT0RFM01U
+UT4NCg0KU2lnbiBpbiB0byBtYW5hZ2UgeW91ciBhbGVydHM6DQo8aHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS9hbGVydHM/c291cmNlPWFsZXJ0c21haWwmaGw9ZW4mZ2w9VVMmbXNnaWQ9TVRFMk9EQTVP
+VGsxTnprME1EazNPREUzTVRRPg0K
+--000000000000a2842a063174a841
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en-US"> <head> </head> <body> <div>  <script data-scope=3D"in=
+boxmarkup" type=3D"application/json">{
+  "api_version": "1.0",
+  "publisher": {
+    "api_key": "668269e72cfedea31b22524041ff21d9",
+    "name": "Google Alerts"
+  },
+  "entity": {
+    "external_key": "Google Alert - \"Bitcoin\" \"El Salvador\"",
+    "title": "Google Alert - \"Bitcoin\" \"El Salvador\"",
+    "subtitle": "Latest: March 29, 2025",
+    "avatar_image_url": "https://www.gstatic.com/images/branding/product/1x=
+/gsa_512dp.png",
+    "main_image_url": "https://www.gstatic.com/bt/C3341AA7A1A076756462EE2E5=
+CD71C11/smartmail/mobile/il_newspaper_header_r1.png"
+  },
+  "updates": {
+    "snippets": [ {
+      "icon": "BOOKMARK",
+      "message": "Trump plans to meet with Bitcoin bull Nayib Bukele next m=
+onth - Crypto Briefing"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "First Tokenized Warehouse Complex Built in El Salvador - =
+Bitcoin.com News"
+    }, {
+      "icon": "BOOKMARK",
+      "message": "Trump plans White House visit for El Salvador's pro-Bitco=
+in Bukele - Crypto News"
+    } ]
+  },
+  "cards": [ {
+    "title": "Google Alert - \"Bitcoin\" \"El Salvador\"",
+    "subtitle": "Highlights from the latest email",
+    "actions": [ {
+      "name": "See more results",
+      "url": "https://www.google.com/alerts?s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URt=
+j6ntkmPo7FrU\u0026start=3D1743138548\u0026end=3D1743226975\u0026source=3Dal=
+ertsmail\u0026hl=3Den\u0026gl=3DUS\u0026msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ=
+#history"
+    } ],
+    "widgets": [ {
+      "type": "LINK",
+      "title": "Trump plans to meet with Bitcoin bull Nayib Bukele next mon=
+th - Crypto Briefing",
+      "description": "Trump to host Bitcoin meeting at White House with El =
+Salvador's President Bukele, discussing immigration, gangs, and crypto poli=
+cies.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://cryptobriefing.com/bitcoin-meeting-white-house-bukele/\u0026ct=3Dga\u0=
+026cd=3DCAEYACoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmV=
+uOlVT\u0026usg=3DAOvVaw2lH7WGwkLKyBrPnYgywc8J"
+    }, {
+      "type": "LINK",
+      "title": "First Tokenized Warehouse Complex Built in El Salvador - Bi=
+tcoin.com News",
+      "description": "Tokenized Warehouse Inaugurated in El Salvador =C2=B7=
+ Bitcoin Gaming Picks.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://news.bitcoin.com/first-tokenized-warehouse-complex-built-in-el-salvado=
+r/\u0026ct=3Dga\u0026cd=3DCAEYASoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwN=
+DI3NjQ4M2M6Y29tOmVuOlVT\u0026usg=3DAOvVaw2FrK4y98Em0hadB3MCF0CL"
+    }, {
+      "type": "LINK",
+      "title": "Trump plans White House visit for El Salvador's pro-Bitcoin=
+ Bukele - Crypto News",
+      "description": "President Donald Trump is set to host El Salvador's P=
+ro-Bitcoin President Nayib Bukele at the White House in April.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://crypto.news/trump-plans-white-house-visit-for-el-salvadors-pro-bitcoin=
+-bukele/\u0026ct=3Dga\u0026cd=3DCAEYAioUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZ=
+iMWEwNDI3NjQ4M2M6Y29tOmVuOlVT\u0026usg=3DAOvVaw0YHMPaPkdzIFth6LTsmbEk"
+    }, {
+      "type": "LINK",
+      "title": "Trump to Host Nayib Bukele Following Deportation Cooperatio=
+n \u0026 Shared Bitcoin Vision",
+      "description": "Trump plans to host El Salvador's President Bukele at=
+ the White House in April, following cooperation on deportations and shared=
+ interest in Bitcoin.",
+      "url": "https://www.google.com/url?rct=3Dj\u0026sa=3Dt\u0026url=3Dhtt=
+ps://coincentral.com/trump-to-host-nayib-bukele-following-deportation-coope=
+ration-shared-bitcoin-vision/\u0026ct=3Dga\u0026cd=3DCAEYAyoUMTE2ODA5OTk1Nz=
+k0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT\u0026usg=3DAOvVaw0uj8HPS=
+F3owrGdqoc8PSf2"
+    } ]
+  } ]
+}
+</script> <!--[if mso]>
+ <table><tr><td width=3D650>
+<![endif]-->
+ <div style=3D"width:100%;max-width:650px"> <div style=3D"font-family:Arial=
+"> <table style=3D"border-collapse:collapse;border-left:1px solid #e4e4e4;b=
+order-right:1px solid #e4e4e4"> <tr> <td style=3D"background-color:#f8f8f8;=
+padding-left:18px;border-bottom:1px solid #e4e4e4;border-top:1px solid #e4e=
+4e4"></td> <td valign=3D"middle" style=3D"padding:13px 10px 8px 0px;backgro=
+und-color:#f8f8f8;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e=
+4e4"> <a href=3D"https://www.google.com/alerts?source=3Dalertsmail&amp;hl=
+=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ" style=3D"text-de=
+coration:none"> <img src=3D"https://www.google.com/intl/en_us/alerts/logo.p=
+ng?cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNA" alt=3D"Google" border=3D"0" height=
+=3D"25"> </a> </td> <td style=3D"background-color:#f8f8f8;padding-left:18px=
+;border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4"></td> </tr> =
+ <tr> <td style=3D"padding-left:32px"></td> <td style=3D"padding:18px 0px 0=
+px 0px;vertical-align:middle;line-height:20px;font-family:Arial"> <span sty=
+le=3D"color:#262626;font-size:22px">"Bitcoin" "El Salvador"</span> <div sty=
+le=3D"vertical-align:top;padding-top:6px;color:#aaa;font-size:12px;line-hei=
+ght:16px"> <span>Daily update</span> <span style=3D"padding:0px 4px 0px 4px=
+">&sdot;</span> <a style=3D"color:#aaa;text-decoration:none">March 29, 2025=
+</a> </div> </td> <td style=3D"padding-left:32px"></td> </tr>  <tr> <td sty=
+le=3D"padding-left:18px"></td> <td style=3D"padding:16px 0px 12px 0px;borde=
+r-bottom:1px solid #e4e4e4"> <span style=3D"font-size:12px;color:#737373"> =
+NEWS </span> </td> <td style=3D"padding-right:18px"></td> </tr>   <tr items=
+cope=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left=
+:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;font=
+-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a =
+href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://cry=
+ptobriefing.com/bitcoin-meeting-white-house-bukele/&amp;ct=3Dga&amp;cd=3DCA=
+EYACoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;=
+usg=3DAOvVaw2lH7WGwkLKyBrPnYgywc8J" itemprop=3D"url" style=3D"color:#427fed=
+;display:inline;text-decoration:none;font-size:16px;line-height:20px"> <spa=
+n itemprop=3D"name">Trump plans to meet with <b>Bitcoin</b> bull Nayib Buke=
+le next month - Crypto Briefing</span> </a> </span>  <div> <div style=3D"pa=
+dding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=
+=3D"http://schema.org/Organization" style=3D"color:#737373;font-size:12px">=
+ <a style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">C=
+rypto Briefing</span> </a> </div> <div itemprop=3D"description" style=3D"co=
+lor:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">Trump =
+to host <b>Bitcoin</b> meeting at White House with <b>El Salvador&#39;s</b>=
+ President Bukele, discussing immigration, gangs, and crypto policies.</div=
+> </div>   <table> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a hr=
+ef=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttp=
+s://cryptobriefing.com/bitcoin-meeting-white-house-bukele/&amp;ss=3Dfb&amp;=
+rt=3DTrump+plans+to+meet+with+Bitcoin+bull+Nayib+Bukele+next+month+-+Crypto=
++Briefing&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpj=
+b206ZW46VVM&amp;ssp=3DAMJHsmWIOCmPHkAKZ_gP96YkM_iHCNaT1w" style=3D"text-dec=
+oration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/alerts/=
+images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td wi=
+dth=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/a=
+lerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://cryptobriefing.com/bitcoin=
+-meeting-white-house-bukele/&amp;ss=3Dtw&amp;rt=3DTrump+plans+to+meet+with+=
+Bitcoin+bull+Nayib+Bukele+next+month+-+Crypto+Briefing&amp;cd=3DKhQxMTY4MDk=
+5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmWI=
+OCmPHkAKZ_gP96YkM_iHCNaT1w" style=3D"text-decoration:none"> <img alt=3D"Twi=
+tter" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" =
+height=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px=
+;font-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=
+=3Dhttps://cryptobriefing.com/bitcoin-meeting-white-house-bukele/&amp;sourc=
+e=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3=
+MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"text-decorati=
+on:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevan=
+t </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right=
+:18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Arti=
+cle"> <td style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 1=
+2px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-family:Arial">=
+ <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https:/=
+/www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://news.bitcoin.com/f=
+irst-tokenized-warehouse-complex-built-in-el-salvador/&amp;ct=3Dga&amp;cd=
+=3DCAEYASoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT=
+&amp;usg=3DAOvVaw2FrK4y98Em0hadB3MCF0CL" itemprop=3D"url" style=3D"color:#4=
+27fed;display:inline;text-decoration:none;font-size:16px;line-height:20px">=
+ <span itemprop=3D"name">First Tokenized Warehouse Complex Built in <b>El S=
+alvador</b> - Bitcoin.com News</span> </a> </span>  <div> <div style=3D"pad=
+ding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=
+=3D"http://schema.org/Organization" style=3D"color:#737373;font-size:12px">=
+ <a style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">B=
+itcoin.com News</span> </a> </div> <div itemprop=3D"description" style=3D"c=
+olor:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">Token=
+ized Warehouse Inaugurated in <b>El Salvador</b> &middot; <b>Bitcoin</b> Ga=
+ming Picks.</div> </div>   <table> <tr> <td width=3D"16" style=3D"padding-r=
+ight:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3D=
+US&amp;ru=3Dhttps://news.bitcoin.com/first-tokenized-warehouse-complex-buil=
+t-in-el-salvador/&amp;ss=3Dfb&amp;rt=3DFirst+Tokenized+Warehouse+Complex+Bu=
+ilt+in+El+Salvador+-+Bitcoin.com+News&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcx=
+NDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUs_YAzqM0ZQK5cJmsvw=
+di6ls2xTA" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"htt=
+ps://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" wi=
+dth=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=
+=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps:=
+//news.bitcoin.com/first-tokenized-warehouse-complex-built-in-el-salvador/&=
+amp;ss=3Dtw&amp;rt=3DFirst+Tokenized+Warehouse+Complex+Built+in+El+Salvador=
++-+Bitcoin.com+News&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mj=
+c2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUs_YAzqM0ZQK5cJmsvwdi6ls2xTA" style=
+=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.=
+com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> <=
+/td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"h=
+ttps://www.google.com/alerts/feedback?ffu=3Dhttps://news.bitcoin.com/first-=
+tokenized-warehouse-complex-built-in-el-salvador/&amp;source=3Dalertsmail&a=
+mp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2X=
+q4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"text-decoration:none;vertical=
+-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </t=
+r> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></td> </t=
+r>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td style=
+=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;vertica=
+l-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div> =
+ <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.google.com=
+/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://crypto.news/trump-plans-white-hou=
+se-visit-for-el-salvadors-pro-bitcoin-bukele/&amp;ct=3Dga&amp;cd=3DCAEYAioU=
+MTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;usg=3D=
+AOvVaw0YHMPaPkdzIFth6LTsmbEk" itemprop=3D"url" style=3D"color:#427fed;displ=
+ay:inline;text-decoration:none;font-size:16px;line-height:20px"> <span item=
+prop=3D"name">Trump plans White House visit for <b>El Salvador&#39;s</b> pr=
+o-<b>Bitcoin</b> Bukele - Crypto News</span> </a> </span>  <div> <div style=
+=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" it=
+emtype=3D"http://schema.org/Organization" style=3D"color:#737373;font-size:=
+12px"> <a style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"n=
+ame">Crypto News</span> </a> </div> <div itemprop=3D"description" style=3D"=
+color:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">Pres=
+ident Donald Trump is set to host <b>El Salvador&#39;s</b> Pro-<b>Bitcoin</=
+b> President Nayib Bukele at the White House in April.</div> </div>   <tabl=
+e> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://ww=
+w.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://crypto.news/=
+trump-plans-white-house-visit-for-el-salvadors-pro-bitcoin-bukele/&amp;ss=
+=3Dfb&amp;rt=3DTrump+plans+White+House+visit+for+El+Salvador%27s+pro-Bitcoi=
+n+Bukele+-+Crypto+News&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA=
+0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUeXQpYS5sI-cosNJ_-izMLIW4Auw" styl=
+e=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstati=
+c.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a>=
+ </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www=
+.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://crypto.news/t=
+rump-plans-white-house-visit-for-el-salvadors-pro-bitcoin-bukele/&amp;ss=3D=
+tw&amp;rt=3DTrump+plans+White+House+visit+for+El+Salvador%27s+pro-Bitcoin+B=
+ukele+-+Crypto+News&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mj=
+c2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUeXQpYS5sI-cosNJ_-izMLIW4Auw" style=
+=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.=
+com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> <=
+/td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"h=
+ttps://www.google.com/alerts/feedback?ffu=3Dhttps://crypto.news/trump-plans=
+-white-house-visit-for-el-salvadors-pro-bitcoin-bukele/&amp;source=3Dalerts=
+mail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=
+=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"text-decoration:none;v=
+ertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant </a> </=
+td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:18px"></=
+td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Article"> <td=
+ style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12px 0px;v=
+ertical-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> <a></a> =
+<div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://www.goog=
+le.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://coincentral.com/trump-to-ho=
+st-nayib-bukele-following-deportation-cooperation-shared-bitcoin-vision/&am=
+p;ct=3Dga&amp;cd=3DCAEYAyoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4=
+M2M6Y29tOmVuOlVT&amp;usg=3DAOvVaw0uj8HPSF3owrGdqoc8PSf2" itemprop=3D"url" s=
+tyle=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px;li=
+ne-height:20px"> <span itemprop=3D"name">Trump to Host Nayib Bukele Followi=
+ng Deportation Cooperation &amp; Shared <b>Bitcoin</b> Vision</span> </a> <=
+/span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publ=
+isher" itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"=
+color:#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#7373=
+73"> <span itemprop=3D"name">CoinCentral</span> </a> </div> <div itemprop=
+=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:1=
+2px;line-height:18px">Trump plans to host <b>El Salvador&#39;s</b> Presiden=
+t Bukele at the White House in April, following cooperation on deportations=
+ and shared interest in <b>Bitcoin</b>.</div> </div>   <table> <tr> <td wid=
+th=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.com/al=
+erts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://coincentral.com/trump-to-ho=
+st-nayib-bukele-following-deportation-cooperation-shared-bitcoin-vision/&am=
+p;ss=3Dfb&amp;rt=3DTrump+to+Host+Nayib+Bukele+Following+Deportation+Coopera=
+tion+%26+Shared+Bitcoin+Vision&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY=
+3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmXHN6eqIE_ikgyWF5TWTsSbMP45=
+mw" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"https://ww=
+w.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"=
+16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"htt=
+ps://www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://coinc=
+entral.com/trump-to-host-nayib-bukele-following-deportation-cooperation-sha=
+red-bitcoin-vision/&amp;ss=3Dtw&amp;rt=3DTrump+to+Host+Nayib+Bukele+Followi=
+ng+Deportation+Cooperation+%26+Shared+Bitcoin+Vision&amp;cd=3DKhQxMTY4MDk5O=
+TU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmXHN6=
+eqIE_ikgyWF5TWTsSbMP45mw" style=3D"text-decoration:none"> <img alt=3D"Twitt=
+er" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" he=
+ight=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;f=
+ont-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3D=
+https://coincentral.com/trump-to-host-nayib-bukele-following-deportation-co=
+operation-shared-bitcoin-vision/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=
+=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUb=
+g65URtj6ntkmPo7FrU" style=3D"text-decoration:none;vertical-align:middle;col=
+or:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </di=
+v> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemsco=
+pe=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:1=
+8px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border=
+-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"pa=
+dding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;s=
+a=3Dt&amp;url=3Dhttps://cointelegraph.com/learn/articles/bitcoin-adoption-b=
+y-country&amp;ct=3Dga&amp;cd=3DCAEYBCoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZi=
+MWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;usg=3DAOvVaw1LXLqY4_G8YD5ogryPhixX" itempr=
+op=3D"url" style=3D"color:#427fed;display:inline;text-decoration:none;font-=
+size:16px;line-height:20px"> <span itemprop=3D"name"><b>Bitcoin</b> adoptio=
+n by country: Who&#39;s leading and who&#39;s lagging behind? - Cointelegra=
+ph</span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div =
+itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organiz=
+ation" style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:=
+none;color:#737373"> <span itemprop=3D"name">Cointelegraph</span> </a> </di=
+v> <div itemprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px=
+ 0px;font-size:12px;line-height:18px">Countries such as <b>El Salvador</b>,=
+ the UAE, Switzerland and Singapore are leading the way with pro-<b>Bitcoin=
+</b> policies, supportive leadership and crypto&nbsp;...</div> </div>   <ta=
+ble> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://=
+www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://cointelegr=
+aph.com/learn/articles/bitcoin-adoption-by-country&amp;ss=3Dfb&amp;rt=3DBit=
+coin+adoption+by+country:+Who%27s+leading+and+who%27s+lagging+behind%3F+-+C=
+ointelegraph&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzY=
+zpjb206ZW46VVM&amp;ssp=3DAMJHsmWxG9yQWeNi4-TINpLZfUHR8RAd7Q" style=3D"text-=
+decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/aler=
+ts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td=
+ width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.co=
+m/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://cointelegraph.com/learn=
+/articles/bitcoin-adoption-by-country&amp;ss=3Dtw&amp;rt=3DBitcoin+adoption=
++by+country:+Who%27s+leading+and+who%27s+lagging+behind%3F+-+Cointelegraph&=
+amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VV=
+M&amp;ssp=3DAMJHsmWxG9yQWeNi4-TINpLZfUHR8RAd7Q" style=3D"text-decoration:no=
+ne"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/images/tw-2=
+4.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=3D"padd=
+ing:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.google.com/=
+alerts/feedback?ffu=3Dhttps://cointelegraph.com/learn/articles/bitcoin-adop=
+tion-by-country&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=
+=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7=
+FrU" style=3D"text-decoration:none;vertical-align:middle;color:#aaa;font-si=
+ze:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </td>=
+ <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" itemtyp=
+e=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"></td> <td =
+style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px solid =
+#e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0=
+px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=
+=3Dhttps://blockchain.news/flashnews/trump-to-meet-el-salvador-leader-at-wh=
+ite-house-bitcoin-discussion-anticipated&amp;ct=3Dga&amp;cd=3DCAEYBSoUMTE2O=
+DA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;usg=3DAOvVa=
+w31ooypvH8l6EN0naeP5aoL" itemprop=3D"url" style=3D"color:#427fed;display:in=
+line;text-decoration:none;font-size:16px;line-height:20px"> <span itemprop=
+=3D"name">Trump to Meet <b>El Salvador</b> Leader at White House, <b>Bitcoi=
+n</b> Discussion Anticipated</span> </a> </span>  <div> <div style=3D"paddi=
+ng:2px 0px 8px 0px"> <div itemprop=3D"publisher" itemscope=3D"" itemtype=3D=
+"http://schema.org/Organization" style=3D"color:#737373;font-size:12px"> <a=
+ style=3D"text-decoration:none;color:#737373"> <span itemprop=3D"name">Bloc=
+kchain News</span> </a> </div> <div itemprop=3D"description" style=3D"color=
+:#252525;padding:2px 0px 0px 0px;font-size:12px;line-height:18px">This meet=
+ing could potentially impact <b>Bitcoin&#39;s</b> market perception and tra=
+ding sentiment as <b>El Salvador</b> is known for its pioneering adoption o=
+f <b>Bitcoin</b>&nbsp;...</div> </div>   <table> <tr> <td width=3D"16" styl=
+e=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DUS&amp;ru=3Dhttps://blockchain.news/flashnews/trump-to-meet-=
+el-salvador-leader-at-white-house-bitcoin-discussion-anticipated&amp;ss=3Df=
+b&amp;rt=3DTrump+to+Meet+El+Salvador+Leader+at+White+House,+Bitcoin+Discuss=
+ion+Anticipated&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2ND=
+gzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmVIlT2j12Fi2yFRWkJbiOV1175-LQ" style=3D"te=
+xt-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/a=
+lerts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> =
+<td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google=
+.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://blockchain.news/flas=
+hnews/trump-to-meet-el-salvador-leader-at-white-house-bitcoin-discussion-an=
+ticipated&amp;ss=3Dtw&amp;rt=3DTrump+to+Meet+El+Salvador+Leader+at+White+Ho=
+use,+Bitcoin+Discussion+Anticipated&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxND=
+IaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmVIlT2j12Fi2yFRWkJbiOV=
+1175-LQ" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https:=
+//www.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=
+=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"=
+> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://blockchai=
+n.news/flashnews/trump-to-meet-el-salvador-leader-at-white-house-bitcoin-di=
+scussion-anticipated&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;ms=
+gid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkm=
+Po7FrU" style=3D"text-decoration:none;vertical-align:middle;color:#aaa;font=
+-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </=
+td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemscope=3D"" item=
+type=3D"http://schema.org/Article"> <td style=3D"padding-left:18px"></td> <=
+td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border-top:1px sol=
+id #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"padding:0px 6p=
+x 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;ur=
+l=3Dhttps://www.crypto-reporter.com/press-releases/bukele-rejects-imf-keeps=
+-buying-btc-and-fxguys-presale-is-blowing-past-expectations-93750/&amp;ct=
+=3Dga&amp;cd=3DCAEYBioUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3NjQ4M2M6=
+Y29tOmVuOlVT&amp;usg=3DAOvVaw0546lmRVscDwuH6cay0Zuz" itemprop=3D"url" style=
+=3D"color:#427fed;display:inline;text-decoration:none;font-size:16px;line-h=
+eight:20px"> <span itemprop=3D"name">Bukele Rejects IMF, Keeps Buying BTC, =
+and FXGuys&#39; Presale Is Blowing Past Expectations!</span> </a> </span>  =
+<div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher" i=
+temscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:#7=
+37373;font-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <sp=
+an itemprop=3D"name">Crypto Reporter</span> </a> </div> <div itemprop=3D"de=
+scription" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;li=
+ne-height:18px"><b>El Salvador&#39;s</b> President Nayib Bukele made news b=
+y dismissing warnings from the International Monetary Fund and buying more =
+<b>Bitcoin</b>.</div> </div>   <table> <tr> <td width=3D"16" style=3D"paddi=
+ng-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;g=
+l=3DUS&amp;ru=3Dhttps://www.crypto-reporter.com/press-releases/bukele-rejec=
+ts-imf-keeps-buying-btc-and-fxguys-presale-is-blowing-past-expectations-937=
+50/&amp;ss=3Dfb&amp;rt=3DBukele+Rejects+IMF,+Keeps+Buying+BTC,+and+FXGuys%2=
+7+Presale+Is+Blowing+Past+Expectations!&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MT=
+cxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUMAmYpB72MjJujW9L=
+9iCOjKJsveg" style=3D"text-decoration:none"> <img alt=3D"Facebook" src=3D"h=
+ttps://www.gstatic.com/alerts/images/fb-24.png" border=3D"0" height=3D"16" =
+width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-right:6px"> <a hr=
+ef=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttp=
+s://www.crypto-reporter.com/press-releases/bukele-rejects-imf-keeps-buying-=
+btc-and-fxguys-presale-is-blowing-past-expectations-93750/&amp;ss=3Dtw&amp;=
+rt=3DBukele+Rejects+IMF,+Keeps+Buying+BTC,+and+FXGuys%27+Presale+Is+Blowing=
++Past+Expectations!&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mj=
+c2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmUMAmYpB72MjJujW9L9iCOjKJsveg" style=
+=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.=
+com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> <=
+/td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"h=
+ttps://www.google.com/alerts/feedback?ffu=3Dhttps://www.crypto-reporter.com=
+/press-releases/bukele-rejects-imf-keeps-buying-btc-and-fxguys-presale-is-b=
+lowing-past-expectations-93750/&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=
+=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUb=
+g65URtj6ntkmPo7FrU" style=3D"text-decoration:none;vertical-align:middle;col=
+or:#aaa;font-size:10px"> Flag as irrelevant </a> </td> </tr> </table>  </di=
+v> </div> </td> <td style=3D"padding-right:18px"></td> </tr>    <tr itemsco=
+pe=3D"" itemtype=3D"http://schema.org/Article"> <td style=3D"padding-left:1=
+8px"></td> <td style=3D"padding:18px 0px 12px 0px;vertical-align:top;border=
+-top:1px solid #e4e4e4;font-family:Arial"> <a></a> <div>  <span style=3D"pa=
+dding:0px 6px 0px 0px"> <a href=3D"https://www.google.com/url?rct=3Dj&amp;s=
+a=3Dt&amp;url=3Dhttps://tradersunion.com/news/editors-picks/show/177448-at-=
+the-starting-line/&amp;ct=3Dga&amp;cd=3DCAEYByoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQ=
+yGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;usg=3DAOvVaw2y3C5gs22Aw7GnnfHJV0L=
+C" itemprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration:n=
+one;font-size:16px;line-height:20px"> <span itemprop=3D"name">At the starti=
+ng line: When will the era of <b>Bitcoin</b> nations begin? - Traders Union=
+</span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div it=
+emprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organizat=
+ion" style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:no=
+ne;color:#737373"> <span itemprop=3D"name">Traders Union</span> </a> </div>=
+ <div itemprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px 0=
+px;font-size:12px;line-height:18px">More countries are exploring <b>Bitcoin=
+</b> adoption as Bhutan and <b>El Salvador</b> lead the way in building cry=
+pto-powered economies.</div> </div>   <table> <tr> <td width=3D"16" style=
+=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=
+=3Den&amp;gl=3DUS&amp;ru=3Dhttps://tradersunion.com/news/editors-picks/show=
+/177448-at-the-starting-line/&amp;ss=3Dfb&amp;rt=3DAt+the+starting+line:+Wh=
+en+will+the+era+of+Bitcoin+nations+begin%3F+-+Traders+Union&amp;cd=3DKhQxMT=
+Y4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJ=
+HsmXe4KB40ImhiS9TCYRMo7zLVCIUBw" style=3D"text-decoration:none"> <img alt=
+=3D"Facebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" borde=
+r=3D"0" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"pad=
+ding-right:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp=
+;gl=3DUS&amp;ru=3Dhttps://tradersunion.com/news/editors-picks/show/177448-a=
+t-the-starting-line/&amp;ss=3Dtw&amp;rt=3DAt+the+starting+line:+When+will+t=
+he+era+of+Bitcoin+nations+begin%3F+-+Traders+Union&amp;cd=3DKhQxMTY4MDk5OTU=
+3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmXe4KB4=
+0ImhiS9TCYRMo7zLVCIUBw" style=3D"text-decoration:none"> <img alt=3D"Twitter=
+" src=3D"https://www.gstatic.com/alerts/images/tw-24.png" border=3D"0" heig=
+ht=3D"16" width=3D"16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;fon=
+t-family:Arial"> <a href=3D"https://www.google.com/alerts/feedback?ffu=3Dht=
+tps://tradersunion.com/news/editors-picks/show/177448-at-the-starting-line/=
+&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nz=
+k0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"tex=
+t-decoration:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as=
+ irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"pad=
+ding-right:18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schem=
+a.org/Article"> <td style=3D"padding-left:18px"></td> <td style=3D"padding:=
+18px 0px 12px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-fami=
+ly:Arial"> <a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=
+=3D"https://www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.cry=
+ptoninjas.net/news/new-legislation-introduced-in-panama-to-turn-the-country=
+-into-a-crypto-hub/&amp;ct=3Dga&amp;cd=3DCAEYCCoUMTE2ODA5OTk1Nzk0MDk3ODE3MT=
+QyGjk2NzZiMWEwNDI3NjQ4M2M6Y29tOmVuOlVT&amp;usg=3DAOvVaw2Ok0f2C23JBaL-tvr01F=
+Ph" itemprop=3D"url" style=3D"color:#427fed;display:inline;text-decoration:=
+none;font-size:16px;line-height:20px"> <span itemprop=3D"name">New Legislat=
+ion Introduced in Panama to Turn the Country into a Crypto Hub - CryptoNinj=
+as</span> </a> </span>  <div> <div style=3D"padding:2px 0px 8px 0px"> <div =
+itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema.org/Organiz=
+ation" style=3D"color:#737373;font-size:12px"> <a style=3D"text-decoration:=
+none;color:#737373"> <span itemprop=3D"name">CryptoNinjas</span> </a> </div=
+> <div itemprop=3D"description" style=3D"color:#252525;padding:2px 0px 0px =
+0px;font-size:12px;line-height:18px">Unlike <b>El Salvador&#39;s</b> mandat=
+ory <b>Bitcoin</b> adoption policy, Panama&#39;s approach gives businesses =
+and individuals the flexibility to adopt crypto at&nbsp;...</div> </div>   =
+<table> <tr> <td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https=
+://www.google.com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://www.cry=
+ptoninjas.net/news/new-legislation-introduced-in-panama-to-turn-the-country=
+-into-a-crypto-hub/&amp;ss=3Dfb&amp;rt=3DNew+Legislation+Introduced+in+Pana=
+ma+to+Turn+the+Country+into+a+Crypto+Hub+-+CryptoNinjas&amp;cd=3DKhQxMTY4MD=
+k5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmX=
+UzofGS0wlaz7_Avf1HK66BGmssQ" style=3D"text-decoration:none"> <img alt=3D"Fa=
+cebook" src=3D"https://www.gstatic.com/alerts/images/fb-24.png" border=3D"0=
+" height=3D"16" width=3D"16"></a> </td> <td width=3D"16" style=3D"padding-r=
+ight:6px"> <a href=3D"https://www.google.com/alerts/share?hl=3Den&amp;gl=3D=
+US&amp;ru=3Dhttps://www.cryptoninjas.net/news/new-legislation-introduced-in=
+-panama-to-turn-the-country-into-a-crypto-hub/&amp;ss=3Dtw&amp;rt=3DNew+Leg=
+islation+Introduced+in+Panama+to+Turn+the+Country+into+a+Crypto+Hub+-+Crypt=
+oNinjas&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDgzYzpjb2=
+06ZW46VVM&amp;ssp=3DAMJHsmXUzofGS0wlaz7_Avf1HK66BGmssQ" style=3D"text-decor=
+ation:none"> <img alt=3D"Twitter" src=3D"https://www.gstatic.com/alerts/ima=
+ges/tw-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <td style=
+=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a href=3D"https://www.goo=
+gle.com/alerts/feedback?ffu=3Dhttps://www.cryptoninjas.net/news/new-legisla=
+tion-introduced-in-panama-to-turn-the-country-into-a-crypto-hub/&amp;source=
+=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3M=
+TQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"text-decoratio=
+n:none;vertical-align:middle;color:#aaa;font-size:10px"> Flag as irrelevant=
+ </a> </td> </tr> </table>  </div> </div> </td> <td style=3D"padding-right:=
+18px"></td> </tr>    <tr itemscope=3D"" itemtype=3D"http://schema.org/Artic=
+le"> <td style=3D"padding-left:18px"></td> <td style=3D"padding:18px 0px 12=
+px 0px;vertical-align:top;border-top:1px solid #e4e4e4;font-family:Arial"> =
+<a></a> <div>  <span style=3D"padding:0px 6px 0px 0px"> <a href=3D"https://=
+www.google.com/url?rct=3Dj&amp;sa=3Dt&amp;url=3Dhttps://www.novinite.com/ar=
+ticles/231545/The%2BRole%2Bof%2BCryptocurrency%2Bin%2BDeveloping%2BEconomie=
+s&amp;ct=3Dga&amp;cd=3DCAEYCSoUMTE2ODA5OTk1Nzk0MDk3ODE3MTQyGjk2NzZiMWEwNDI3=
+NjQ4M2M6Y29tOmVuOlVT&amp;usg=3DAOvVaw34J5HJyLzB5o6u1RveQI2R" itemprop=3D"ur=
+l" style=3D"color:#427fed;display:inline;text-decoration:none;font-size:16p=
+x;line-height:20px"> <span itemprop=3D"name">The Role of Cryptocurrency in =
+Developing Economies - Novinite.com - Sofia News Agency</span> </a> </span>=
+  <div> <div style=3D"padding:2px 0px 8px 0px"> <div itemprop=3D"publisher"=
+ itemscope=3D"" itemtype=3D"http://schema.org/Organization" style=3D"color:=
+#737373;font-size:12px"> <a style=3D"text-decoration:none;color:#737373"> <=
+span itemprop=3D"name">Novinite.com</span> </a> </div> <div itemprop=3D"des=
+cription" style=3D"color:#252525;padding:2px 0px 0px 0px;font-size:12px;lin=
+e-height:18px">In contrast to the volatility of <b>Bitcoin</b>, Solana prov=
+ed ... <b>El Salvador</b> attempted something new in 2021 when it legalized=
+ <b>Bitcoin</b> as a tender.</div> </div>   <table> <tr> <td width=3D"16" s=
+tyle=3D"padding-right:6px"> <a href=3D"https://www.google.com/alerts/share?=
+hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://www.novinite.com/articles/231545/The%2=
+BRole%2Bof%2BCryptocurrency%2Bin%2BDeveloping%2BEconomies&amp;ss=3Dfb&amp;r=
+t=3DThe+Role+of+Cryptocurrency+in+Developing+Economies+-+Novinite.com+-+Sof=
+ia+News+Agency&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOTY3NmIxYTA0Mjc2NDg=
+zYzpjb206ZW46VVM&amp;ssp=3DAMJHsmW4bMVR148ohrQWNujaR52U87OeCQ" style=3D"tex=
+t-decoration:none"> <img alt=3D"Facebook" src=3D"https://www.gstatic.com/al=
+erts/images/fb-24.png" border=3D"0" height=3D"16" width=3D"16"></a> </td> <=
+td width=3D"16" style=3D"padding-right:6px"> <a href=3D"https://www.google.=
+com/alerts/share?hl=3Den&amp;gl=3DUS&amp;ru=3Dhttps://www.novinite.com/arti=
+cles/231545/The%2BRole%2Bof%2BCryptocurrency%2Bin%2BDeveloping%2BEconomies&=
+amp;ss=3Dtw&amp;rt=3DThe+Role+of+Cryptocurrency+in+Developing+Economies+-+N=
+ovinite.com+-+Sofia+News+Agency&amp;cd=3DKhQxMTY4MDk5OTU3OTQwOTc4MTcxNDIaOT=
+Y3NmIxYTA0Mjc2NDgzYzpjb206ZW46VVM&amp;ssp=3DAMJHsmW4bMVR148ohrQWNujaR52U87O=
+eCQ" style=3D"text-decoration:none"> <img alt=3D"Twitter" src=3D"https://ww=
+w.gstatic.com/alerts/images/tw-24.png" border=3D"0" height=3D"16" width=3D"=
+16"></a> </td> <td style=3D"padding:0px 0px 6px 15px;font-family:Arial"> <a=
+ href=3D"https://www.google.com/alerts/feedback?ffu=3Dhttps://www.novinite.=
+com/articles/231545/The%2BRole%2Bof%2BCryptocurrency%2Bin%2BDeveloping%2BEc=
+onomies&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA=
+5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=
+=3D"text-decoration:none;vertical-align:middle;color:#aaa;font-size:10px"> =
+Flag as irrelevant </a> </td> </tr> </table>  </div> </div> </td> <td style=
+=3D"padding-right:18px"></td> </tr>    <tr> <td colspan=3D"3" valign=3D"mid=
+dle" style=3D"background-color:#f8f8f8;font-size:14px;vertical-align:middle=
+;text-align:center;padding:10px 10px 10px 10px;line-height:20px;border:1px =
+solid #e4e4e4;font-family:Arial"> <a href=3D"https://www.google.com/alerts?=
+s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU&amp;start=3D1743138548&amp;end=
+=3D1743226975&amp;source=3Dalertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DM=
+TE2ODA5OTk1Nzk0MDk3ODE3MTQ#history" style=3D"text-decoration:none;vertical-=
+align:middle;color:#427fed">  See more results  </a> <span style=3D"font-si=
+ze:12px;padding-left:15px;padding-right:15px;color:#aaa">|</span> <a href=
+=3D"https://www.google.com/alerts/edit?source=3Dalertsmail&amp;hl=3Den&amp;=
+gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&amp;s=3DAB2Xq4hNt2S2sZ9ueTW=
+Ubg65URtj6ntkmPo7FrU&amp;email=3Ddeibi.sibrian%40berkeley.edu" style=3D"tex=
+t-decoration:none;vertical-align:middle;color:#427fed">Edit this alert</a> =
+ </td> </tr>  </table> <table style=3D"padding-top:6px;font-size:12px;color=
+:#252525;text-align:center;width:100%"> <tr> <td style=3D"font-family:Arial=
+">  You have received this email because you have subscribed to <b>Google A=
+lerts</b>. <div> <a href=3D"https://www.google.com/alerts/remove?source=3Da=
+lertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&a=
+mp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU" style=3D"text-decoration:no=
+ne;color:#427fed">Unsubscribe</a> <span style=3D"padding:0px 4px 0px 4px;co=
+lor:#252525">|</span> <a href=3D"https://www.google.com/alerts?source=3Dale=
+rtsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ" st=
+yle=3D"text-decoration:none;color:#427fed">  View all your alerts  </a> </d=
+iv> </td> </tr> <tr> <td style=3D"padding:6px 10px 0px 0px;font-family:Aria=
+l"> <a href=3D"https://www.google.com/alerts/feeds/16766221062399110009/149=
+71405213877027857" style=3D"text-decoration:none;color:#427fed"> <img src=
+=3D"https://www.gstatic.com/alerts/images/rss-16.gif" alt=3D"RSS" border=3D=
+"0" style=3D"padding:0px 8px 0px 0px;vertical-align:middle"> <span style=3D=
+"display:inline;line-height:16px;vertical-align:middle"> Receive this alert=
+ as RSS feed </span> </a> </td> </tr> <tr> <td style=3D"padding:6px 0px 0px=
+ 0px;font-family:Arial"> <a href=3D"https://www.google.com/alerts?source=3D=
+alertsmail&amp;hl=3Den&amp;gl=3DUS&amp;msgid=3DMTE2ODA5OTk1Nzk0MDk3ODE3MTQ&=
+amp;s=3DAB2Xq4hNt2S2sZ9ueTWUbg65URtj6ntkmPo7FrU&amp;ffu=3D" style=3D"text-d=
+ecoration:none;color:#427fed"> <div style=3D"display:inline;line-height:16p=
+x;vertical-align:middle"> Send Feedback </div> </a> </td> </tr> </table> </=
+div> </div> <!--[if mso]>
+</td></tr></table>
+<![endif]-->  </div>  </body> </html>
+--000000000000a2842a063174a841--
