@@ -23,13 +23,16 @@ Use of **headless browser** --> *i.e. Selenium*; acts as a web browser using the
 
 Below is a diagram of the call order with some helpful notes: 
 
-1. parse_eml_file(path) 
-    ---- calls get_bodies(msg), returns plain_text, html_text 
-    ---- calls extract_inboxmarkup_json(html_text), gets Google's embedded JSON 
-    ---- for each link: 
-        ---- call unwrap_google_url(url), returns URL 
-    return email metadata and items with resolved_url 
+1. parse_eml_file(path) <br>
+    ---- calls get_bodies(msg), returns plain_text, html_text <br>
+    ---- calls extract_inboxmarkup_json(html_text), gets Google's embedded JSON <br>
+    ---- for each link: <br>
+        ---- call unwrap_google_url(url), returns URL <br>
+    return email metadata and items with resolved_url <br>
 
+<br>
+<br>
 2. For each item, collect unique resolved_url values 
-
+<br>
+<br>
 3. For each resolved_url, call extract_website_details(url), returns [title, date_iso, body_text]
